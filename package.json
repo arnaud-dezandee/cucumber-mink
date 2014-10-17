@@ -1,0 +1,29 @@
+{
+  "name": "ags-cucumber-mink",
+  "version": "1.0.0",
+  "description": "Cucumber.js Mink - Step definitions library",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AXA-GROUP-SOLUTIONS/ags-cucumber-mink.git"
+  },
+  "scripts": {
+    "test": "cucumber-js --require lib/"
+  },
+  "author": {
+    "name": "Arnaud Dezandee",
+    "email": "dezandee.a@sfeir.com"
+  },
+  "license": "private",
+  "dependencies": {
+    "async": "^0.9.0",
+    "chai": "^1.9.2",
+    "cucumber": "^0.4.4",
+    "zombie": "^2.0.7"
+  },
+  "devDependencies": {
+    "errorhandler": "^1.2.2",
+    "express": "^4.9.7",
+    "swig": "^1.4.2"
+  }
+}
