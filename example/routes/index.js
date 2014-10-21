@@ -13,6 +13,18 @@ exports.post = function(req, res) {
   res.render('post', {'post': postWithId(id)});
 };
 
+exports.form = function(req, res) {
+  res.render('form', {});
+};
+
+exports.result = function(req, res) {
+  req.body.cb = !!req.body.cb;
+
+  res.render('result', {
+    'request': req.body
+  });
+};
+
 ////////////////////////////
 
 function postsGen (n) {

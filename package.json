@@ -8,7 +8,7 @@
     "url": "git@github.com:AXA-GROUP-SOLUTIONS/ags-cucumber-mink.git"
   },
   "scripts": {
-    "test": "cucumber-js --require lib/"
+    "test": "cucumber-js --require index.js"
   },
   "author": {
     "name": "Arnaud Dezandee",
@@ -22,6 +22,7 @@
     "zombie": "^2.0.7"
   },
   "devDependencies": {
+    "body-parser": "^1.9.0",
     "errorhandler": "^1.2.2",
     "express": "^4.9.7",
     "swig": "^1.4.2"
