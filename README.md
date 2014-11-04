@@ -6,6 +6,8 @@ Step definitions library, see [`doc/steps.md`](https://github.com/AXA-GROUP-SOLU
 
 To use this library for your own End-to-End Cucumber tests :
 
+Install cucumber-js globally on your host : `npm install -g cucumber`
+
 Add this to your package.json
 
 ```javascript
