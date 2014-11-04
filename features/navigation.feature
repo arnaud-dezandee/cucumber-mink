@@ -28,3 +28,6 @@ Feature: I can use cucumber.mink to navigate through my website
     Given I am on "/post/2"
     Then  the response status code should be 200
       And I should be on "/post/2"
+
+  Scenario: Go to an 404 error page
+    Given I go to "/any-random-error-page" and it should be an 404 error
