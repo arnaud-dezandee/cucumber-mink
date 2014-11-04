@@ -28,5 +28,12 @@
     "errorhandler": "^1.2.2",
     "express": "^4.9.7",
     "swig": "^1.4.2"
+  },
+  "files": [
+    "lib/",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">= 0.8"
   }
 }
