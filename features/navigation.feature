@@ -19,6 +19,7 @@ Feature: I can use cucumber.mink to navigate through my website
   Scenario: Navigate backward
     Given I am on the homepage
     And   I follow "Post-1"
+    Then  I wait 1 second
     Then  I should be on "/post/1"
       And the url should match ^\/post\/\d+
     Then  I move backward one page
