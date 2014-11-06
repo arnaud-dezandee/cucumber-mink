@@ -1,7 +1,7 @@
-var zombieWorld = require('./lib/support/world');
-var minkSteps   = require('./lib/step_definitions/mink');
+var driver  = require('./lib/driver/zombie');
+var steps   = require('./lib/steps/mink_steps');
 
 module.exports = function () {
-  minkSteps.call(this);
-  zombieWorld.call(this);
+  driver.call(this);
+  steps.call(this);
 };
