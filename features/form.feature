@@ -33,3 +33,10 @@ Feature: I can use cucumber.mink to fill in forms
     | fn1        | ln1       | d1          | France  | 0          | check   | true   |
     | fn2        | ln2       | d2          | Italy   | 1          | uncheck | false  |
     | fn3        | ln3       | d3          | USA     | 2          | uncheck | false  |
+
+  Scenario: I submit the form with one metaStep
+    Given I submit the form
+    Then I should be on "/result"
+      And I should see "fn2" in the "p.first-name" element
+      And I should see "ln2" in the "p.last-name" element
+      And I should see "d2" in the "p.description" element
