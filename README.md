@@ -17,17 +17,7 @@ cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 
 # Quick start
 
-## Package.json
-
-``` javascript
-"dependencies": {
-  "ags-cucumber-mink": "git+ssh://git@github.com:AXA-GROUP-SOLUTIONS/ags-cucumber-mink.git",
-}
-```
-
-Then:
-
-    npm install
+    npm install --save cucumber-mink
 
 Create `cucumber-mink.js` file a the root of your project
 

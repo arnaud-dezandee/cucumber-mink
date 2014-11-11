@@ -1,22 +1,32 @@
 {
   "name": "cucumber-mink",
+  "description": "Cucumber-js Mink - Step definitions library",
   "version": "0.0.1",
-  "description": "Cucumber.js Mink - Step definitions library",
-  "main": "cucumber-mink.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:AXA-GROUP-SOLUTIONS/ags-cucumber-mink.git"
-  },
+  "keywords": [
+    "testing",
+    "bdd",
+    "cucumber",
+    "cucumber-js",
+    "gherkin",
+    "tests"
+  ],
   "scripts": {
     "start": "node example/server.js",
     "test": "./node_modules/.bin/cucumber-js --require cucumber-mink.js --require features/step_definitions/"
   },
+  "homepage": "https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AXA-GROUP-SOLUTIONS/cucumber-mink.git"
+  },
+  "bugs": {
+    "url": "http://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink/issues"
+  },
+  "license": "MIT",
   "author": {
     "name": "Arnaud Dezandee",
     "email": "dezandee.a@sfeir.com"
   },
-  "license": "private",
-  "private": true,
   "dependencies": {
     "async": "^0.9.0",
     "chai": "^1.10.0",
@@ -29,11 +39,13 @@
     "express": "^4.10.2",
     "swig": "^1.4.2"
   },
-  "files": [
-    "lib/",
-    "index.js"
-  ],
   "engines": {
     "node": ">= 0.10"
-  }
+  },
+  "main": "./cucumber-mink.js",
+  "files": [
+    "lib/",
+    "cucumber-mink.js",
+    "LICENSE"
+  ]
 }
