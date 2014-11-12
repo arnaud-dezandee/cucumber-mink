@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "start": "node example/server.js",
+    "pretest": "./node_modules/.bin/gulp lint",
     "test": "./node_modules/.bin/cucumber-js --require cucumber-mink.js --require features/step_definitions/"
   },
   "homepage": "https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink",
@@ -33,10 +34,13 @@
     "zombie": "^2.1.1"
   },
   "devDependencies": {
-    "cucumber": "^0.4.4",
     "body-parser": "^1.9.2",
+    "cucumber": "^0.4.4",
     "errorhandler": "^1.2.2",
     "express": "^4.10.2",
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0",
+    "jshint-stylish": "^1.0.0",
     "swig": "^1.4.2"
   },
   "engines": {
