@@ -37,7 +37,11 @@ Use pre-defined steps in your `features/__.feature` files
 
 ``` gherkin
 //  features/home.feature
-
+Feature: 
+  
+  Background:
+  Given I browse "http://store.local:8080"	
+  
 Scenario: Render Main page
   Given I am on the homepage
   Then  the response status code should be 200
