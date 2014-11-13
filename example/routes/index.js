@@ -38,7 +38,7 @@ function postsGen (n) {
 function postWithId (id) {
   return {
     id: id,
-    title: "Post-" + id,
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-  }
+    title: 'Post-' + id,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  };
 }

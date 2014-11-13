@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink)
+[![Dependency Status](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink)
+[![Codacy Badge](https://www.codacy.com/project/badge/ac135f34f64a4c47a7aba1850acf4009)](https://www.codacy.com/public/dezandeea/cucumber-mink)
+
 #Introduction
 
 cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library with focus on ease of use.
