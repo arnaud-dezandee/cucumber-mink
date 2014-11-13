@@ -1,10 +1,6 @@
 var MetaBuilder = require('../../cucumber-mink').Utils.MetaBuilder;
 
-module.exports = function() {
-  this.Given(/^I submit the form$/, submit);
-};
-
-///////////////////////////
+////////////////////////////
 
 function submit (callback) {
 
@@ -31,3 +27,9 @@ function submit (callback) {
 
   return MetaBuilder.call(this, stepsArray, callback);
 }
+
+////////////////////////////
+
+module.exports = function() {
+  this.Given(/^I submit the form$/, submit);
+};

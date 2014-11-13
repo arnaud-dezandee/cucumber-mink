@@ -16,7 +16,7 @@
   "trailing": true,
   "smarttabs": true,
   "jquery": true,
-  "latedef": "nofunc",
+  "latedef": true,
   "maxparams": 6,
   "maxlen": 120,
 
@@ -24,7 +24,7 @@
   "boss": true,
   "eqnull": false,
   "evil": false,
-  "expr": true,
+  "expr": false,
   "funcscope": false,
   "globalstrict": false,
   "lastsemic": false,

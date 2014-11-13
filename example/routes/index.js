@@ -1,3 +1,20 @@
+function postWithId (id) {
+  return {
+    id: id,
+    title: 'Post-' + id,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  };
+}
+
+function postsGen (n) {
+  var data = [];
+  for (var i = 1; i < n + 1; i++) {
+    data.push(postWithId(i));
+  }
+  return data;
+}
+
+////////////////////////////
 
 exports.index = function(req, res){
   res.render('index', {'posts': postsGen(3)});
@@ -24,21 +41,3 @@ exports.result = function(req, res) {
     'request': req.body
   });
 };
-
-////////////////////////////
-
-function postsGen (n) {
-  var data = [];
-  for (var i = 1; i < n + 1; i++) {
-    data.push(postWithId(i));
-  }
-  return data;
-}
-
-function postWithId (id) {
-  return {
-    id: id,
-    title: 'Post-' + id,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-  };
-}
