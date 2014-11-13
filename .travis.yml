@@ -10,6 +10,6 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3     # give xvfb some time to start
   - npm start & # start a Express server
-  - sleep 1     # give Web server some time to bind to sockets, etc
+  - sleep 3     # give Web server some time to bind to sockets, etc
 
 script: './node_modules/.bin/cucumber-js --require cucumber-mink.js --require features/step_definitions/ --format=pretty'
