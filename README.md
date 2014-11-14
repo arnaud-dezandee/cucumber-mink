@@ -37,12 +37,19 @@ Use pre-defined steps in your `features/__.feature` files
 
 ``` gherkin
 //  features/home.feature
+Feature: I can use cucumber.mink to check the content of my website
 
-Scenario: Render Main page
-  Given I am on the homepage
-  Then  the response status code should be 200
-  And   I should see "Welcome to my awesome application" in the "h1" element
+  Background:
+    Given I browse "http://localhost:3000/"
+
+  Scenario: Check Homepage content
+    Given I am on the homepage
+    Then  the response status code should be 200
+    And   I should see "Welcome to my awesome application" in the "h1" element
 ```
+
+
+
 
 Run your tests
 
