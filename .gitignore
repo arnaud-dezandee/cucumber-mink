@@ -4,3 +4,4 @@ node_modules
 .rvmrc
 tmp/
 npm-debug.log
+*.iml

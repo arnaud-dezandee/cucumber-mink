@@ -48,14 +48,31 @@ Feature: I can use cucumber.mink to check the content of my website
     And   I should see "Welcome to my awesome application" in the "h1" element
 ```
 
-
-
-
 Run your tests
 
     cucumber-js --require cucumber-mink.js
 
 [See available steps](doc/steps.md)
+
+To avoid hard coding the tested url in the features (for multiple environments...), you can set an environment variable in your machine and then reference it in the features:
+
+``` bash
+export CUCUMBER_URL=http://localhost:3000/
+```
+
+``` gherkin
+...
+  Background:
+    Given I browse "${CUCUMBER_URL}"
+...
+```
+
+``` gherkin
+...
+  Background:
+    Given I browse "${CUCUMBER_URL}/mixed/with/path"
+...
+```
 
 ## Meta-steps builder
 
