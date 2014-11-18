@@ -1,7 +1,7 @@
 {
   "name": "cucumber-mink",
   "description": "Cucumber-js Mink - Step definitions library",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "testing",
     "bdd",
@@ -31,7 +31,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "chai": "^1.10.0",
-    "zombie": "^2.1.1"
+    "zombie": "^2.2.1"
   },
   "devDependencies": {
     "body-parser": "^1.9.2",
