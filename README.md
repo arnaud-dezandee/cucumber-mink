@@ -13,7 +13,7 @@ cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 - [Steps Reference and examples](doc/steps.md)
 - [Meta-steps builder](#meta-steps-builder)
 
-# Prerequesites
+# Prerequisites
 
 * [Node.js](http://nodejs.org)
 * [NPM](http://npmjs.org)

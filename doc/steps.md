@@ -18,7 +18,7 @@ Useful to use short url in subsequent navigation (ex: "/login")
 ###### /^(?:|I )go to (?:|the )homepage$/
 
     Given I am on the homepage
-    Given I go on the homepage
+    Given I go to the homepage
 
 ---
 
@@ -26,7 +26,7 @@ Useful to use short url in subsequent navigation (ex: "/login")
 ###### /^(?:|I )go to "([^"]*)"$/
 
     Given I am on "/post/2"
-    Given I go on "/form"
+    Given I go to "/form"
 
 ---
 
