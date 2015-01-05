@@ -51,6 +51,11 @@ Feature: I can use cucumber.mink to check the content of my website
 Run your tests
 
     cucumber-js --require cucumber-mink.js
+    
+Run a specific scenario based on the line of scenario
+
+    cucumber-js --require cucumber-mink.js features/<testname.feature>:<scenariofirstline>
+
 
 [See available steps](doc/steps.md)
 
