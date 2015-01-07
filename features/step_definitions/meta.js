@@ -1,27 +1,29 @@
-var MetaBuilder = require('../../cucumber-mink').Utils.MetaBuilder;
+var Mink        = require('../../mink'),
+    Ext         = Mink.Steps.Ext,
+    MetaBuilder = Mink.Utils.MetaBuilder;
 
 ////////////////////////////
 
 function submit (callback) {
 
   var myFormArray = [
-    { field: 'first_name',  value: 'fn2' },
-    { field: 'last_name',   value: 'ln2' },
-    { field: 'description', value: 'd2'  }
+    { field: 'input[name="first_name"]',      value: 'fn2' },
+    { field: 'input[name="last_name"]',       value: 'ln2' },
+    { field: 'textarea[name="description"]',  value: 'd2'  }
   ];
 
   var stepsArray = [
     {
-      name: 'visit',
+      stepFunc: Ext.Navigation.browse,
       args: ['/form']
     },
     {
-      name: 'fillFields',
+      stepFunc: Ext.Form.fillFields,
       args: [myFormArray]
     },
     {
-      name: 'pressButton',
-      args: ['Register']
+      stepFunc: Ext.Action.click,
+      args: ['button[type="submit"]']
     }
   ];
 

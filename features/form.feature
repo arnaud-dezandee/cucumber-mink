@@ -13,13 +13,13 @@ Feature: I can use cucumber.mink to fill in forms
   Scenario Outline: Multiple form submit
     Given I am on "/form"
     When I fill in the following:
-      | first_name  | <first_name> |
-      | last_name   | <last_name> |
-      | description | <description> |
+      | input[name='first_name']  | <first_name> |
+      | input[name='last_name']   | <last_name> |
+      | textarea[name='description'] | <description> |
 
-    And I select "<country>" from "country"
+    And I select "<country>" from "select[name='country']"
     And I <cbState> "#cb"
-    And I press "Register"
+    And I press "button[type='submit']"
 
     Then I should be on "/result"
       And I should see "<first_name>" in the "p.first-name" element

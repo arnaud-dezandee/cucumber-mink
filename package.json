@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node example/server.js",
     "pretest": "./node_modules/.bin/gulp lint",
-    "test": "./node_modules/.bin/cucumber-js --require cucumber-mink.js --require features/step_definitions/"
+    "test": "./node_modules/.bin/cucumber-js --require mink.js --require features/step_definitions/"
   },
   "homepage": "https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink",
   "repository": {
@@ -26,18 +26,20 @@
   "license": "MIT",
   "author": {
     "name": "Arnaud Dezandee",
-    "email": "dezandee.a@sfeir.com"
+    "email": "dezandee.arnaud@gmail.com"
   },
   "dependencies": {
     "async": "^0.9.0",
     "chai": "^1.10.0",
-    "zombie": "^2.2.1"
+    "lodash": "^2.4.1",
+    "webdriverio": "^2.4.0",
+    "zombie": "^2.5.1"
   },
   "devDependencies": {
-    "body-parser": "^1.9.2",
-    "cucumber": "^0.4.4",
-    "errorhandler": "^1.2.2",
-    "express": "^4.10.2",
+    "body-parser": "^1.10.1",
+    "cucumber": "^0.4.7",
+    "errorhandler": "^1.3.2",
+    "express": "^4.10.7",
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
     "jshint-stylish": "^1.0.0",
@@ -46,10 +48,10 @@
   "engines": {
     "node": ">= 0.10"
   },
-  "main": "./cucumber-mink.js",
+  "main": "./mink.js",
   "files": [
     "lib/",
-    "cucumber-mink.js",
+    "mink.js",
     "LICENSE"
   ]
 }
