@@ -12,8 +12,9 @@
   ],
   "scripts": {
     "start": "node test/site/server.js",
-    "pretest": "./node_modules/.bin/gulp lint",
-    "test": "./node_modules/.bin/cucumber-js --require mink.js --require test/features/step_definitions/ --format=pretty test/features/"
+    "pretest": "node_modules/.bin/gulp lint",
+    "coverage": "node_modules/.bin/istanbul cover test/runner.js --root ./lib",
+    "test": "node test/runner.js"
   },
   "homepage": "https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink",
   "repository": {
@@ -42,6 +43,7 @@
     "express": "^4.10.7",
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
+    "istanbul": "^0.3.5",
     "jshint-stylish": "^1.0.0",
     "swig": "^1.4.2"
   },
@@ -50,6 +52,7 @@
   },
   "main": "./mink.js",
   "files": [
+    "examples/",
     "lib/",
     "mink.js",
     "LICENSE"
