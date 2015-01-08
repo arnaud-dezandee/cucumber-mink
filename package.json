@@ -11,9 +11,9 @@
     "tests"
   ],
   "scripts": {
-    "start": "node example/server.js",
+    "start": "node test/site/server.js",
     "pretest": "./node_modules/.bin/gulp lint",
-    "test": "./node_modules/.bin/cucumber-js --require mink.js --require features/step_definitions/"
+    "test": "./node_modules/.bin/cucumber-js --require mink.js --require test/features/step_definitions/ --format=pretty test/features/"
   },
   "homepage": "https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink",
   "repository": {
@@ -32,7 +32,7 @@
     "async": "^0.9.0",
     "chai": "^1.10.0",
     "lodash": "^2.4.1",
-    "webdriverio": "^2.4.0",
+    "webdriverio": "^2.4.2",
     "zombie": "^2.5.1"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink)
+[![Coverage Status](https://img.shields.io/coveralls/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://coveralls.io/r/AXA-GROUP-SOLUTIONS/cucumber-mink)
 [![Dependency Status](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink)
 [![Codacy Badge](https://www.codacy.com/project/badge/ac135f34f64a4c47a7aba1850acf4009)](https://www.codacy.com/public/dezandeea/cucumber-mink)
 
@@ -10,7 +11,7 @@ cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 
 - [Prerequesites](#prerequesites)
 - [Quick start](#quick-start)
-- [Steps Reference and examples](doc/steps.md)
+- [Steps Reference and examples](STEPS.md)
 - [Meta-steps builder](#meta-steps-builder)
 
 # Prerequisites
@@ -57,7 +58,7 @@ Run a specific scenario based on the line of scenario
     cucumber-js --require cucumber-mink.js features/<testname.feature>:<scenariofirstline>
 
 
-[See available steps](doc/steps.md)
+[See available steps](STEPS.md)
 
 To avoid hard coding the tested url in the features (for multiple environments...), you can set an environment variable in your machine and then reference it in the features:
 

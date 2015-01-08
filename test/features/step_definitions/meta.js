@@ -1,4 +1,4 @@
-var Mink        = require('../../mink'),
+var Mink        = require('../../../mink'),
     Ext         = Mink.Steps.Ext,
     MetaBuilder = Mink.Utils.MetaBuilder;
 
