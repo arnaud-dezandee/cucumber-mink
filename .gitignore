@@ -1,7 +1,6 @@
-.DS_Store
 node_modules
+coverage
+tmp
+.DS_Store
 .#*
-.rvmrc
-tmp/
-npm-debug.log
-*.iml
+*.log

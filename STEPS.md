@@ -1,5 +1,4 @@
-Available steps
-===============
+#Available steps
 
 Steps are defined by a regular expression usable inside .features files.
 
@@ -103,14 +102,6 @@ Select an option from a <select> input.
 ####/^the url should match (.+)$/
 
     And the url should match ^\/post\/\d+
-
----
-
-####/^the response status code should be (\d+)$/
-###### /^the response status code should not be (\d+)$/
-
-    Then the response status code should be 200
-    And the response status code should not be 404
 
 ---
 
