@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink)
-[![Coverage Status](https://img.shields.io/coveralls/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://coveralls.io/r/AXA-GROUP-SOLUTIONS/cucumber-mink)
+[![Build Status](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?branch=master)](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink)
+[![Coverage Status](https://img.shields.io/coveralls/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?branch=master)](https://coveralls.io/r/AXA-GROUP-SOLUTIONS/cucumber-mink)
 [![Dependency Status](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink)
 [![Codacy Badge](https://www.codacy.com/project/badge/ac135f34f64a4c47a7aba1850acf4009)](https://www.codacy.com/public/dezandeea/cucumber-mink)
 [![Code Climate](https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink/badges/gpa.svg)](https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink)
