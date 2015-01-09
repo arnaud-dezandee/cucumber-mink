@@ -19,6 +19,8 @@ Feature: I can use cucumber.mink to fill in forms
 
     And I select "<country>" from "select[name='country']"
     And I <cbState> "#cb"
+      Then the "input[name='first_name']" field should contain "<first_name>"
+      Then the "input[name='first_name']" field should not contain "<last_name>"
     And I press "button[type='submit']"
 
     Then I should be on "/result"
