@@ -5,11 +5,11 @@
 [![Codacy Badge](https://www.codacy.com/project/badge/ac135f34f64a4c47a7aba1850acf4009)](https://www.codacy.com/public/dezandeea/cucumber-mink)
 [![Code Climate](https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink/badges/gpa.svg)](https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink)
 
-#Introduction
+# Introduction
 
 cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library. You can run your test with Zombie.js or with any Selenium compatible browser like Phantomjs ! 
 
-#Topics
+# Topics
 
 - [Prerequesites](#prerequesites)
 - [Quick start](#quick-start)
@@ -157,13 +157,13 @@ Scenario: I log into the application and see my dashboard
 __Important__, don't forget to launch your test suite with the correct command: in this case
 
 ``` shell
-cucumber-js --require cucumber-mink.js --require features/step_definitions/
+cucumber-js --require mink.js --require features/step_definitions/
 ```
 
 You can pass in any function inside the `stepFunc` field, here we use Mink's function available in `lib/step_definitions/ext`.
 There is a complete example here: [meta.js](test/features/step_definitions/meta.js)
 
-#Drivers
+# Drivers
 
 cucumber-mink comes with support for 2 drivers out of the box:
 
@@ -201,13 +201,13 @@ var parameters = {
     This driver can be used to communicate with various browser, like a locally running [Chrome](https://code.google.com/p/selenium/wiki/ChromeDriver) 
     or on some distant services like [SauceLabs](https://saucelabs.com/) and [BrowserStack](http://www.browserstack.com/). See [examples](examples/)
 
-#Maintainers
+# Maintainers
 
 The npm module for this library is maintained by:
 
 * [Arnaud Dezandee](http://github.com/Adezandee)
 
-#License
+# License
 
 The MIT License (MIT)
 
