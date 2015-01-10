@@ -2,7 +2,7 @@
  * cucumber-mink
  * https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink
  *
- * Cucumber-Mink - A Step definitions library for cucumber.js BDD Framework
+ * cucumber.js BDD Framework step definitions library
  *
  * Copyright (c) 2014 AXA Group Solutions
  * Licensed under the MIT license.

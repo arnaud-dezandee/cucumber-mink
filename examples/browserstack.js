@@ -6,7 +6,7 @@ var parameters = {
     type: 'webdriverio',
     options : {
       desiredCapabilities: {
-        'browserstack.local' : 'true',
+        'browserstack.local' : true,
         'browserstack.debug': true,
         'browser' : 'Safari',
         'browser_version' : '8.0',

@@ -13,8 +13,9 @@ $ phantomjs -v
 
 ## Usage
 
-* Enable cucumber-mink with WebDriverIO driver using [phantomjs.js](phantomjs.js) as an example bootstrap file.
+* Enable cucumber-mink with WebDriverIO driver + PhantomJS settings. See [example](phantomjs.js) file.
 * Launch Phantomjs in "Remote WebDriver mode": `phantomjs -w`
+* Run your tests
 
 ## Additional Options
 ### HTTPS
@@ -41,3 +42,22 @@ var parameters = {
   }
 };
 ```
+
+# Local Chrome Browser
+
+## Prerequisites
+
+* [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
+
+The binary `chromedriver` should be ready to use:
+
+``` bash
+$ chromedriver -v
+ChromeDriver 2.13.307649 (bf55b442bb6b5c923249dd7870d6a107678bfbb6)
+```
+
+## Usage
+
+* Enable cucumber-mink with WebDriverIO driver + Local Chrome settings. See [example](local-chrome.js) file.
+* Launch chromedriver service: `chromedriver --url-base=wd/hub`
+* Run your tests
