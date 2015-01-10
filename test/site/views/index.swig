@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout/main.swig" %}
 
 {% block title %}Example Home{% endblock %}
 
@@ -8,7 +8,7 @@
         <div class="posts">
             <h2 class="content-subhead">All Post</h2>
             {% for post in posts %}
-                {% include "partials/compact-post.html" with { post: post } %}
+                {% include "partials/compact-post.swig" with { post: post } %}
             {% endfor %}
         </div>
 

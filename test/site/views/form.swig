@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout/main.swig" %}
 
 {% block title %}Form Page{% endblock %}
 

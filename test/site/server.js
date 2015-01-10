@@ -1,30 +1,21 @@
-var express         = require('express'),
-    errorhandler    = require('errorhandler'),
-    bodyParser      = require('body-parser'),
-    swig            = require('swig'),
-    routes          = require('./routes'),
-    http            = require('http');
+var Hapi   = require('hapi'),
+    Path   = require('path'),
+    Routes = require('./routes');
 
-var app = module.exports = express();
+var server = new Hapi.Server();
+server.connection({ port: 3000 });
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
+server.views({
+  engines:  { swig: require('swig') },
+  path:     Path.join(__dirname, 'views')
+});
 
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
+server.route({ method: 'GET',  path: '/',                   handler: Routes.index     });
+server.route({ method: 'GET',  path: '/form',               handler: Routes.form      });
+server.route({ method: 'POST', path: '/result',             handler: Routes.result    });
+server.route({ method: 'GET',  path: '/post/{id}',          handler: Routes.post      });
+server.route({ method: 'GET',  path: '/generate/{number}',  handler: Routes.generate  });
 
-var env = process.env.NODE_ENV || 'development';
-if (env === 'development') {
-  app.use(errorhandler());
-}
-
-app.get('/', routes.index);
-app.get('/form', routes.form);
-app.post('/result', routes.result);
-app.get('/post/:id', routes.post);
-app.get('/generate/:number', routes.generatePost);
-
-http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+server.start(function () {
+  console.log('Server running at:', server.info.uri);
 });
