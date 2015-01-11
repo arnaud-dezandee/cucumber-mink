@@ -1,4 +1,4 @@
-var mink = require('./../mink');
+var mink = require('./../lib/mink');
 
 // Phantomjs - GhostDriver
 var parameters = {

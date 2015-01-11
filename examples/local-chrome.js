@@ -1,4 +1,4 @@
-var mink = require('./../mink');
+var mink = require('./../lib/mink');
 
 // Local Chrome
 var parameters = {

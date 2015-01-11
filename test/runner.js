@@ -13,15 +13,5 @@ function runWith(file) {
 // Phantomjs Run
 console.log('Running Test suite with WebDriverIO');
 runWith('examples/phantomjs.js').run(function (succeeded) {
-  if (succeeded) {
-
-    // Zombie.js Run
-    console.log('Running Test suite with Zombie.js');
-    runWith('examples/zombie.js').run(function (succeeded) {
-      process.exit(succeeded ? 0 : 1);
-    });
-
-  } else {
-    process.exit(1);
-  }
+  process.exit(succeeded ? 0 : 1);
 });
