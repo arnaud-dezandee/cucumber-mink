@@ -7,7 +7,7 @@
 
 # Introduction
 
-cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library. You can run your test with Zombie.js or with any Selenium compatible browser like Phantomjs ! 
+cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library. You can run your test with any Selenium compatible browser like Phantomjs !
 
 # Topics
 
@@ -163,22 +163,9 @@ cucumber-js --require mink.js --require features/step_definitions/
 You can pass in any function inside the `stepFunc` field, here we use Mink's function available in `lib/step_definitions/ext`.
 There is a complete example here: [meta.js](test/features/step_definitions/meta.js)
 
-# Drivers
+# Driver
 
-cucumber-mink comes with support for 2 drivers out of the box:
-
-* `Zombie.js` - Insanely fast, headless browser. [assaf/zombie](https://github.com/assaf/zombie).
-  It's currently the default driver, to enable it use this parameters in your `mink.js` file:
-
-    ``` javascript
-var parameters = {
-      driver: {
-        type: 'zombie'
-      }
-};
-    ```
-  
-  To use zombie.js driver, see [examples/zombie.js](examples/zombie.js)
+cucumber-mink comes with support for WebDriverIO out of the box:
 
 * `WebDriverIO` - webdriver module for Node.js. [webdriverio](https://github.com/webdriverio/webdriverio).
   This driver allow you to communicate with any Selenium compatible grid/hub. The driver default settings use Phantomjs/GhostDriver.

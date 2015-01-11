@@ -1,11 +1,9 @@
-var Mink        = require('../../../mink'),
-    Ext         = Mink.Steps.Ext,
-    MetaBuilder = Mink.Utils.MetaBuilder;
+var Mink  = require('../../../lib/mink'),
+    Ext   = Mink.Ext;
 
 ////////////////////////////
 
-function submit (callback) {
-
+function submit (Driver, callback) {
   var myFormArray = [
     { field: 'input[name="first_name"]',      value: 'fn2' },
     { field: 'input[name="last_name"]',       value: 'ln2' },
@@ -27,7 +25,7 @@ function submit (callback) {
     }
   ];
 
-  return MetaBuilder.call(this, stepsArray, callback);
+  return Mink.metaStep(Driver, stepsArray, callback);
 }
 
 ////////////////////////////
