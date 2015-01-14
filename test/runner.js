@@ -11,7 +11,7 @@ function runWith(file) {
 }
 
 // Phantomjs Run
-console.log('Running Test suite with WebDriverIO');
+console.log('Running Test suite with PhantomJS');
 runWith('examples/phantomjs.js').run(function (succeeded) {
   process.exit(succeeded ? 0 : 1);
 });

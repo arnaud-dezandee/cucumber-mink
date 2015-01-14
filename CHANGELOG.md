@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Master
+* BC: Dropped Zombie.js driver support
+* BC: New methods signature for `World.defineStep` and siblings methods. Direct injection of Driver object.
+* BC: MetaStep builder methods now accessible through `Mink.metaStep(Driver driver, [] stepsArray, Function callback)`
+
 ## v0.1.0 (2015-01-08)
 * Added [WebDriverIO](https://github.com/webdriverio/webdriverio) Selenium driver support, default driver still Zombie.js
 * Created driver API between Zombie.js and WebDriverIO
