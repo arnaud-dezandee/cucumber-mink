@@ -7,5 +7,5 @@ Feature: I can use cucumber.mink to test responsiveness of a web page
     Given I am on "/"
       Then the "button.navbar-toggle" element should not be visible
 
-    Given the viewport is 400 width and 400 height
+    Given the viewport is 320px width and 568px height
       Then the "button.navbar-toggle" element should be visible

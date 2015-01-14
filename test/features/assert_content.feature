@@ -12,7 +12,7 @@ Feature: I can use cucumber.mink to check the content of my website
       And I should see "Home Page" in the "h1" element
       And I should not see "Post Detail Page" in the "h1" element
       And I should see an "h2.content-subhead" element
-      And I should not see an "p.description" element
+      And the "p.description" element should not exist
       And I should see 3 "section.post" elements
 
   Scenario Outline: Check Generated content
