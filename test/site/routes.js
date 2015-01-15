@@ -1,3 +1,9 @@
+///////////////////
+
+var Routes = module.exports = {};
+
+///////////////////
+
 function postWithId (id) {
   return {
     id: id,
@@ -14,27 +20,31 @@ function postsGen (n) {
   return data;
 }
 
-////////////////////////////
+///////////////////
 
-exports.index = function(request, reply){
+Routes.responsive = function(request, reply) {
+  reply.view('responsive');
+};
+
+Routes.index = function(request, reply){
   reply.view('index', {'posts': postsGen(3)});
 };
 
-exports.generate = function(request, reply){
+Routes.generate = function(request, reply){
   var number = parseInt(encodeURIComponent(request.params.number));
   reply.view('index', {'posts': postsGen(number)});
 };
 
-exports.post = function(request, reply) {
+Routes.post = function(request, reply) {
   var id = encodeURIComponent(request.params.id);
   reply.view('post', {'post': postWithId(id)});
 };
 
-exports.form = function(request, reply) {
+Routes.form = function(request, reply) {
   reply.view('form', {});
 };
 
-exports.result = function(request, reply) {
+Routes.result = function(request, reply) {
   request.payload.cb = !!request.payload.cb;
 
   reply.view('result', {
