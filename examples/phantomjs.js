@@ -5,6 +5,7 @@ var parameters = {
   driver: {
     type: 'webdriverio',
     options : {
+      screenshotPath: 'test/',
       desiredCapabilities: {
         browserName: 'phantomjs'
       },

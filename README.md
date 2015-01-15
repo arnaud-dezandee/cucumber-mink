@@ -80,7 +80,7 @@ export CUCUMBER_URL=http://localhost:3000
 
 The standard step definition methods are overridden by cucumber-mink so that it's easier to call the driver.
 
-#####`World.defineStep(String pattern, function (Driver driver, [stepsInput], Function callback))` -> `null`
+#####`World.defineStep(String pattern, function (Driver, [stepsInput], Fn callback))`
 The driver object is injected as the first arguments in the step function. This avoid heavy use of `this` keyword.
 This affects also siblings methods : `World.Given`, `World.Then`, `World.When`.
 
@@ -108,7 +108,7 @@ Given I am logged in
 ```
 
 ### Usage
-#####`Mink.metaStep(Driver driver, [] stepsArray, Function callback)` -> `null`
+#####`Mink.metaStep(Driver, [] stepsArray, Fn callback)`
 Call multiple callback function in one step effectively creating a "meta" steps. StepsArray should be an Array of objects like:
 ``` javascript
 var stepsArray = [
