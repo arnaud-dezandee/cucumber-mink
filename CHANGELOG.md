@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Master
+## v0.2.0 (2015-01-15)
 * Added new step: `the viewport is <X>px width and <Y>px height`
 * Added automatic screenshot on scenario failure if `driver.options.screenshotPath` is defined
 * Default viewport size of WebDriver is : width: 1366px, height: 768px
