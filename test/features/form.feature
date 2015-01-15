@@ -9,6 +9,8 @@ Feature: I can use cucumber.mink to fill in forms
     Then the "#cb" checkbox should not be checked
     Then I check "#cb"
     Then the "#cb" checkbox should be checked
+    Then I uncheck "#cb"
+    Then the "#cb" checkbox should not be checked
 
   Scenario Outline: Multiple form submit
     Given I am on "/form"

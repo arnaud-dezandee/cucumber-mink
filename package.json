@@ -1,20 +1,22 @@
 {
   "name": "cucumber-mink",
   "description": "Cucumber-js Mink - Step definitions library",
-  "version": "0.1.0",
   "keywords": [
     "testing",
     "bdd",
     "cucumber",
     "cucumber-js",
     "gherkin",
-    "tests"
+    "tests",
+    "webdriver",
+    "phantomjs",
+    "selenium"
   ],
-  "scripts": {
-    "start": "node test/site/server.js",
-    "pretest": "node_modules/.bin/gulp lint",
-    "coverage": "node_modules/.bin/istanbul cover test/runner.js --root ./lib",
-    "test": "node test/runner.js"
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Arnaud Dezandee",
+    "email": "dezandee.arnaud@gmail.com"
   },
   "homepage": "https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink",
   "repository": {
@@ -24,35 +26,29 @@
   "bugs": {
     "url": "http://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink/issues"
   },
-  "license": "MIT",
-  "author": {
-    "name": "Arnaud Dezandee",
-    "email": "dezandee.arnaud@gmail.com"
+  "main": "./index.js",
+  "scripts": {
+    "start": "node test/site/server.js",
+    "pretest": "node_modules/.bin/gulp lint",
+    "coverage": "node_modules/.bin/istanbul cover test/runner.js --root ./lib",
+    "test": "node test/runner.js"
+  },
+  "engines": {
+    "node": ">= 0.10"
   },
   "dependencies": {
     "async": "^0.9.0",
     "chai": "^1.10.0",
+    "cucumber": "^0.4.7",
     "lodash": "^2.4.1",
-    "webdriverio": "^2.4.2",
-    "zombie": "^2.5.1"
+    "webdriverio": "^2.4.3"
   },
   "devDependencies": {
-    "cucumber": "^0.4.7",
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
     "hapi": "^8.1.0",
     "istanbul": "^0.3.5",
     "jshint-stylish": "^1.0.0",
     "swig": "^1.4.2"
-  },
-  "engines": {
-    "node": ">= 0.10"
-  },
-  "main": "./mink.js",
-  "files": [
-    "examples/",
-    "lib/",
-    "mink.js",
-    "LICENSE"
-  ]
+  }
 }

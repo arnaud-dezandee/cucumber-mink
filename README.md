@@ -7,7 +7,7 @@
 
 # Introduction
 
-cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library. You can run your test with Zombie.js or with any Selenium compatible browser like Phantomjs ! 
+cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library. You can run your test with any Selenium compatible browser like Phantomjs !
 
 # Topics
 
@@ -76,6 +76,14 @@ export CUCUMBER_URL=http://localhost:3000
 ...
 ```
 
+## Override to standard Cucumber
+
+The standard step definition methods are overridden by cucumber-mink so that it's easier to call the driver.
+
+#####`World.defineStep(String pattern, function (Driver, [stepsInput], Fn callback))`
+The driver object is injected as the first arguments in the step function. This avoid heavy use of `this` keyword.
+This affects also siblings methods : `World.Given`, `World.Then`, `World.When`.
+
 ## Meta-steps builder
 
 I order to keep your features files clean and to follow the [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself) principle
@@ -99,7 +107,23 @@ And we want to write in our tests only a one liner like:
 Given I am logged in
 ```
 
-### Step Definitions
+### Usage
+#####`Mink.metaStep(Driver, [] stepsArray, Fn callback)`
+Call multiple callback function in one step effectively creating a "meta" steps. StepsArray should be an Array of objects like:
+``` javascript
+var stepsArray = [
+  {
+    stepFunc: Ext.Navigation.browse,
+    args: ['/form']
+  },
+  {
+    stepFunc: Ext.Action.click,
+    args: ['button[type="submit"]']
+  }
+];
+```
+
+### Example
 
 Inside your `features/` folder, create a new `step_definitions/` folder. Step definitions are the glue between features written in Gherkin and the actual SUT (system under test). They are written in JavaScript.
 Create a `login.js` file like this:
@@ -107,13 +131,12 @@ Create a `login.js` file like this:
 ``` javascript
 // features/step_definitions/login.js
 
-var Mink        = require('cucumber-mink'),
-    Ext         = Mink.Steps.Ext,
-    MetaBuilder = Mink.Utils.MetaBuilder;
+var Mink = require('cucumber-mink'),
+    Ext  = Mink.Ext;
 
 /////////////////////////
 
-function login (callback) {
+function login (Driver, callback) {
 
   var loginFormArray = [
     { field: 'input.username', value: 'test@axa.com' },
@@ -135,7 +158,7 @@ function login (callback) {
     }
   ];
 
-  return MetaBuilder.call(this, stepsArray, callback);
+  return Mink.metaStep(Driver, stepsArray, callback);
 }
 
 /////////////////////////
@@ -163,22 +186,9 @@ cucumber-js --require mink.js --require features/step_definitions/
 You can pass in any function inside the `stepFunc` field, here we use Mink's function available in `lib/step_definitions/ext`.
 There is a complete example here: [meta.js](test/features/step_definitions/meta.js)
 
-# Drivers
+# Driver
 
-cucumber-mink comes with support for 2 drivers out of the box:
-
-* `Zombie.js` - Insanely fast, headless browser. [assaf/zombie](https://github.com/assaf/zombie).
-  It's currently the default driver, to enable it use this parameters in your `mink.js` file:
-
-    ``` javascript
-var parameters = {
-      driver: {
-        type: 'zombie'
-      }
-};
-    ```
-  
-  To use zombie.js driver, see [examples/zombie.js](examples/zombie.js)
+cucumber-mink comes with support for WebDriverIO out of the box:
 
 * `WebDriverIO` - webdriver module for Node.js. [webdriverio](https://github.com/webdriverio/webdriverio).
   This driver allow you to communicate with any Selenium compatible grid/hub. The driver default settings use Phantomjs/GhostDriver.

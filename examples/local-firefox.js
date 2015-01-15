@@ -7,9 +7,9 @@ var parameters = {
     options: {
       logLevel: 'silent',
       desiredCapabilities: {
-        browserName: 'chrome'
+        browserName: 'firefox'
       },
-      port: 9515
+      port: 4444
     }
   }
 };
