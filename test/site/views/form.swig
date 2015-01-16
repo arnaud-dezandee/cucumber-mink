@@ -37,7 +37,8 @@
                     <input id="cb" name="cb" type="checkbox"> Accept ?
                 </label>
             </div>
-            <button type="submit" class="pure-button pure-button-primary">Register</button>
+            <input type="submit" class="pure-button pure-button-primary" value="Input-Register" />
+            <button type="submit" class="pure-button pure-button-primary">Button-Register</button>
         </fieldset>
     </form>
 </div>
