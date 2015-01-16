@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Master
+## v0.2.1 (2015-01-16)
 * Added Link compatibility method: `/^I follow "([^"]*)"$/` now accepts CSS Selector or <a> tag text content
 * Added Press button compatibility method: `/^I press "([^"]*)"$/` now accepts CSS Selector or <button> & <input type="submit" \> tag text content
 * Refactored driver methods file structure
