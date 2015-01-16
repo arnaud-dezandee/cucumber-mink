@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Master
+* Added Link compatibility method: `/^I follow "([^"]*)"$/` now accepts CSS Selector or <a> tag text content
+* Added Press button compatibility method: `/^I press "([^"]*)"$/` now accepts CSS Selector or <button> & <input type="submit" \> tag text content
+* Refactored driver methods file structure
+
 ## v0.2.0 (2015-01-15)
 * Added new step: `the viewport is <X>px width and <Y>px height`
 * Added automatic screenshot on scenario failure if `driver.options.screenshotPath` is defined
