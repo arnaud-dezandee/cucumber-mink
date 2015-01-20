@@ -1,9 +1,8 @@
 <a href="http://cukes.info/"><img src="http://cukes.info/images/cucumber_logo.png" width="200px" alt="Cukes" align="right" /></a>
-[![Build Status](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?branch=master)](https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink)
-[![Coverage Status](https://img.shields.io/coveralls/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?branch=master)](https://coveralls.io/r/AXA-GROUP-SOLUTIONS/cucumber-mink)
-[![Dependency Status](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink.svg)](https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink)
-[![Codacy Badge](https://www.codacy.com/project/badge/ac135f34f64a4c47a7aba1850acf4009)](https://www.codacy.com/public/dezandeea/cucumber-mink)
-[![Code Climate](https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink/badges/gpa.svg)](https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink)
+
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Test Coverage][coveralls-image]][coveralls-url]
 
 # Introduction
 
@@ -19,10 +18,12 @@ cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 # Prerequisites
 
 * [Node.js](http://nodejs.org)
+* [PhantomJS](http://phantomjs.org/download.html)
 * [cucumber-js](https://github.com/cucumber/cucumber-js): `npm install -g cucumber`
 
 # Quick start
 
+    phantomjs -w &
     npm install --save cucumber-mink
 
 Create `mink.js` file a the root of your project
@@ -211,32 +212,33 @@ var parameters = {
     This driver can be used to communicate with various browser, like a locally running [Chrome](https://code.google.com/p/selenium/wiki/ChromeDriver) 
     or on some distant services like [SauceLabs](https://saucelabs.com/) and [BrowserStack](http://www.browserstack.com/). See [examples](examples/)
 
+# Code Quality
+
+[![Dependency Status][gemnasium-image]][gemnasium-url]
+[![Codacy Badge][codacy-image]][codacy-url]
+[![Code Climate][code-climate-image]][code-climate-url]
+
 # Maintainers
 
 The npm module for this library is maintained by:
 
 * [Arnaud Dezandee](http://github.com/Adezandee)
 
+[List of all contributors](https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink/graphs/contributors)
+
 # License
 
-The MIT License (MIT)
+[MIT](LICENSE)
 
-Copyright (c) 2014 AXA Group Solutions
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+[npm-image]: https://img.shields.io/npm/v/cucumber-mink.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/cucumber-mink
+[travis-image]: https://img.shields.io/travis/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?style=flat
+[travis-url]: https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink
+[coveralls-image]: https://img.shields.io/coveralls/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/AXA-GROUP-SOLUTIONS/cucumber-mink?branch=master
+[gemnasium-image]: https://img.shields.io/gemnasium/AXA-GROUP-SOLUTIONS/cucumber-mink.svg
+[gemnasium-url]: https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink
+[code-climate-image]: https://img.shields.io/codeclimate/github/AXA-GROUP-SOLUTIONS/cucumber-mink.svg
+[code-climate-url]: https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink
+[codacy-image]: https://img.shields.io/codacy/ac135f34f64a4c47a7aba1850acf4009.svg
+[codacy-url]: https://www.codacy.com/public/dezandeea/cucumber-mink
