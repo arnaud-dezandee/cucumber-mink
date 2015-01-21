@@ -4,20 +4,20 @@ var mink = require('./../lib/mink');
 var parameters = {
   driver: {
     type: 'webdriverio',
-    options : {
+    options: {
       desiredCapabilities: {
-        'browserstack.local' : true,
+        'browserstack.local': true,
         'browserstack.debug': true,
-        'browser' : 'Safari',
-        'browser_version' : '8.0',
-        'os' : 'OS X',
-        'os_version' : 'Yosemite',
-        'resolution' : '1280x1024'
+        'browser':            'Safari',
+        'browser_version':    '8.0',
+        'os':                 'OS X',
+        'os_version':         'Yosemite',
+        'resolution':         '1280x1024'
       },
-      host:   'hub.browserstack.com',
-      port:   80,
-      user :  process.env.BROWSERSTACK_USERNAME,
-      key:    process.env.BROWSERSTACK_ACCESS_KEY,
+      host:     'hub.browserstack.com',
+      port:     80,
+      user:     process.env.BROWSERSTACK_USERNAME,
+      key:      process.env.BROWSERSTACK_ACCESS_KEY,
       logLevel: 'silent'
     }
   }

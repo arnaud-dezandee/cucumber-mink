@@ -26,11 +26,11 @@ Routes.responsive = function(request, reply) {
   reply.view('responsive');
 };
 
-Routes.index = function(request, reply){
+Routes.index = function(request, reply) {
   reply.view('index', {'posts': postsGen(3)});
 };
 
-Routes.generate = function(request, reply){
+Routes.generate = function(request, reply) {
   var number = parseInt(encodeURIComponent(request.params.number));
   reply.view('index', {'posts': postsGen(number)});
 };

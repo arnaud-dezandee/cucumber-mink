@@ -4,7 +4,7 @@ var mink = require('./../lib/mink');
 var parameters = {
   driver: {
     type: 'webdriverio',
-    options : {
+    options: {
       screenshotPath: 'test/',
       desiredCapabilities: {
         browserName: 'phantomjs'
