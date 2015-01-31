@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.2.2 (2015-01-31)
+* Improved code-climate with factorized Assert-* methods.
+* Upgraded npm dependencies
+* Updated README
+
 ## v0.2.1 (2015-01-16)
 * Added Link compatibility method: `/^I follow "([^"]*)"$/` now accepts CSS Selector or <a> tag text content
 * Added Press button compatibility method: `/^I press "([^"]*)"$/` now accepts CSS Selector or <button> & <input type="submit" \> tag text content

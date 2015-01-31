@@ -81,7 +81,7 @@ export CUCUMBER_URL=http://localhost:3000
 
 The standard step definition methods are overridden by cucumber-mink so that it's easier to call the driver.
 
-#####`World.defineStep(String pattern, function (Driver, [stepsInput], Fn callback))`
+#####`World.defineStep(String pattern, Fn(Driver, [] stepsInput, Fn cb))`
 The driver object is injected as the first arguments in the step function. This avoid heavy use of `this` keyword.
 This affects also siblings methods : `World.Given`, `World.Then`, `World.When`.
 
