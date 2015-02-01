@@ -34,6 +34,16 @@ The default viewport is: { width: 1366, height: 768 } (most used screen resoluti
 Given the viewport is 360px width and 568px height
 ```
 
+---
+
+#####`/^I take a screenshot$/`
+
+Take a screenshot of the current viewport and save it at ./screenshot.png
+
+``` gherkin
+Given I take a screenshot
+```
+
 # Navigation
 
 ---
@@ -254,7 +264,7 @@ And the "p.description" element should not be visible
 #####`/^the "([^"]*)" element should exist$/`
 #####`/^the "([^"]*)" element should not exist$/`
 
-Assert if at least one element is existing by given selector
+Assert if at least one element is existing by given selector.
 
 ``` gherkin
 And the "h2.content-subhead" element should exist
@@ -266,11 +276,23 @@ And the "p.description" element should not exist
 #####`/^the "([^"]*)" field should contain "([^"]*)"$/`
 #####`/^the "([^"]*)" field should not contain "([^"]*)"$/`
 
-Assert if at least one element is existing by given selector
+Assert if the input's value of given selector contains expected text.
 
 ``` gherkin
 Then the "textarea[name='description']" field should contain "My text"
 Then the "textarea[name='description']" field should not contain "My first name"
+```
+
+---
+
+#####`/^the "([^"]*)" field should be enabled$/`
+#####`/^the "([^"]*)" field should be disabled$/`
+
+Assert if the input is enabled or disabled.
+
+``` gherkin
+Then the "input[name='first_name']" field should be enabled
+Then the "input[name='disabled_input']" field should be disabled
 ```
 
 ---
