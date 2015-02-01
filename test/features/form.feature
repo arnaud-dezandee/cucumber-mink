@@ -14,8 +14,12 @@ Feature: I can use cucumber.mink to fill in forms
 
   Scenario Outline: Multiple form submit
     Given I am on "/form"
-    When I fill in the following:
-      | input[name='first_name']  | <first_name> |
+
+    Then the "input[name='first_name']" field should be enabled
+    Then the "input[name='disabled_input']" field should be disabled
+
+    When I fill in "input[name='first_name']" with "<first_name>"
+    And  I fill in the following:
       | input[name='last_name']   | <last_name> |
       | textarea[name='description'] | <description> |
 

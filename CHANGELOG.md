@@ -1,7 +1,14 @@
 # CHANGELOG
 
+## Master
+* Added step: `/^I take a screenshot$/`
+* Added step: `/^the "([^"]*)" field should be enabled$/`
+* Added step: `/^the "([^"]*)" field should be disabled$/`
+* Removed deprecated step on status code
+* Improved code coverage
+
 ## v0.2.2 (2015-01-31)
-* Improved code-climate with factorized Assert-* methods.
+* Improved code-climate with factorized Assert-* methods
 * Upgraded npm dependencies
 * Updated README
 

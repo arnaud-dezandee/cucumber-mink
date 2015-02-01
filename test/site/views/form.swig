@@ -18,6 +18,11 @@
             </div>
 
             <div class="pure-control-group">
+              <label for="disabled-input">Disabled Input</label>
+              <input id="disabled-input" name="disabled_input" type="text" value="Static value" disabled>
+            </div>
+
+            <div class="pure-control-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" placeholder="Description"></textarea>
             </div>

@@ -1,12 +1,15 @@
 var Hapi   = require('hapi'),
     Path   = require('path'),
+    Swig   = require('swig'),
     Routes = require('./routes');
+
+Swig.setDefaults({ cache: false });
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
 
 server.views({
-  engines:  { swig: require('swig') },
+  engines:  { swig: Swig },
   path:     Path.join(__dirname, 'views')
 });
 
