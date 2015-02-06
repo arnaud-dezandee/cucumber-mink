@@ -11,6 +11,5 @@
                 {% include "partials/compact-post.swig" with { post: post } %}
             {% endfor %}
         </div>
-
     </div>
 {% endblock %}

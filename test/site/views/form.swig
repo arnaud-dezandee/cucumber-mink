@@ -5,7 +5,7 @@
 {% block content %}
 <div>
     <h1>Form Page</h1>
-    <form method="post" class="pure-form pure-form-aligned" action="/result">
+    <form method="post" id="register-form" class="pure-form pure-form-aligned" action="/result">
         <fieldset>
             <div class="pure-control-group">
                 <label for="first-name">First Name</label>
