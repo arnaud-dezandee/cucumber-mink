@@ -23,8 +23,17 @@ cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 
 # Quick start
 
-    phantomjs -w &
-    npm install --save cucumber-mink
+Launch the headless browser (default configuration is Phantomjs)
+
+``` bash
+phantomjs -w
+```
+
+Install cucumber-mink library locally
+
+``` bash
+npm install --save cucumber-mink
+```
 
 Create `mink.js` file a the root of your project
 

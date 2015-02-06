@@ -93,15 +93,39 @@ Then I move backward one page
 # Action
 
 #####`/^I click on "([^"]*)"$/`
-#####`/^(?:|I )press "([^"]*)"$/`
-#####`/^I follow "([^"]*)"$/`
 
 Click on an element based on given selector.
 
 ``` gherkin
 Then I click on "button.showModal"
-  And I press "button.register"
-  And I follow "a[href='/about']"
+```
+
+---
+
+#####`/^(?:|I )press "([^"]*)"$/`
+
+Press a button element with string argument interpreted as (in order):
+  - CSS Selector
+  - Text of <button> elements
+  - Value of <input type="submit"> elements
+
+``` gherkin
+Then I press "button.register"
+Then I press "Register"
+Then I press "Submit"
+```
+
+---
+
+#####`/^I follow "([^"]*)"$/`
+
+Follow a link element with string argument interpreted as (in order):
+  - CSS Selector
+  - Text of <a> elements
+
+``` gherkin
+Then I follow "a[href='/about']"
+Then I follow "Go to About page !"
 ```
 
 # Form manipulation
