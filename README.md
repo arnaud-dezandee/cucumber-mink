@@ -1,4 +1,4 @@
-<a href="http://cukes.info/"><img src="http://cukes.info/images/cucumber_logo.png" width="200px" alt="Cukes" align="right" /></a>
+<a href="http://cukes.info/"><img src="https://cukes.info/images/cucumber-logo.svg" width="200px" alt="Cukes" align="right" /></a>
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
