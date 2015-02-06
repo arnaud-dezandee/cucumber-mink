@@ -128,6 +128,26 @@ Then I follow "a[href='/about']"
 Then I follow "Go to About page !"
 ```
 
+---
+
+#####`/^I hover "([^"]*)" element$/`
+
+Hover an element with cursor (activate CSS :hover property).
+
+``` gherkin
+When I hover "nav.menu" element
+```
+
+---
+
+#####`/^I submit "([^"]*)" form$/`
+
+Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a <form> element.
+
+``` gherkin
+When I submit "form#register" form
+```
+
 # Form manipulation
 
 #####`/^(?:|I )fill in "([^"]*)" with "([^"]*)"$/`
