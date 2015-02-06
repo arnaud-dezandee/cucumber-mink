@@ -48,3 +48,14 @@ Feature: I can use cucumber.mink to fill in forms
       And I should see "fn2" in the "p.first-name" element
       And I should see "ln2" in the "p.last-name" element
       And I should see "d2" in the "p.description" element
+
+  Scenario Outline: Submit action shortcut
+    Given I am on "/form"
+    And   I submit "<selector>" form
+    Then  I should be on "/result"
+
+  Examples:
+    | selector |
+    | #register-form |
+    | input[name='first_name'] |
+    | select[name='country'] |

@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## Master
+* Added step: `/^I hover "([^"]*)" element$/`
+* Added step: `/^I submit "([^"]*)" form$/`
 * Added step: `/^I take a screenshot$/`
 * Added step: `/^the "([^"]*)" field should be enabled$/`
 * Added step: `/^the "([^"]*)" field should be disabled$/`
