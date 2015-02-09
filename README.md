@@ -99,8 +99,8 @@ So the initial multi-steps scenario to log into the application could be:
 ``` gherkin
 Given I am on "/login"
   And I fill in the following:
-    | input.username | test@axa.com |
-    | input.password | test         |
+    | input.username | test@test.com |
+    | input.password | test          |
   And I press "Login"
 ```
 
@@ -142,7 +142,7 @@ var Mink = require('cucumber-mink'),
 function login (Driver, callback) {
 
   var loginFormArray = [
-    { field: 'input.username', value: 'test@axa.com' },
+    { field: 'input.username', value: 'test@test.com' },
     { field: 'input.password', value: 'test' }
   ];
 
@@ -226,7 +226,7 @@ The npm module for this library is maintained by:
 
 * [Arnaud Dezandee](http://github.com/Adezandee)
 
-[List of all contributors](https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink/graphs/contributors)
+[List of all contributors](https://github.com/Adezandee/cucumber-mink/graphs/contributors)
 
 # License
 
@@ -234,13 +234,13 @@ The npm module for this library is maintained by:
 
 [npm-image]: https://img.shields.io/npm/v/cucumber-mink.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/cucumber-mink
-[travis-image]: https://img.shields.io/travis/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?style=flat
-[travis-url]: https://travis-ci.org/AXA-GROUP-SOLUTIONS/cucumber-mink
-[coveralls-image]: https://img.shields.io/coveralls/AXA-GROUP-SOLUTIONS/cucumber-mink.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/AXA-GROUP-SOLUTIONS/cucumber-mink?branch=master
-[gemnasium-image]: https://img.shields.io/gemnasium/AXA-GROUP-SOLUTIONS/cucumber-mink.svg
-[gemnasium-url]: https://gemnasium.com/AXA-GROUP-SOLUTIONS/cucumber-mink
-[code-climate-image]: https://img.shields.io/codeclimate/github/AXA-GROUP-SOLUTIONS/cucumber-mink.svg
-[code-climate-url]: https://codeclimate.com/github/AXA-GROUP-SOLUTIONS/cucumber-mink
-[codacy-image]: https://img.shields.io/codacy/ac135f34f64a4c47a7aba1850acf4009.svg
-[codacy-url]: https://www.codacy.com/public/dezandeea/cucumber-mink
+[travis-image]: https://img.shields.io/travis/Adezandee/cucumber-mink.svg?style=flat
+[travis-url]: https://travis-ci.org/Adezandee/cucumber-mink
+[coveralls-image]: https://img.shields.io/coveralls/Adezandee/cucumber-mink.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/Adezandee/cucumber-mink?branch=master
+[gemnasium-image]: https://img.shields.io/gemnasium/Adezandee/cucumber-mink.svg
+[gemnasium-url]: https://gemnasium.com/Adezandee/cucumber-mink
+[code-climate-image]: https://img.shields.io/codeclimate/github/Adezandee/cucumber-mink.svg
+[code-climate-url]: https://codeclimate.com/github/Adezandee/cucumber-mink
+[codacy-image]: https://img.shields.io/codacy/144466c7cc514f7686ef2120d41982b8.svg
+[codacy-url]: https://www.codacy.com/public/adezandee/cucumber-mink

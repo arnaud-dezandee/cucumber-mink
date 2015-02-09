@@ -18,13 +18,13 @@
     "name": "Arnaud Dezandee",
     "email": "dezandee.arnaud@gmail.com"
   },
-  "homepage": "https://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink",
+  "homepage": "https://github.com/Adezandee/cucumber-mink",
   "repository": {
     "type": "git",
-    "url": "git@github.com:AXA-GROUP-SOLUTIONS/cucumber-mink.git"
+    "url": "git@github.com:Adezandee/cucumber-mink.git"
   },
   "bugs": {
-    "url": "http://github.com/AXA-GROUP-SOLUTIONS/cucumber-mink/issues"
+    "url": "http://github.com/Adezandee/cucumber-mink/issues"
   },
   "main": "./index.js",
   "scripts": {

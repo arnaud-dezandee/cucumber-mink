@@ -1,11 +1,10 @@
 language: node_js
 node_js:
-  - '0.11'
   - '0.10'
 
 env:
   global:
-    secure: CItDgN2g8mzxmNJSKQH/28Z7zUAPyUyEuw1oG+99nAjSLhwsIC1DIktO4rQN7HhYIt32YMrH60KZB7CKi3CK8+hNDOtfyoyfc8rdb5TXE1SSlH53Valhj3+EIw0AM+D3VOksjxGx5P7W0HWt2ZBP4Omk5IWQkY8YsI0/3ZoXWkk=
+    secure: Iudzt3u8W/JujxrD9U+Z23rg3IS6mE604C/u49yvs+/8t+MwMfc1XHorIc5tHy+Uo5ViXc1sa/teRcsVFnZ5X+GzHV0Fd3TlbDRKopT4stHrRaApw1SJxUgJMMpGKU5jQnPo4E4VeDnU7tuylmX8N8rFudHg313yKi4CJsnphwQ=
 
 cache:
   directories:
