@@ -44,10 +44,10 @@
     "webdriverio": "^2.4.5"
   },
   "devDependencies": {
-    "gulp": "^3.8.10",
+    "gulp": "^3.8.11",
     "gulp-jscs": "^1.4.0",
     "gulp-jshint": "^1.9.2",
-    "hapi": "^8.1.0",
+    "hapi": "^8.2.0",
     "istanbul": "^0.3.5",
     "jshint-stylish": "^1.0.0",
     "swig": "^1.4.2"
