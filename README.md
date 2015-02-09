@@ -8,12 +8,7 @@
 
 cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library. You can run your test with any Selenium compatible browser like Phantomjs !
 
-# Topics
-
-- [Prerequesites](#prerequesites)
-- [Quick start](#quick-start)
-- [Steps Reference and examples](STEPS.md)
-- [Meta-steps builder](#meta-steps-builder)
+[40+ available steps](STEPS.md)
 
 # Prerequisites
 
@@ -67,8 +62,6 @@ Run a specific scenario based on the line of scenario
 
     cucumber-js --require mink.js features/test.feature:<LINE_NUMBER>
 
-
-[See available steps](STEPS.md)
 
 You can use an environment variable and then reference it in your features files to set the base url of your application.
 
