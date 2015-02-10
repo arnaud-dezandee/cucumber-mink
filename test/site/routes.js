@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 ///////////////////
 
 var Routes = module.exports = {};
@@ -13,11 +15,9 @@ function postWithId (id) {
 }
 
 function postsGen (n) {
-  var data = [];
-  for (var i = 1; i < n + 1; i++) {
-    data.push(postWithId(i));
-  }
-  return data;
+  return _.range(1, n + 1).map(function (index) {
+    return postWithId(index);
+  });
 }
 
 ///////////////////
