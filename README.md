@@ -216,7 +216,7 @@ var parameters = {
 
 # Code Quality
 
-[![Dependency Status][gemnasium-image]][gemnasium-url]
+[![Dependency Status][david-image]][david-url]
 [![Codacy Badge][codacy-image]][codacy-url]
 [![Code Climate][code-climate-image]][code-climate-url]
 
@@ -238,8 +238,8 @@ The npm module for this library is maintained by:
 [travis-url]: https://travis-ci.org/Adezandee/cucumber-mink
 [coveralls-image]: https://img.shields.io/coveralls/Adezandee/cucumber-mink.svg?style=flat
 [coveralls-url]: https://coveralls.io/r/Adezandee/cucumber-mink?branch=master
-[gemnasium-image]: https://img.shields.io/gemnasium/Adezandee/cucumber-mink.svg
-[gemnasium-url]: https://gemnasium.com/Adezandee/cucumber-mink
+[david-image]: https://img.shields.io/david/Adezandee/cucumber-mink.svg
+[david-url]: https://david-dm.org/Adezandee/cucumber-mink
 [code-climate-image]: https://img.shields.io/codeclimate/github/Adezandee/cucumber-mink.svg
 [code-climate-url]: https://codeclimate.com/github/Adezandee/cucumber-mink
 [codacy-image]: https://img.shields.io/codacy/144466c7cc514f7686ef2120d41982b8.svg
