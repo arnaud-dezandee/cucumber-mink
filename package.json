@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "async": "^0.9.0",
-    "chai": "^1.10.0",
+    "chai": "^2.0.0",
     "cucumber": "^0.4.7",
-    "lodash": "^3.1.0",
+    "lodash": "^3.2.0",
     "webdriverio": "^2.4.5"
   },
   "devDependencies": {
@@ -48,7 +48,7 @@
     "gulp-jscs": "^1.4.0",
     "gulp-jshint": "^1.9.2",
     "hapi": "^8.2.0",
-    "istanbul": "^0.3.5",
+    "istanbul": "^0.3.6",
     "jshint-stylish": "^1.0.0",
     "swig": "^1.4.2"
   }
