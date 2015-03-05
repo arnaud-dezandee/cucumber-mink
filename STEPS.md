@@ -317,6 +317,16 @@ And the "p.description" element should not exist
 
 ## Form
 
+#####`/^the "([^"]*)" current option contain "([^"]*)"$/`
+
+Assert the currently selected option of a select field contains expected text.
+
+``` gherkin
+Then the "select[name='country']" current option contain "USA"
+```
+
+---
+
 #####`/^the "([^"]*)" field should contain "([^"]*)"$/`
 #####`/^the "([^"]*)" field should not contain "([^"]*)"$/`
 
