@@ -26,3 +26,7 @@ Feature: Driver compatibilities
     Given I am on "/form"
       And I press "button.pure-button"
     Then I should be on "/result"
+
+    Given I am on "/form"
+      And I press "Weird button '-' text"
+    Then I should be on "/result"

@@ -44,6 +44,7 @@
             </div>
             <input type="submit" class="pure-button pure-button-primary" value="Input-Register" />
             <button type="submit" class="pure-button pure-button-primary">Button-Register</button>
+            <button type="submit" class="pure-button pure-button-primary">Weird button '-' <span>text</span></button>
         </fieldset>
     </form>
 </div>

@@ -24,6 +24,8 @@ Feature: I can use cucumber.mink to fill in forms
       | textarea[name='description'] | <description> |
 
     And I select "<country>" from "select[name='country']"
+      Then the "select[name='country']" current option contain "<country>"
+
     And I <cbState> "#cb"
       Then the "input[name='first_name']" field should contain "<first_name>"
       Then the "input[name='first_name']" field should not contain "<last_name>"

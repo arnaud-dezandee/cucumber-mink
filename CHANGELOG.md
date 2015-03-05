@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Master
+* Added step: `/^the "([^"]*)" current option contain "([^"]*)"$/`
+
 ## v0.3.0 (2015-02-09)
 * Added step: `/^I hover "([^"]*)" element$/`
 * Added step: `/^I submit "([^"]*)" form$/`
