@@ -86,6 +86,14 @@ function failingMetaBuilder(Driver, callback) {
   }, callback);
 }
 
+function clickWrongArgs(Driver, callback) {
+  Driver.click({}, function(err) {
+    assert.isNotNull(err);
+    assert.equal(err.message, 'Type mismatch, selector should be string or WebElement obj');
+    callback();
+  });
+}
+
 ////////////////////////////
 
 function steps() {
@@ -97,6 +105,7 @@ function steps() {
   this.Given(/^there is no base url$/,            unsetBaseUrl);
   this.Given(/^test browse homepage$/,            testBrowseHomepage);
   this.Given(/^a failing meta-builder steps$/,    failingMetaBuilder);
+  this.Given(/^test click wrong arguments$/,      clickWrongArgs);
 }
 
 module.exports = function() {
