@@ -30,15 +30,12 @@ You can pass in custom HTTP Header through phantomjs if needed. Here is an examp
 ``` javascript
 var parameters = {
   driver: {
-    type: 'webdriverio',
-    options : {
-      desiredCapabilities: {
-        'browserName': 'phantomjs',
-        'phantomjs.page.customHeaders.Authorization' : 'Basic '+ new Buffer('login:password').toString('base64')
-      },
-      logLevel: 'silent',
-      port: 8910
-    }
+    desiredCapabilities: {
+      'browserName': 'phantomjs',
+      'phantomjs.page.customHeaders.Authorization' : 'Basic '+ new Buffer('login:password').toString('base64')
+    },
+    logLevel: 'silent',
+    port: 8910
   }
 };
 ```

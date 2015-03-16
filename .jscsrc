@@ -59,7 +59,6 @@
     "catch",
     "typeof"
   ],
-  "safeContextKeyword": "_this",
   "validateLineBreaks": "LF",
   "validateQuoteMarks": "'"
 }
