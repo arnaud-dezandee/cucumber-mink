@@ -45,11 +45,9 @@
   "devDependencies": {
     "cucumber": "^0.4.8",
     "gulp": "^3.8.11",
-    "gulp-jscs": "^1.4.0",
-    "gulp-jshint": "^1.9.2",
+    "gulp-eslint": "^0.7.0",
     "hapi": "^8.3.1",
     "istanbul": "^0.3.7",
-    "jshint-stylish": "^1.0.1",
     "swig": "^1.4.2"
   }
 }

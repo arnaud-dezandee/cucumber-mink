@@ -13,15 +13,15 @@ function submit (Driver, callback) {
   var stepsArray = [
     {
       stepFunc: Ext.Navigation.browse,
-      args: ['/form']
+      args:     ['/form']
     },
     {
       stepFunc: Ext.Form.fillFields,
-      args: [myFormArray]
+      args:     [myFormArray]
     },
     {
       stepFunc: Ext.Action.click,
-      args: ['button[type="submit"]']
+      args:     ['button[type="submit"]']
     }
   ];
 

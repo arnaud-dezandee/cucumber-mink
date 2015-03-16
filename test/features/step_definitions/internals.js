@@ -65,15 +65,15 @@ function testBrowseHomepage(Driver, callback) {
 
 function failingMetaBuilder(Driver, callback) {
   var stepArray1 = [{
-    stepFunc: function(Driver, cb) { cb.fail(new Error('MB Failing !')); },
+    stepFunc: function(Dr, cb) { cb.fail(new Error('MB Failing !')); },
     args: []
   }];
   var stepArray2 = [{
-    stepFunc: function(Driver, cb) { cb.fail('MB Failing !'); },
+    stepFunc: function(Dr, cb) { cb.fail('MB Failing !'); },
     args: []
   }];
   var stepArray3 = [{
-    stepFunc: function(Driver, cb) { cb(new Error('MB Failing !')); },
+    stepFunc: function(Dr, cb) { cb(new Error('MB Failing !')); },
     args: []
   }];
 

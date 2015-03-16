@@ -1,3 +1,5 @@
+/* eslint no-console:0 */
+
 var Cucumber = require('cucumber');
 
 function runWith(file) {
