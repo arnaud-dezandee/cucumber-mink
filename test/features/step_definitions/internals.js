@@ -88,7 +88,7 @@ function failingMetaBuilder(Driver, callback) {
 
 ////////////////////////////
 
-module.exports = function() {
+function steps() {
   this.Then(/^a file should exist at "([^"]*)"$/, fileExist);
   this.Then(/^test driver non-existing button$/,  driverMissingButton);
   this.Then(/^test mink non-existing button$/,    minkMissingButton);
@@ -97,4 +97,8 @@ module.exports = function() {
   this.Given(/^there is no base url$/,            unsetBaseUrl);
   this.Given(/^test browse homepage$/,            testBrowseHomepage);
   this.Given(/^a failing meta-builder steps$/,    failingMetaBuilder);
+}
+
+module.exports = function() {
+  steps.call(this.mink);
 };

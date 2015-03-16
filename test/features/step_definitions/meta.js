@@ -30,6 +30,10 @@ function submit (Driver, callback) {
 
 ////////////////////////////
 
-module.exports = function() {
+function steps() {
   this.Given(/^I submit the form$/, submit);
+}
+
+module.exports = function() {
+  steps.call(this.mink);
 };
