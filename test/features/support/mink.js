@@ -1,5 +1,6 @@
 var mink = require('../../../lib/mink.js');
 
 module.exports = function () {
-  mink.init(this);
+  // Test for backward compatibility, otherwise use .init()
+  mink.call(this);
 };
