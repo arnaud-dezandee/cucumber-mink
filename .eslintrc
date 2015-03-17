@@ -2,7 +2,6 @@
   "env": {
     "node": true
   },
-  "ignorePath": "test",
   "rules": {
     "no-alert": 2,
     "no-array-constructor": 2,

@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## Master
+* BC: `cucumber.defineStep()` and siblings reverted to standard cucumber-js.
+* BC: Mink is now a less intrusive library. You should call it with `Mink.init(cucumberContext, parameters)` instead of `Mink.call()`. Mink context is accessible through cucumberContext.mink (circle minkContext.cucumber).
 * Added step: `/^the "([^"]*)" current option contain "([^"]*)"$/`
 
 ## v0.3.0 (2015-02-09)
