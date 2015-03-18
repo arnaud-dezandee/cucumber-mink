@@ -86,7 +86,7 @@ Given I am logged in
 ```
 
 ### Usage
-#####`Mink.metaStep(Driver, [] stepsArray, Fn callback)`
+#####`mink.metaStep(Driver, [] stepsArray, Fn callback)`
 Call multiple callback function in one step effectively creating a "meta" steps. StepsArray should be an Array of objects like:
 ``` javascript
 var stepsArray = [
@@ -109,8 +109,8 @@ Create a `login.js` file like this:
 ``` javascript
 // features/step_definitions/login.js
 
-var Mink = require('cucumber-mink'),
-    Ext  = Mink.Ext;
+var mink = require('cucumber-mink'),
+    Ext  = mink.Ext;
 
 /////////////////////////
 
@@ -136,13 +136,13 @@ function login (Driver, callback) {
     }
   ];
 
-  return Mink.metaStep(Driver, stepsArray, callback);
+  return mink.metaStep(Driver, stepsArray, callback);
 }
 
 /////////////////////////
 
 module.exports = function() {
-  this.mink.defineStep(/^I am logged in$/, login);
+  mink.defineStep(/^I am logged in$/, login);
 };
 
 ```
@@ -167,7 +167,7 @@ There is a complete example here: [meta.js](test/features/step_definitions/meta.
 ## Mink defineStep
 
 Mink provide a custom step definition methods so that it's easier to call the driver
-You should call this method on an instantiated cucumber context with  `this.mink.defineStep`
+You should call this method on an initialized mink context with  `mink.defineStep`
 
 #####`mink.defineStep(String pattern, Fn(Driver, [stepsInput,] Fn callback))`
 The `Driver` object is injected as the first arguments in the step function. This avoid heavy use of `this` keyword. Siblings methods are available too:

@@ -1,5 +1,5 @@
-var Mink  = require('../../../lib/mink'),
-    Ext   = Mink.Ext;
+var mink  = require('../../../lib/mink'),
+    Ext   = mink.Ext;
 
 ////////////////////////////
 
@@ -25,7 +25,7 @@ function submit (Driver, callback) {
     }
   ];
 
-  return Mink.metaStep(Driver, stepsArray, callback);
+  return mink.metaStep(Driver, stepsArray, callback);
 }
 
 ////////////////////////////
@@ -35,5 +35,5 @@ function steps() {
 }
 
 module.exports = function() {
-  steps.call(this.mink);
+  steps.call(mink);
 };

@@ -1,5 +1,5 @@
-var Mink  = require('../../../lib/mink'),
-    Ext   = Mink.Ext;
+var mink  = require('../../../lib/mink'),
+    Ext   = mink.Ext;
 
 var fs      = require('fs'),
     async   = require('async'),
@@ -78,7 +78,7 @@ function failingMetaBuilder(Driver, callback) {
   }];
 
   async.every([stepArray1, stepArray2, stepArray3], function(stepArray, cb) {
-    Mink.metaStep(Driver, stepArray, function(err) {
+    mink.metaStep(Driver, stepArray, function(err) {
       assert.isNotNull(err);
       assert.equal(err.message, 'MB Failing !');
       cb();
@@ -109,5 +109,5 @@ function steps() {
 }
 
 module.exports = function() {
-  steps.call(this.mink);
+  steps.call(mink);
 };
