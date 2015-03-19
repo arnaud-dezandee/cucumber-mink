@@ -1,10 +1,12 @@
 # CHANGELOG
 
-## Master
+## v0.4.0 (2015-03-19)
 * BC: `cucumber.defineStep()` and siblings reverted to standard cucumber-js.
 * BC: Mink is now a less intrusive library. You should call it with `mink.init(cucumberContext, parameters)` instead of `mink.call()`.
+* BC: Mink is no longer automatically attached to cucumber context in any way. To use it in your custom files, use `mink = require('cucumber-mink')`.
 * Added: `mink.defineStep()` and siblings `mink.Given`, `mink.Then`, `mink.When`
 * Added step: `/^the "([^"]*)" current option contain "([^"]*)"$/`
+* Switched to ESLint
 
 ## v0.3.0 (2015-02-09)
 * Added step: `/^I hover "([^"]*)" element$/`
