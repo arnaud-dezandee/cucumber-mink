@@ -20,3 +20,6 @@ Feature: I can test cucumber-mink internal features
 
   Scenario: Meta-builder failing step
     Given a failing meta-builder steps
+
+  Scenario: Click method with wrong arguments
+    Given test click wrong arguments

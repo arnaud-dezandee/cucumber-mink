@@ -1,5 +1,5 @@
-var Mink  = require('../../../lib/mink'),
-    Ext   = Mink.Ext;
+var mink  = require('../../../lib/mink'),
+    Ext   = mink.Ext;
 
 var fs      = require('fs'),
     async   = require('async'),
@@ -65,20 +65,20 @@ function testBrowseHomepage(Driver, callback) {
 
 function failingMetaBuilder(Driver, callback) {
   var stepArray1 = [{
-    stepFunc: function(Driver, cb) { cb.fail(new Error('MB Failing !')); },
+    stepFunc: function(Dr, cb) { cb.fail(new Error('MB Failing !')); },
     args: []
   }];
   var stepArray2 = [{
-    stepFunc: function(Driver, cb) { cb.fail('MB Failing !'); },
+    stepFunc: function(Dr, cb) { cb.fail('MB Failing !'); },
     args: []
   }];
   var stepArray3 = [{
-    stepFunc: function(Driver, cb) { cb(new Error('MB Failing !')); },
+    stepFunc: function(Dr, cb) { cb(new Error('MB Failing !')); },
     args: []
   }];
 
   async.every([stepArray1, stepArray2, stepArray3], function(stepArray, cb) {
-    Mink.metaStep(Driver, stepArray, function(err) {
+    mink.metaStep(Driver, stepArray, function(err) {
       assert.isNotNull(err);
       assert.equal(err.message, 'MB Failing !');
       cb();
@@ -86,9 +86,17 @@ function failingMetaBuilder(Driver, callback) {
   }, callback);
 }
 
+function clickWrongArgs(Driver, callback) {
+  Driver.click({}, function(err) {
+    assert.isNotNull(err);
+    assert.equal(err.message, 'Type mismatch, selector should be string or WebElement obj');
+    callback();
+  });
+}
+
 ////////////////////////////
 
-module.exports = function() {
+function steps() {
   this.Then(/^a file should exist at "([^"]*)"$/, fileExist);
   this.Then(/^test driver non-existing button$/,  driverMissingButton);
   this.Then(/^test mink non-existing button$/,    minkMissingButton);
@@ -97,4 +105,9 @@ module.exports = function() {
   this.Given(/^there is no base url$/,            unsetBaseUrl);
   this.Given(/^test browse homepage$/,            testBrowseHomepage);
   this.Given(/^a failing meta-builder steps$/,    failingMetaBuilder);
+  this.Given(/^test click wrong arguments$/,      clickWrongArgs);
+}
+
+module.exports = function() {
+  steps.call(mink);
 };

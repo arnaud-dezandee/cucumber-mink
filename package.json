@@ -38,18 +38,16 @@
   },
   "dependencies": {
     "async": "^0.9.0",
-    "chai": "^2.1.1",
-    "cucumber": "^0.4.8",
+    "chai": "^2.1.2",
     "lodash": "^3.5.0",
     "webdriverio": "^2.4.5"
   },
   "devDependencies": {
+    "cucumber": "^0.4.8",
     "gulp": "^3.8.11",
-    "gulp-jscs": "^1.4.0",
-    "gulp-jshint": "^1.9.2",
-    "hapi": "^8.3.1",
-    "istanbul": "^0.3.7",
-    "jshint-stylish": "^1.0.1",
+    "gulp-eslint": "^0.7.0",
+    "hapi": "^8.4.0",
+    "istanbul": "^0.3.8",
     "swig": "^1.4.2"
   }
 }

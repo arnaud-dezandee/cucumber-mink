@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## Master
+* BC: `cucumber.defineStep()` and siblings reverted to standard cucumber-js.
+* BC: Mink is now a less intrusive library. You should call it with `mink.init(cucumberContext, parameters)` instead of `mink.call()`.
+* Added: `mink.defineStep()` and siblings `mink.Given`, `mink.Then`, `mink.When`
 * Added step: `/^the "([^"]*)" current option contain "([^"]*)"$/`
 
 ## v0.3.0 (2015-02-09)
@@ -28,7 +31,7 @@
 * Default viewport size of WebDriver is : width: 1366px, height: 768px
 * BC: Dropped Zombie.js driver support
 * BC: New methods signature for `World.defineStep` and siblings methods. Direct injection of Driver object.
-* BC: MetaStep builder methods now accessible through `Mink.metaStep(Driver, [] stepsArray, Fn callback)`
+* BC: MetaStep builder methods now accessible through `mink.metaStep(Driver, [] stepsArray, Fn callback)`
 
 ## v0.1.0 (2015-01-08)
 * Added [WebDriverIO](https://github.com/webdriverio/webdriverio) Selenium driver support, default driver still Zombie.js

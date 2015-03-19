@@ -8,14 +8,14 @@ var Routes = module.exports = {};
 
 function postWithId (id) {
   return {
-    id: id,
-    title: 'Post-' + id,
+    id:          id,
+    title:       'Post-' + id,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
   };
 }
 
 function postsGen (n) {
-  return _.range(1, n + 1).map(function (index) {
+  return _.range(1, n + 1).map(function(index) {
     return postWithId(index);
   });
 }

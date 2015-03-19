@@ -1,3 +1,5 @@
+/* eslint no-console:0 */
+
 var Hapi   = require('hapi'),
     Path   = require('path'),
     Swig   = require('swig'),

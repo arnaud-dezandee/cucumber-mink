@@ -30,13 +30,13 @@ Install cucumber-mink library locally
 npm install --save cucumber-mink
 ```
 
-Create `mink.js` file a the root of your project
+Create `mink.js` support file for cucumber-js (default location for auto-load is `features/support/mink.js`)
 
 ``` javascript
 var mink = require('cucumber-mink');
 
 module.exports = function () {
-  mink.call(this);
+  mink.init(this);
 };
 ```
 
@@ -56,36 +56,11 @@ Feature: I can use cucumber.mink to check the content of my website
 
 Run your tests
 
-    cucumber-js --require mink.js
+    cucumber-js
     
-Run a specific scenario based on the line of scenario
+Done !
 
-    cucumber-js --require mink.js features/test.feature:<LINE_NUMBER>
-
-
-You can use an environment variable and then reference it in your features files to set the base url of your application.
-
-``` bash
-export CUCUMBER_URL=http://localhost:3000
-```
-
-``` gherkin
-...
-  Background:
-    Given I browse "${CUCUMBER_URL}"
-    
-  Scenario:
-    Given I am on "/post/2"
-...
-```
-
-## Override to standard Cucumber
-
-The standard step definition methods are overridden by cucumber-mink so that it's easier to call the driver.
-
-#####`World.defineStep(String pattern, Fn(Driver, [] stepsInput, Fn cb))`
-The driver object is injected as the first arguments in the step function. This avoid heavy use of `this` keyword.
-This affects also siblings methods : `World.Given`, `World.Then`, `World.When`.
+*Note:* if your `mink.js` is not in the standard location, use `cucumber-js --require path/to/mink.js`
 
 ## Meta-steps builder
 
@@ -111,7 +86,7 @@ Given I am logged in
 ```
 
 ### Usage
-#####`Mink.metaStep(Driver, [] stepsArray, Fn callback)`
+#####`mink.metaStep(Driver, [] stepsArray, Fn callback)`
 Call multiple callback function in one step effectively creating a "meta" steps. StepsArray should be an Array of objects like:
 ``` javascript
 var stepsArray = [
@@ -134,8 +109,8 @@ Create a `login.js` file like this:
 ``` javascript
 // features/step_definitions/login.js
 
-var Mink = require('cucumber-mink'),
-    Ext  = Mink.Ext;
+var mink = require('cucumber-mink'),
+    Ext  = mink.Ext;
 
 /////////////////////////
 
@@ -161,13 +136,13 @@ function login (Driver, callback) {
     }
   ];
 
-  return Mink.metaStep(Driver, stepsArray, callback);
+  return mink.metaStep(Driver, stepsArray, callback);
 }
 
 /////////////////////////
 
 module.exports = function() {
-  this.Given(/^I am logged in$/, login);
+  mink.defineStep(/^I am logged in$/, login);
 };
 
 ```
@@ -183,36 +158,68 @@ Scenario: I log into the application and see my dashboard
 __Important__, don't forget to launch your test suite with the correct command: in this case
 
 ``` shell
-cucumber-js --require mink.js --require features/step_definitions/
+cucumber-js --require features/step_definitions/
 ```
 
 You can pass in any function inside the `stepFunc` field, here we use Mink's function available in `lib/step_definitions/ext`.
 There is a complete example here: [meta.js](test/features/step_definitions/meta.js)
 
+## Mink defineStep
+
+Mink provide a custom step definition methods so that it's easier to call the driver
+You should call this method on an initialized mink context with  `mink.defineStep`
+
+#####`mink.defineStep(String pattern, Fn(Driver, [stepsInput,] Fn callback))`
+The `Driver` object is injected as the first arguments in the step function. This avoid heavy use of `this` keyword. Siblings methods are available too:
+* `mink.Given`
+* `mink.Then`
+* `mink.When`
+
 # Driver
 
 cucumber-mink comes with support for WebDriverIO out of the box:
 
-* `WebDriverIO` - webdriver module for Node.js. [webdriverio](https://github.com/webdriverio/webdriverio).
-  This driver allow you to communicate with any Selenium compatible grid/hub. The driver default settings use Phantomjs/GhostDriver.
-  
-    ``` javascript
+`WebDriverIO` - WD module for Node.js. [webdriverio](https://github.com/webdriverio/webdriverio).
+This driver allow you to communicate with any Selenium compatible grid/hub. The driver default settings use Phantomjs/GhostDriver
+
+``` javascript
 var parameters = {
-      driver: {
-        type: 'webdriverio',
-        options : {
-          desiredCapabilities: {
-            browserName: 'phantomjs'
-          },
-          logLevel: 'silent',
-          port: 8910
-        }
-      }
+  driver: {
+    desiredCapabilities: {
+      browserName: 'phantomjs'
+    },
+    logLevel: 'silent',
+    port: 8910
+  }
 };
-    ```
+```
+
+This driver can be used to communicate with various browser, like a locally running [Chrome](https://code.google.com/p/selenium/wiki/ChromeDriver)
+or on some distant services like [SauceLabs](https://saucelabs.com/) and [BrowserStack](http://www.browserstack.com/). See [examples](examples/)
+
+# Misc
+
+Run a specific scenario based on the line of scenario
+
+``` bash
+cucumber-js features/test.feature:<LINE_NUMBER>
+```
+
+You can use an environment variable and then reference it in your features files to set the base url of your application
+
+``` bash
+export CUCUMBER_URL=http://localhost:3000
+```
+
+``` gherkin
+...
+  Background:
+    Given I browse "${CUCUMBER_URL}"
     
-    This driver can be used to communicate with various browser, like a locally running [Chrome](https://code.google.com/p/selenium/wiki/ChromeDriver) 
-    or on some distant services like [SauceLabs](https://saucelabs.com/) and [BrowserStack](http://www.browserstack.com/). See [examples](examples/)
+  Scenario:
+    Given I am on "/post/2"
+...
+```
 
 # Code Quality
 

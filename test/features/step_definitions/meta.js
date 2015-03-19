@@ -1,5 +1,5 @@
-var Mink  = require('../../../lib/mink'),
-    Ext   = Mink.Ext;
+var mink  = require('../../../lib/mink'),
+    Ext   = mink.Ext;
 
 ////////////////////////////
 
@@ -13,23 +13,27 @@ function submit (Driver, callback) {
   var stepsArray = [
     {
       stepFunc: Ext.Navigation.browse,
-      args: ['/form']
+      args:     ['/form']
     },
     {
       stepFunc: Ext.Form.fillFields,
-      args: [myFormArray]
+      args:     [myFormArray]
     },
     {
       stepFunc: Ext.Action.click,
-      args: ['button[type="submit"]']
+      args:     ['button[type="submit"]']
     }
   ];
 
-  return Mink.metaStep(Driver, stepsArray, callback);
+  return mink.metaStep(Driver, stepsArray, callback);
 }
 
 ////////////////////////////
 
-module.exports = function() {
+function steps() {
   this.Given(/^I submit the form$/, submit);
+}
+
+module.exports = function() {
+  steps.call(mink);
 };
