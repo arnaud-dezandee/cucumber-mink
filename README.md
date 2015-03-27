@@ -226,6 +226,7 @@ export CUCUMBER_URL=http://localhost:3000
 [![Dependency Status][david-image]][david-url]
 [![Codacy Badge][codacy-image]][codacy-url]
 [![Code Climate][code-climate-image]][code-climate-url]
+[![bitHound Score][bithound-image]][bithound-url]
 
 # Maintainers
 
@@ -251,3 +252,5 @@ The npm module for this library is maintained by:
 [code-climate-url]: https://codeclimate.com/github/Adezandee/cucumber-mink
 [codacy-image]: https://img.shields.io/codacy/144466c7cc514f7686ef2120d41982b8.svg
 [codacy-url]: https://www.codacy.com/public/adezandee/cucumber-mink
+[bithound-image]: https://www.bithound.io/github/Adezandee/cucumber-mink/badges/score.svg?
+[bithound-url]: https://www.bithound.io/github/Adezandee/cucumber-mink
