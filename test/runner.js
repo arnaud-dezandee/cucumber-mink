@@ -3,10 +3,10 @@
 var Cucumber  = require('cucumber'),
     async     = require('async');
 
-function suite(file, features, callback) {
+function suite(features, callback) {
   Cucumber.Cli([
       'node', 'cucumber-js',
-      '--require', file || 'test/features/support',
+      '--require', 'test/features/support',
       '--require', 'test/features/step_definitions/',
       features || 'test/features/'
   ]).run(function(success) {
@@ -17,11 +17,7 @@ function suite(file, features, callback) {
 
 async.series([
   function(cb) {
-    console.log('\nPhantomJS: Backward mink.call');
-    suite('test/features/support', 'test/features/action.feature', cb);
-  },
-  function(cb) {
-    console.log('\nPhantomJS: Complete suite with phantomjs configuration example');
-    suite('examples/phantomjs.js', 'test/features/', cb);
+    console.log('\nPhantomJS: Complete suite');
+    suite('test/features/', cb);
   }
 ]);

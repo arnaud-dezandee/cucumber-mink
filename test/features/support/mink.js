@@ -1,6 +1,8 @@
-var mink = require('../../../lib/mink.js');
+var path = require('path');
+var Mink = require('../../../lib/mink.js');
 
 module.exports = function () {
   // Test for backward compatibility, otherwise use .init()
-  mink.call(this);
+  Mink.call(this);
+  Mink.loadPartials(path.join(__dirname, '../partials'));
 };

@@ -19,6 +19,7 @@
                             <li class="nav-item">
                                 <a class="pure-button" href="/">Home</a>
                                 <a class="pure-button" href="/form">Forms</a>
+                                <a class="pure-button" href="/form">Follow me to form !</a>
                             </li>
                         </ul>
                     </nav>

@@ -1,5 +1,5 @@
-var mink  = require('../../../lib/mink'),
-    Ext   = mink.Ext;
+var Mink  = require('../../../lib/mink'),
+    Ext   = Mink.Ext;
 
 var fs      = require('fs'),
     async   = require('async'),
@@ -78,7 +78,7 @@ function failingMetaBuilder(Driver, callback) {
   }];
 
   async.every([stepArray1, stepArray2, stepArray3], function(stepArray, cb) {
-    mink.metaStep(Driver, stepArray, function(err) {
+    Mink.metaStep(stepArray, function(err) {
       assert.isNotNull(err);
       assert.equal(err.message, 'MB Failing !');
       cb();
@@ -94,6 +94,33 @@ function clickWrongArgs(Driver, callback) {
   });
 }
 
+function loadPartials(Driver, callback) {
+  try {
+    Mink.loadPartials('/missingDir');
+  } catch(error) {
+    assert.isNotNull(error);
+    assert.equal(error.message, 'Load partials: missing directory /missingDir');
+    callback();
+  }
+}
+
+function retrieveMissingStep(Driver, callback) {
+  var step = Mink.findMatchingStep('I invoke a missing step');
+  assert.isNull(step);
+  callback();
+}
+
+function executeErrorPartial(Driver, callback) {
+  var step = Mink.findMatchingStep('I execute a partial with a non existing step');
+  try {
+    step.stepFunc(callback);
+  } catch(error) {
+    assert.isNotNull(error);
+    assert.equal(error.message, 'Missing step definition for I invoke a missing step');
+    callback();
+  }
+}
+
 ////////////////////////////
 
 function steps() {
@@ -106,8 +133,11 @@ function steps() {
   this.Given(/^test browse homepage$/,            testBrowseHomepage);
   this.Given(/^a failing meta-builder steps$/,    failingMetaBuilder);
   this.Given(/^test click wrong arguments$/,      clickWrongArgs);
+  this.Given(/^test missing partials directory$/, loadPartials);
+  this.Given(/^test retrieve missing step$/,      retrieveMissingStep);
+  this.Given(/^I execute an error partial$/,      executeErrorPartial);
 }
 
 module.exports = function() {
-  steps.call(mink);
+  steps.call(Mink);
 };

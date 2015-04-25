@@ -23,3 +23,12 @@ Feature: I can test cucumber-mink internal features
 
   Scenario: Click method with wrong arguments
     Given test click wrong arguments
+
+  Scenario: Missing partial directory
+    Given test missing partials directory
+
+  Scenario: Retrieve missing step with Mink.findMatchingStep
+    Given test retrieve missing step
+
+  Scenario: Incomplete Partial
+    Given I execute an error partial
