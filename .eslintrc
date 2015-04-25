@@ -64,7 +64,7 @@
     "block-scoped-var": 0,
     "camelcase": 2,
     "complexity": [1, 11],
-    "consistent-this": [1, "_this"],
+    "consistent-this": 0,
     "curly": 2,
     "dot-notation": 2,
     "eqeqeq": 2,

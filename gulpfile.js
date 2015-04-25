@@ -1,4 +1,5 @@
 var gulp   = require('gulp'),
+    gulpIf = require('gulp-if'),
     header = require('gulp-header'),
     eslint = require('gulp-eslint');
 
@@ -22,8 +23,12 @@ gulp.task('licensing', function() {
     '\n'
   ].join('\n');
 
+  function needsLicense(file) {
+    return file.contents.toString().indexOf(license) === -1;
+  }
+
   return gulp.src('./lib/**/*.js')
-    .pipe(header(license))
+    .pipe(gulpIf(needsLicense, header(license)))
     .pipe(gulp.dest('./lib/'));
 });
 

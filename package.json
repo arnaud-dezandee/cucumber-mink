@@ -39,6 +39,8 @@
   "dependencies": {
     "async": "^0.9.0",
     "chai": "^2.2.0",
+    "debug": "^2.1.3",
+    "gherkin": "cucumber/gherkin-javascript",
     "lodash": "^3.7.0",
     "webdriverio": "^2.4.5"
   },
@@ -47,6 +49,7 @@
     "gulp": "^3.8.11",
     "gulp-eslint": "^0.9.0",
     "gulp-header": "^1.2.2",
+    "gulp-if": "^1.2.5",
     "hapi": "^8.4.0",
     "istanbul": "^0.3.13",
     "swig": "^1.4.2"
