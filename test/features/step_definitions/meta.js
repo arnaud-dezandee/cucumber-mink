@@ -12,16 +12,16 @@ function submit (callback) {
 
   var stepsArray = [
     {
-      stepFunc: Ext.Navigation.browse,
-      args:     ['/form']
+      fn:   Ext.Navigation.browse,
+      args: ['/form']
     },
     {
-      stepFunc: Ext.Form.fillFields,
-      args:     [myFormArray]
+      fn:   Ext.Form.fillFields,
+      args: [myFormArray]
     },
     {
-      stepFunc: Ext.Action.click,
-      args:     ['button[type="submit"]']
+      fn:   Ext.Action.click,
+      args: ['button[type="submit"]']
     }
   ];
 

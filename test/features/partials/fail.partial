@@ -1,5 +1,0 @@
-Feature: Error testing partial
-
-  Scenario: I execute a partial with a non existing step
-    Given I invoke a missing step
-    Then  an error should be thrown

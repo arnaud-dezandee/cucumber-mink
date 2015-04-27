@@ -2,6 +2,7 @@ var Mink  = require('../../../lib/mink'),
     Ext   = Mink.Ext;
 
 var fs      = require('fs'),
+    path    = require('path'),
     async   = require('async'),
     chai    = require('chai'),
     assert  = chai.assert;
@@ -63,29 +64,6 @@ function testBrowseHomepage(Driver, callback) {
   });
 }
 
-function failingMetaBuilder(Driver, callback) {
-  var stepArray1 = [{
-    stepFunc: function(Dr, cb) { cb.fail(new Error('MB Failing !')); },
-    args: []
-  }];
-  var stepArray2 = [{
-    stepFunc: function(Dr, cb) { cb.fail('MB Failing !'); },
-    args: []
-  }];
-  var stepArray3 = [{
-    stepFunc: function(Dr, cb) { cb(new Error('MB Failing !')); },
-    args: []
-  }];
-
-  async.every([stepArray1, stepArray2, stepArray3], function(stepArray, cb) {
-    Mink.metaStep(stepArray, function(err) {
-      assert.isNotNull(err);
-      assert.equal(err.message, 'MB Failing !');
-      cb();
-    });
-  }, callback);
-}
-
 function clickWrongArgs(Driver, callback) {
   Driver.click({}, function(err) {
     assert.isNotNull(err);
@@ -94,31 +72,56 @@ function clickWrongArgs(Driver, callback) {
   });
 }
 
-function loadPartials(Driver, callback) {
+function metaStepTest(callback) {
+  var stepArray1 = [{
+    fn: function(Dr, cb) { cb.fail(new Error('MB Failing !')); },
+    args: []
+  }];
+  var stepArray2 = [{
+    fn: function(Dr, cb) { cb.fail('MB Failing !'); },
+    args: []
+  }];
+  var stepArray3 = [{
+    fn: function(Dr, cb) { cb(new Error('MB Failing !')); },
+    args: []
+  }];
+
+  async.every([stepArray1, stepArray2, stepArray3], function(stepArray, cb) {
+    Mink.metaStep(stepArray, function(err) {
+      assert.isNotNull(err);
+      assert.equal(err.message, 'MB Failing !');
+      cb(true);
+    });
+  }, function() { callback(); });
+}
+
+function findStepTest(callback) {
   try {
-    Mink.loadPartials('/missingDir');
+    Mink.findStep('I invoke a missing step');
   } catch(error) {
     assert.isNotNull(error);
-    assert.equal(error.message, 'Load partials: missing directory /missingDir');
+    assert.equal(error.message, 'Could not find matching step for text: I invoke a missing step');
     callback();
   }
 }
 
-function retrieveMissingStep(Driver, callback) {
-  var step = Mink.findMatchingStep('I invoke a missing step');
-  assert.isNull(step);
-  callback();
+function manyStepTest(callback) {
+  Mink.manyStep([
+    'I browse "http://localhost:3000/"',
+    'I am on the homepage',
+    'I should be on the homepage'
+  ], callback);
 }
 
-function executeErrorPartial(Driver, callback) {
-  var step = Mink.findMatchingStep('I execute a partial with a non existing step');
-  try {
-    step.stepFunc(callback);
-  } catch(error) {
-    assert.isNotNull(error);
-    assert.equal(error.message, 'Missing step definition for I invoke a missing step');
+function loadFile(file, callback) {
+  fs.readFile(path.join(__dirname, file), {encoding: 'utf8'}, function(err, content) {
+    if (err) { return callback(err); }
+    var regex = new RegExp('^I execute ' + file + ' scenario$');
+    Mink.defineStep(regex, function(Dr, cb) {
+      Mink.manyStep(content, cb);
+    });
     callback();
-  }
+  });
 }
 
 ////////////////////////////
@@ -131,13 +134,14 @@ function steps() {
   this.Then(/^test mink non-existing link$/,      minkMissingLink);
   this.Given(/^there is no base url$/,            unsetBaseUrl);
   this.Given(/^test browse homepage$/,            testBrowseHomepage);
-  this.Given(/^a failing meta-builder steps$/,    failingMetaBuilder);
   this.Given(/^test click wrong arguments$/,      clickWrongArgs);
-  this.Given(/^test missing partials directory$/, loadPartials);
-  this.Given(/^test retrieve missing step$/,      retrieveMissingStep);
-  this.Given(/^I execute an error partial$/,      executeErrorPartial);
 }
 
 module.exports = function() {
   steps.call(Mink);
+
+  this.Given(/^I call findStep with missing step$/, findStepTest);
+  this.Given(/^I call metaStep with failing step$/, metaStepTest);
+  this.Given(/^I call manyStep with an array of steps$/, manyStepTest);
+  this.Given(/^I load "([^"]*)" file$/, loadFile);
 };

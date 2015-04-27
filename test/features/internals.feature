@@ -18,17 +18,14 @@ Feature: I can test cucumber-mink internal features
     Given there is no base url
     And   test browse homepage
 
-  Scenario: Meta-builder failing step
-    Given a failing meta-builder steps
-
   Scenario: Click method with wrong arguments
     Given test click wrong arguments
 
-  Scenario: Missing partial directory
-    Given test missing partials directory
+  Scenario: Tests
+    * I call findStep with missing step
+    * I call metaStep with failing step
+    * I call manyStep with an array of steps
 
-  Scenario: Retrieve missing step with Mink.findMatchingStep
-    Given test retrieve missing step
-
-  Scenario: Incomplete Partial
-    Given I execute an error partial
+  Scenario: Nav.partial
+    * I load "nav.partial" file
+    * I execute nav.partial scenario
