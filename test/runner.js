@@ -17,7 +17,7 @@ function suite(features, callback) {
 
 async.series([
   function(cb) {
-    console.log('\nPhantomJS: Complete suite');
+    process.stdout.write('\nPhantomJS: Complete suite.\n\n');
     suite('test/features/', cb);
   }
 ]);
