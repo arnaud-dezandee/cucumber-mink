@@ -5,7 +5,7 @@ var async = require('async'),
 
 module.exports = function button(callback) {
   async.parallel([
-    // Execute driver button internal method
+    // Execute driver link internal method
     function(cb) {
       Mink.driver.link('.link-missing', function (err) {
         assert.isNotNull(err);
@@ -13,7 +13,7 @@ module.exports = function button(callback) {
         cb();
       });
     },
-    // Execute button step
+    // Execute follow step
     function(cb) {
       Mink.runStep('I follow ".link-missing"', function(err) {
         assert.isNotNull(err);
