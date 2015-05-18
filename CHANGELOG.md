@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Master
+* BC: Unified `StepObj` blueprint between Mink's functions
+* Added new methods on Mink object: `mink.findStep()`, `mink.manyStep()`, `mink.runStep()`
+* Exported internal testing methods in spec files
+* Enabled Firefox in Travis-CI
+
 ## v0.4.0 (2015-03-19)
 * BC: `cucumber.defineStep()` and siblings reverted to standard cucumber-js.
 * BC: Mink is now a less intrusive library. You should call it with `mink.init(cucumberContext, parameters)` instead of `mink.call()`.
