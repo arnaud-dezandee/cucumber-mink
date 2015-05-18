@@ -15,7 +15,7 @@ Feature: Driver compatibilities
       And I should see "Post-1"
 
     Given I am on homepage
-      And I follow "FOLLOW ME TO FORM !"
+      And I follow "Follow me to form !"
     Then I should be on "/form"
       And I should see "Form Page"
 

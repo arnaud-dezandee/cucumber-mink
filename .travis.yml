@@ -6,17 +6,24 @@ env:
   global:
     secure: Iudzt3u8W/JujxrD9U+Z23rg3IS6mE604C/u49yvs+/8t+MwMfc1XHorIc5tHy+Uo5ViXc1sa/teRcsVFnZ5X+GzHV0Fd3TlbDRKopT4stHrRaApw1SJxUgJMMpGKU5jQnPo4E4VeDnU7tuylmX8N8rFudHg313yKi4CJsnphwQ=
 
+addons:
+  firefox: "36.0"
+
 cache:
   directories:
     - node_modules
 
 install:
+  - npm install -g webdriver-manager
   - npm install -g codeclimate-test-reporter
   - npm install -g coveralls
   - npm install
+  - webdriver-manager update --standalone
 
 before_script:
   - phantomjs -w > /dev/null &
+  - sleep 3
+  - webdriver-manager start &
   - sleep 3
   - npm start &
   - sleep 3

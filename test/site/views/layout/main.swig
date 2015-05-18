@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
-        <link rel="stylesheet" href="http://purecss.io/combo/1.17.16?/css/layouts/blog.css">
+        {#<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">#}
+        {#<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">#}
+        {#<link rel="stylesheet" href="http://purecss.io/combo/1.17.16?/css/layouts/blog.css">#}
         <title>{% block title %}Example{% endblock %}</title>
     </head>
     <body>
@@ -19,7 +19,7 @@
                             <li class="nav-item">
                                 <a class="pure-button" href="/">Home</a>
                                 <a class="pure-button" href="/form">Forms</a>
-                                <a class="pure-button" href="/form">Follow me to form !</a>
+                                <a href="/form">Follow me to form !</a>
                             </li>
                         </ul>
                     </nav>
