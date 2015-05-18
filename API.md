@@ -1,16 +1,16 @@
 # API Reference
 
 - [Core](#core)
-    - [`Mink.init(Object Cucumber, Object options)`](#)
-    - [`Mink.call(Object Cucumber, Object options)`](#)
-    - [`Mink.defineStep(Regex pattern, Function fn)`](#)
-    - [`Mink.Given(Regex pattern, Function fn)`](#)
-    - [`Mink.Then(Regex pattern, Function fn)`](#)
-    - [`Mink.When(Regex pattern, Function fn)`](#)
-    - [`Mink.findStep(String input)`](#)
-    - [`Mink.manyStep(String|Array<String> source, Function callback)`](#)
-    - [`Mink.metaStep(Array<StepObj> steps, Function callback)`](#)
-    - [`Mink.runStep(String input, Function callback)`](#)
+    - [`Mink.init(Object Cucumber, Object options)`](#minkinitobject-cucumber-object-options---undefined)
+    - [`Mink.call(Object Cucumber, Object options)`](#minkcallobject-cucumber-object-options---undefined)
+    - [`Mink.defineStep(Regex pattern, Function fn)`](#minkdefinestepregex-pattern-function-fn---stepobj)
+    - [`Mink.Given(Regex pattern, Function fn)`](#minkgivenregex-pattern-function-fn---stepobj)
+    - [`Mink.Then(Regex pattern, Function fn)`](#minkthenregex-pattern-function-fn---stepobj)
+    - [`Mink.When(Regex pattern, Function fn)`](#minkwhenregex-pattern-function-fn---stepobj)
+    - [`Mink.findStep(String input)`](#minkfindstepstring-input---stepobj)
+    - [`Mink.manyStep(String|Array<String> source, Function callback)`](#minkmanystepstringarraystring-source-function-callback---undefined)
+    - [`Mink.metaStep(Array<StepObj> steps, Function callback)`](#minkmetasteparraystepobj-steps-function-callback---undefined)
+    - [`Mink.runStep(String input, Function callback)`](#minkrunstepstring-input-function-callback---stepobj)
 - [Driver](#driver)
 - [Misc](#misc)
 
@@ -33,20 +33,21 @@ var parameters = {
   }
 };
 
-mink.init(Cucumber, parameters);
+Mink.init(Cucumber, parameters);
 ```
 
 <hr>
 
 ##### `Mink.call(Object Cucumber, Object options)` -> `Undefined`
 
-Deprecated. Use [`Mink.init()`](#)
+Deprecated. Use [`Mink.init()`](#minkinitobject-cucumber-object-options---undefined)
 
 <hr>
 
 ##### `Mink.defineStep(Regex pattern, Function fn)` -> `StepObj`
 
 Define a new step inside Mink-Cucumber context for use in `.features` files. Return the built `StepObj`.
+
 The `Driver` object is injected as the first arguments in the step function. This avoid heavy use of `this` keyword.
 
 ```js
@@ -61,13 +62,14 @@ Mink.defineStep(/^I do something with "([^"]*)" input$/, doSomething);
 ##### `Mink.Then(Regex pattern, Function fn)` -> `StepObj`
 ##### `Mink.When(Regex pattern, Function fn)` -> `StepObj`
 
-Syntactic sugar for [`Mink.defineStep()`](#).
+Syntactic sugar for [`Mink.defineStep()`](#minkdefinestepregex-pattern-function-fn---stepobj).
 
 <hr>
 
 ##### `Mink.findStep(String input)` -> `StepObj`
 
 Search through all defined step inside Mink context for a matching step with `input` string.
+
 Return a `StepObj` or throws an error if none matches.
 
 ```js
@@ -83,6 +85,7 @@ Note: the `StepObj` is enhanced with additional fields
 ##### `Mink.manyStep(String|Array<String> source, Function callback)` -> `Undefined`
 
 Takes `String` or `Array<String>` as the `source` and tries to execute each line in series as Cucumber steps.
+
 Callback when all steps are done.
 
 ```js
@@ -98,6 +101,7 @@ Mink.manyStep([
 ##### `Mink.metaStep(Array<StepObj> steps, Function callback)` -> `Undefined`
 
 Takes `Array<StepObj>` and executes each step in series.
+
 Callback when all steps are done.
 
 ```js
@@ -130,6 +134,7 @@ Mink.runStep('I press ".button-missing"', function(err) {
 ## Driver
 
 cucumber-mink uses WebDriverIO internally: [WebDriverIO](https://github.com/webdriverio/webdriverio).
+
 This driver allow you to communicate with any Selenium compatible grid/hub. The driver default settings use Phantomjs/GhostDriver
 
 ``` javascript

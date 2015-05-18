@@ -6,8 +6,9 @@
 
 # Introduction
 
-cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library.
-Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE...
+Cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library.
+
+Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE
 
  - [40+ Available steps](STEPS.md)
  - [API References and examples](API.md)
