@@ -65,15 +65,15 @@ ChromeDriver 2.13.307649 (bf55b442bb6b5c923249dd7870d6a107678bfbb6)
 ## Prerequisites
 
 * Java
-* [Selenium server standalone](http://selenium-release.storage.googleapis.com/index.html?path=2.44/)
+* [Selenium server standalone](http://selenium-release.storage.googleapis.com/index.html?path=2.45/)
 
 The binary `java` should be ready to use:
 
 ``` bash
 $ java -version
-java version "1.8.0_25"
-Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
-Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
 ```
 
 ## Usage

@@ -1,0 +1,8 @@
+Given I browse "http://localhost:3000/"
+And   I am on the homepage
+And   I follow "h2.post-title a"
+Then  I wait 1 second
+Then  I should be on "/post/1"
+And   the url should match ^\/post\/\d+
+Then  I move backward one page
+Then  I should be on the homepage

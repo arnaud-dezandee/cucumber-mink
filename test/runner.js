@@ -1,14 +1,21 @@
 /* eslint no-console:0 */
+var path = require('path');
 
 var Cucumber  = require('cucumber'),
     async     = require('async');
 
-function suite(file, features, callback) {
+function suite(minkInit, callback) {
+  if (!callback && typeof minkInit === 'function') {
+    callback = minkInit;
+    minkInit = null;
+  }
+
   Cucumber.Cli([
-      'node', 'cucumber-js',
-      '--require', file || 'test/features/support',
-      '--require', 'test/features/step_definitions/',
-      features || 'test/features/'
+    'node', 'cucumber-js',
+    '--require', minkInit || 'test/features/support',
+    '--require', 'test/features/step_definitions/',
+    '--format', 'progress',
+    'test/features/'
   ]).run(function(success) {
     if (!success) { throw new Error('Test suite failed !'); }
     callback(null, success);
@@ -17,11 +24,11 @@ function suite(file, features, callback) {
 
 async.series([
   function(cb) {
-    console.log('\nPhantomJS: Backward mink.call');
-    suite('test/features/support', 'test/features/action.feature', cb);
+    process.stdout.write('\nPhantomJS: Complete suite.\n\n');
+    suite(cb);
   },
   function(cb) {
-    console.log('\nPhantomJS: Complete suite with phantomjs configuration example');
-    suite('examples/phantomjs.js', 'test/features/', cb);
+    process.stdout.write('\nFirefox: Complete suite.\n\n');
+    suite(path.join(__dirname, '../examples/local-firefox.js'), cb);
   }
 ]);
