@@ -21,6 +21,8 @@ Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE
 
 # Quick start
 
+![screencast](https://cloud.githubusercontent.com/assets/4415204/7702988/7df2a2b0-fe34-11e4-83f3-4d7e7a6bb86b.gif)
+
 Launch the headless browser (wired to PhantomJS by default)
 
 ``` bash
