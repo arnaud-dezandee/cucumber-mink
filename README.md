@@ -35,7 +35,7 @@ Install cucumber-mink library locally
 npm install --save cucumber-mink
 ```
 
-Create `mink.js` support file for cucumber-js (default location for auto-load is `features/support/mink.js`)
+Create `mink.js` (for auto-load: `features/support/mink.js`)
 
 ``` javascript
 var mink = require('cucumber-mink');

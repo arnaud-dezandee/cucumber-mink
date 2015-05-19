@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Master
+## v0.5.0 (2015-05-19)
 * BC: Unified `StepObj` blueprint between Mink's functions
 * Added new methods on Mink object: `mink.findStep()`, `mink.manyStep()`, `mink.runStep()`
 * Exported internal testing methods in spec files
