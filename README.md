@@ -86,6 +86,11 @@ The npm module for this library is maintained by:
 
 [MIT](LICENSE)
 
+<a href="http://js.org" target="_blank" title="JS.ORG | JavaScript Community">
+  <img src="http://logo.js.org/dark_horz.png" width="102" alt="JS.ORG Logo"/>
+</a>
+<!-- alternatives [bright|dark]_[horz|vert|tiny].png (width[horz:102,vert:50,tiny:77]) -->
+
 [npm-image]: https://img.shields.io/npm/v/cucumber-mink.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/cucumber-mink
 [travis-image]: https://img.shields.io/travis/Adezandee/cucumber-mink.svg?style=flat
