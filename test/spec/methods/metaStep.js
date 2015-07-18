@@ -5,15 +5,15 @@ var async = require('async'),
 
 module.exports = function metaStep(callback) {
   var stepArray1 = [{
-    fn: function(Dr, cb) { cb.fail(new Error('MB Failing !')); },
+    fn: function(cb) { cb.fail(new Error('MB Failing !')); },
     args: []
   }];
   var stepArray2 = [{
-    fn: function(Dr, cb) { cb.fail('MB Failing !'); },
+    fn: function(cb) { cb.fail('MB Failing !'); },
     args: []
   }];
   var stepArray3 = [{
-    fn: function(Dr, cb) { cb(new Error('MB Failing !')); },
+    fn: function(cb) { cb(new Error('MB Failing !')); },
     args: []
   }];
 

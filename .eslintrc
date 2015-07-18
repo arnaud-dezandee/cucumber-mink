@@ -62,7 +62,7 @@
     "no-process-exit": 0,
     "brace-style": [1, "1tbs", { "allowSingleLine": true }],
     "block-scoped-var": 0,
-    "camelcase": 2,
+    "camelcase": 1,
     "complexity": [1, 11],
     "consistent-this": 0,
     "curly": 2,

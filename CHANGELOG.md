@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Master
+* Upgraded cucumber-js (0.5.2.) and WebDriverIO (3.1.0)
+* Added `cucumber-mink` CLI tool with Mink auto-injection into cucumber-js context
+* Removed `Driver` object automatic injection in Mink's step functions
+* Exported build-prototype to standalone package.
+
 ## v0.5.0 (2015-05-19)
 * BC: Unified `StepObj` blueprint between Mink's functions
 * Added new methods on Mink object: `mink.findStep()`, `mink.manyStep()`, `mink.runStep()`

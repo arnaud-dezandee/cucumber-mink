@@ -86,6 +86,10 @@ The npm module for this library is maintained by:
 
 [MIT](LICENSE)
 
+# Inspired
+
+This module is inspired by PHP [Behat/MinkExtension](https://github.com/Behat/MinkExtension).
+
 <a href="http://js.org" target="_blank" title="JS.ORG | JavaScript Community">
   <img src="http://logo.js.org/dark_horz.png" width="102" alt="JS.ORG Logo"/>
 </a>
