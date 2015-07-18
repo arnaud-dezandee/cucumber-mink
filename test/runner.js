@@ -1,34 +1,27 @@
 /* eslint no-console:0 */
 var path = require('path');
 
-var Cucumber  = require('cucumber'),
-    async     = require('async');
+var async = require('async');
+var Cli = require('../lib/cli/cli.js');
 
-function suite(minkInit, callback) {
-  if (!callback && typeof minkInit === 'function') {
-    callback = minkInit;
-    minkInit = null;
-  }
+// Execute from /test so that it auto-load from /test/features
+process.chdir(__dirname);
 
-  Cucumber.Cli([
-    'node', 'cucumber-js',
-    '--require', minkInit || 'test/features/support',
-    '--require', 'test/features/step_definitions/',
-    '--format', 'progress',
-    'test/features/'
-  ]).run(function(success) {
-    if (!success) { throw new Error('Test suite failed !'); }
-    callback(null, success);
-  });
+function suite(browser, port, callback) {
+  var config = Cli.DEFAULT_CONFIG;
+  config.driver.desiredCapabilities.browserName = browser;
+  config.driver.port = port;
+
+  Cli.run(config, callback);
 }
 
 async.series([
   function(cb) {
     process.stdout.write('\nPhantomJS: Complete suite.\n\n');
-    suite(cb);
+    suite('phantomjs', 8910, cb);
   },
   function(cb) {
     process.stdout.write('\nFirefox: Complete suite.\n\n');
-    suite(path.join(__dirname, '../examples/local-firefox.js'), cb);
+    suite('firefox', 4444, cb);
   }
 ]);

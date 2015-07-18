@@ -7,7 +7,7 @@ function loadFile(file, callback) {
   fs.readFile(path.join(__dirname, file), {encoding: 'utf8'}, function(err, content) {
     if (err) { return callback(err); }
     var regex = new RegExp('^I execute ' + file + ' scenario$');
-    Mink.defineStep(regex, function(Dr, cb) {
+    Mink.defineStep(regex, function(cb) {
       Mink.manyStep(content, cb);
     });
     callback();
