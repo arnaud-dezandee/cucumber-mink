@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v1.0.1 (2015-07-21)
+* Fix: Handle driver.baseUrl parameter from Mink.init() properly
+
 ## v1.0.0 (2015-07-18)
 * Upgraded cucumber-js (0.5.2) and WebDriverIO (3.1.0)
 * Added `cucumber-mink` CLI tool with Mink auto-injection into cucumber-js context
