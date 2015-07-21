@@ -1,5 +1,4 @@
 /* eslint no-console:0 */
-var path = require('path');
 
 var async = require('async');
 var Cli = require('../lib/cli/cli.js');
@@ -11,6 +10,7 @@ function suite(browser, port, callback) {
   var config = Cli.DEFAULT_CONFIG;
   config.driver.desiredCapabilities.browserName = browser;
   config.driver.port = port;
+  config.format = 'progress';
 
   Cli.run(config, callback);
 }
