@@ -23,3 +23,7 @@ Feature: I can use cucumber.mink to check the content of my website
     | path         | count |
     | /generate/7  | 7     |
     | /generate/30 | 30    |
+
+  # Internals specs
+  Scenario:
+    * I test step assert dom html

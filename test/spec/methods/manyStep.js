@@ -1,4 +1,4 @@
-var Mink  = require('../../../lib/mink');
+var Mink = require('../../../lib/mink');
 
 module.exports = function manyStep(callback) {
   Mink.manyStep([

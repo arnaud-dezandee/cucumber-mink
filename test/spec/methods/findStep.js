@@ -1,4 +1,4 @@
-var Mink  = require('../../../lib/mink');
+var Mink = require('../../../lib/mink');
 
 var assert = require('chai').assert;
 

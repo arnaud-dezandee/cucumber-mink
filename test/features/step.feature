@@ -1,5 +1,5 @@
 Feature: Steps tests
 
   Scenario:
-    * I test step root
-    * I test browse path
+    * I test step navigation base url
+    * I test step navigation root
