@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cucumber-mink by Adezandee</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Quick and easy testing with cucumber.js">
+    <meta name="keywords" content="Cucumber, cucumber-js, BDD, testing, tests, webdriver, phantomjs, selenium, nodejs">
+    <meta name="author" content="Arnaud Dezandee">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="author" href="/humans.txt" />
+    <link rel="icon" type="image/png" href="/public/favicon.png" />
+    <link rel="feed alternate" type="application/atom+xml" href="https://github.com/Adezandee/cucumber-mink/commits/master.atom">
+    <link rel="stylesheet" type="text/css" href="/public/css/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/public/css/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/public/css/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/public/css/lodash.css" media="screen">
+  </head>
+  <body>
+    {% if page.home %}
+      {% include header.html %}
+      <section class="main-content">
+        {{ content }}
+        {% include footer.html %}
+      </section>
+    {% else %}
+      {{ content }}
+    {% endif %}
+  </body>
+</html>

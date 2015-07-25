@@ -1,0 +1,20 @@
+- title: Action
+  methods:
+    - title: click
+      regex: /^I click on "([^"]*)"$/
+      description: Click on an element based on given selector.
+      example: >
+        Then I click on "button.showModal"
+
+    - title: press
+      regex: /^(?:|I )press "([^"]*)"$/
+      description: |
+        Press a button element with string argument interpreted as (in order):
+
+        1. CSS Selector
+        2. Text of `<button>` elements
+        3. Value of `<input type="submit">` elements
+      example: |
+        Then I press "button.register"
+        Then I press "Register"
+        Then I press "Submit"

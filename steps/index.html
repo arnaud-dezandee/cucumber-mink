@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<div id="lodash">
+  <h1 class="project-name"><a href="/">Cucumber-mink</a> <small>v1.0.1</small></h1>
+  <div class="toc-container">
+    {% for step in site.data.steps %}
+      <div>
+        <h2 class="first-heading"><code>{{ step.title }}</code></h2>
+        <ul>
+          {% for method in step.methods %}
+          <li><a href="#{{ method.title }}">{{ method.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="doc-container">
+    {% for step in site.data.steps %}
+    <div>
+      <h2 class="first-heading"><code>“{{ step.title }}” Methods</code></h2>
+      {% for method in step.methods %}
+      <div>
+        <h3>
+          <a id="{{ method.title }}"></a>
+          <code>{{ method.regex }}</code>
+        </h3>
+        {{ method.description | markdownify }}
+        <h4>Example</h4>
+        {% highlight gherkin %}{{ method.example }}{% endhighlight %}
+        <hr/>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>

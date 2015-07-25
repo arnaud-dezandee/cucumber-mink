@@ -1,5 +1,6 @@
 ---
-layout: index
+layout: default
+home: true
 ---
 
 <a href="https://cucumber.io/"><img src="https://cucumber.io/images/cucumber-logo.svg" width="200px" alt="Cukes" align="right" /></a>
@@ -15,15 +16,15 @@ Cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 
 Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE
 
- - [40+ Available steps](STEPS.md)
+ - [40+ Available steps](/steps/)
  - [API References and examples](API.md)
 
 # Prerequisites
 
 * [Node.js](http://nodejs.org)
 * Selenium server with WebDriver (Selenium 2.0), see:
-	* [PhantomJS](http://phantomjs.org/download.html)
-	* [Webdriver-manager](https://github.com/pose/webdriver-manager)
+  * [PhantomJS](http://phantomjs.org/download.html)
+  * [Webdriver-manager](https://github.com/pose/webdriver-manager)
 
 # Quick start
 
@@ -40,7 +41,7 @@ $ phantomjs -w
 Use pre-defined steps in `features/__.feature` files
 
 ``` gherkin
-// features/home.feature
+# features/home.feature
 Feature: I can use cucumber.mink to check the content of my website
 
   Background:

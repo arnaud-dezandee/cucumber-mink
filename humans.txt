@@ -1,0 +1,8 @@
+/* TEAM */
+Author: Arnaud Dezandee
+Contact: https://github.com/Adezandee
+From: Paris, France
+
+/* SITE */
+Language: English
+Doctype: HTML5
