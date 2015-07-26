@@ -11,7 +11,7 @@ Cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 
 Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE
 
- - [40+ Available steps](STEPS.md)
+ - [40+ Available steps](http://cucumber-mink.js.org/steps/)
  - [API References and examples](API.md)
 
 # Prerequisites
@@ -36,7 +36,7 @@ $ phantomjs -w
 Use pre-defined steps in `features/__.feature` files
 
 ``` gherkin
-// features/home.feature
+# features/home.feature
 Feature: I can use cucumber.mink to check the content of my website
 
   Background:
