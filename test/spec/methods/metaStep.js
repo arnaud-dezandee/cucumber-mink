@@ -1,7 +1,7 @@
-var Mink  = require('../../../lib/mink');
+var Mink = require('../../../lib/mink');
 
-var async = require('async'),
-    assert = require('chai').assert;
+var async  = require('async');
+var assert = require('chai').assert;
 
 module.exports = function metaStep(callback) {
   var stepArray1 = [{
