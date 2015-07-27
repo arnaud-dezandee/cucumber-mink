@@ -1,7 +1,10 @@
 # CHANGELOG
 
+## v1.0.2 (2015-07-27)
+* Fix #24: Chai assertion errors are now correctly sent in the callback pipeline
+
 ## v1.0.1 (2015-07-21)
-* Fix: Handle driver.baseUrl parameter from Mink.init() properly
+* Fix #22: Handle driver.baseUrl parameter from Mink.init() properly
 
 ## v1.0.0 (2015-07-18)
 * Upgraded cucumber-js (0.5.2) and WebDriverIO (3.1.0)
