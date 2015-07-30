@@ -1,0 +1,35 @@
+- title: Core
+  methods:
+  - title: Mink.defineStep
+    signature: "Mink.defineStep(pattern, fn)"
+    description: |
+      Define a new step inside Mink-Cucumber context for use in .features files.
+    arguments:
+      - name: pattern
+        type: Regex
+        description: The step regex
+      - name: fn
+        type: Function
+        description: The step function
+    returns:
+      type: Object
+      description: StepObj built by Mink
+    example: |
+      Mink.defineStep(/^I do something with "([^"]*)" input$/, function(input, cb){
+        console.log('My input, input);
+        cb();
+      });
+
+  - title: Mink.findStep
+    signature: "Mink.findStep(input)"
+    description: |
+      Search through all defined step inside Mink context for a matching step with input string.
+    arguments:
+      - name: input
+        type: String
+        description: The input text
+    returns:
+      type: Object
+      description: StepObj of matching step
+    example: |
+      Mink.findStep('Given I go to the homepage');

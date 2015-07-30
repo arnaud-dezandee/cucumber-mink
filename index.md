@@ -1,5 +1,7 @@
 ---
 layout: default
+title: Cucumber-mink
+description: Quick and easy testing with cucumber.js
 home: true
 ---
 
@@ -17,7 +19,7 @@ Cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step d
 Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE
 
  - [40+ Available steps](/steps/)
- - [API References and examples](API.md)
+ - [API References and examples](/api/)
 
 # Prerequisites
 

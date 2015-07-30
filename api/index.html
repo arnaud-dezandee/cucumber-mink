@@ -1,5 +1,55 @@
 ---
 layout: default
+title: Cucumber-mink - API Documentation
+description: Internal API Documentation, manyStep, metaStep, runStep...
 ---
 
-<h1>TODO</h1>
+<div id="lodash">
+  {% include doc_header.html %}
+  <div class="toc-container">
+    {% for api in site.data.api %}
+    <div>
+      <h2 class="first-heading"><code>{{ api.title }}</code></h2>
+      <ul>
+        {% for method in api.methods %}
+        <li><a href="#{{ method.title | slugify }}">{{ method.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="doc-container">
+    {% for api in site.data.api %}
+    <div>
+      <h2 class="first-heading"><code>“{{ api.title }}” Methods</code></h2>
+      {% for method in api.methods %}
+      <div>
+        <h3>
+          <a id="{{ method.title | slugify }}"></a>
+          <code>{{ method.signature }}</code>
+        </h3>
+        {{ method.description | markdownify }}
+        <h4>Arguments</h4>
+        <ol>
+          {% for arg in method.arguments %}
+          <li>
+            <code>{{ arg.name }}</code>
+            <em>({{ arg.type}})</em>
+            {{ arg.description }}
+          </li>
+          {% endfor %}
+        </ol>
+        <h4>Returns</h4>
+        <p>
+          <em>({{method.returns.type}})</em>
+          {{method.returns.description}}
+        </p>
+        <h4>Example</h4>
+        {% highlight javascript %}{{ method.example }}{% endhighlight %}
+        <hr/>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
