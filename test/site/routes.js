@@ -55,3 +55,7 @@ Routes.result = function(request, reply) {
     'request': request.payload
   });
 };
+
+Routes.keys = function(request, reply) {
+  reply.view('keys');
+};

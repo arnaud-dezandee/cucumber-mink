@@ -1,4 +1,5 @@
 var Mink  = require('../../../lib/mink');
+var Errors = require('../../../lib/utils/errors.js');
 
 var async = require('async'),
     assert = require('chai').assert;
@@ -17,7 +18,7 @@ module.exports = function button(callback) {
     function(cb) {
       Mink.runStep('I follow ".link-missing"', function(err) {
         assert.isNotNull(err);
-        assert.equal(err.message, 'Unable to find a link with selector or text matching .link-missing');
+        assert.equal(err.message, Errors.ACTION.CLICK_LINK + ' .link-missing');
         cb();
       });
     }
