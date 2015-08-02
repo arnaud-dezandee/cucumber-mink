@@ -1,4 +1,5 @@
 var Mink  = require('../../../lib/mink');
+var Errors = require('../../../lib/utils/errors.js');
 
 var async = require('async'),
     assert = require('chai').assert;
@@ -17,7 +18,7 @@ module.exports = function button(callback) {
     function(cb) {
       Mink.runStep('I press ".button-missing"', function(err) {
         assert.isNotNull(err);
-        assert.equal(err.message, 'Unable to find button / input[type=submit] with selector or text matching .button-missing');
+        assert.equal(err.message, Errors.ACTION.CLICK_BUTTON + ' .button-missing');
         cb();
       });
     }
