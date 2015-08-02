@@ -2,6 +2,7 @@
 
 ## Master
 * Added step: `/^I send key "([^"]*)" in "([^"]*)" element$/`
+* Added step: `/^I wait for Angular app "([^"]*)"$/`
 
 ## v1.0.2 (2015-07-27)
 * Fix #24: Chai assertion errors are now correctly sent in the callback pipeline

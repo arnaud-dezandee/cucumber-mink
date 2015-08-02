@@ -4,7 +4,7 @@ Feature: I can use cucumber.mink to send key press to an element
     Given I browse "http://localhost:3000/"
     And I am on "/keys"
 
-  Scenario Outline: Render in desktop and mobile
+  Scenario Outline: Send key
     When I send key "<key>" in "#keys" element
     Then I should see "<result>" in the "#result" element
 
