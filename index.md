@@ -5,21 +5,10 @@ description: Quick and easy testing with cucumber.js
 home: true
 ---
 
-<a href="https://cucumber.io/"><img src="https://cucumber.io/images/cucumber-logo.svg" width="200px" alt="Cukes" align="right" /></a>
-
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 [![JS.ORG][js-org-image]][js-org-url]
-
-# Introduction
-
-Cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library.
-
-Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE
-
- - [40+ Available steps](/steps/)
- - [API References and examples](/api/)
 
 # Prerequisites
 
@@ -63,29 +52,6 @@ $ cucumber-mink
 Done !
 
 *Note:* see help `$ cucumber-mink -h` if you're not using PhantomJs.
-
-# Code Quality
-
-[![Dependency Status][david-image]][david-url]
-[![Codacy Badge][codacy-image]][codacy-url]
-[![Code Climate][code-climate-image]][code-climate-url]
-[![bitHound Score][bithound-image]][bithound-url]
-
-# Maintainers
-
-The npm module for this library is maintained by:
-
-* [Arnaud Dezandee](http://github.com/Adezandee)
-
-[List of all contributors](https://github.com/Adezandee/cucumber-mink/graphs/contributors)
-
-# License
-
-[MIT](LICENSE) © [Arnaud Dezandee](https://github.com/Adezandee)
-
-# Inspired
-
-This module is inspired by PHP [Behat/MinkExtension](https://github.com/Behat/MinkExtension).
 
 [npm-image]: https://img.shields.io/npm/v/cucumber-mink.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/cucumber-mink

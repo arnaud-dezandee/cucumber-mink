@@ -12,8 +12,8 @@
         type: Function
         description: The step function
     returns:
-      type: Object
-      description: StepObj built by Mink
+      type: StepObject
+      description: object built by Mink
     example: |
       Mink.defineStep(/^I do something with "([^"]*)" input$/, function(input, cb){
         console.log('My input, input);
@@ -27,9 +27,125 @@
     arguments:
       - name: input
         type: String
-        description: The input text
+        description: the input text
     returns:
-      type: Object
-      description: StepObj of matching step
+      type: StepObject
+      description: matching step
     example: |
       Mink.findStep('Given I go to the homepage');
+
+  - title: Mink.init
+    signature: "Mink.init(Cucumber, parameters)"
+    description: |
+      Mink initialization method and entry point.
+    arguments:
+      - name: Cucumber
+        type: Object
+        description: cucumber runner context
+      - name: parameters
+        type: Object
+        description: mink configuration parameters
+    returns:
+      type: Undefined
+    example: |
+      Mink.init(cucumber, {
+        driver: {
+          baseUrl: 'http://my-app:3000'
+          logLevel: 'silent',
+          desiredCapabilities: {
+            browserName: 'chrome'
+          },
+          port: 4444
+        }
+      });
+
+  - title: Mink.manyStep
+    signature: "Mink.manyStep(source, callback)"
+    description: |
+      Takes source text and tries to execute each line in series as Cucumber steps.
+    arguments:
+      - name: source
+        type: String | Array<String>
+        description: source text
+      - name: callback
+        type: Function
+        description: called when all steps are done
+    returns:
+      type: Undefined
+    example: |
+      Mink.manyStep([
+        'I browse "http://localhost:3000/"',
+        'I am on the homepage',
+        'I should be on the homepage'
+      ], callback);
+
+  - title: Mink.metaStep
+    signature: "Mink.metaStep(steps, callback)"
+    description: |
+      Executes each steps in series.
+    arguments:
+      - name: steps
+        type: Array<StepObject>
+        description: steps to execute
+      - name: callback
+        type: Function
+        description: called when all steps are done
+    returns:
+      type: Undefined
+    example: |
+      Mink.metaStep([
+        {
+          fn:   Ext.Navigation.browse,
+          args: ['/form']
+        },
+        {
+          fn:   Ext.Action.click,
+          args: ['button[type="submit"]']
+        }
+      ], callback);
+
+  - title: Mink.registerHooks
+    signature: "Mink.registerHooks(Cucumber, Driver)"
+    description: |
+      Register Driver hooks on cucumber context.
+    arguments:
+      - name: Cucumber
+        type: Object
+        description: context
+      - name: Driver
+        type: Object
+        description: mink driver
+    returns:
+      type: Undefined
+
+  - title: Mink.runStep
+    signature: "Mink.runStep(input, callback)"
+    description: |
+      Search and execute the step matching input string. Return the executed StepObjet.
+    arguments:
+      - name: input
+        type: String
+        description: the input text
+      - name: callback
+        type: Function
+    returns:
+      type: StepObject
+      description: executed step
+    example: |
+      Mink.runStep('I press ".button-missing"', function(err) {
+        assert.isNull(err);
+      });
+
+- title: Alias
+  methods:
+  - title: Mink.Given
+    signature: "Mink.Given(pattern, fn)"
+    alias: Mink.defineStep
+
+  - title: Mink.Then
+    signature: "Mink.Then(pattern, fn)"
+    alias: Mink.defineStep
+
+  - title: Mink.When
+    signature: "Mink.When(pattern, fn)"
+    alias: Mink.defineStep
