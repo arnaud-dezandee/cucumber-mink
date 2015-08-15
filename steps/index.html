@@ -4,24 +4,23 @@ title: Steps Dictionary - Cucumber-mink
 description: Browse the 40+ Available cucumber-mink steps
 ---
 
-<div id="lodash">
-  {% include doc_header.html %}
-  <div class="toc-container">
-    {% for step in site.data.steps %}
-      <div>
-        <h2 class="first-heading"><code>{{ step.title }}</code></h2>
-        <ul>
-          {% for method in step.methods %}
-          <li><a href="#{{ method.title | slugify }}">{{ method.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endfor %}
-  </div>
-  <div class="doc-container">
+<div class="row">
+  <div class="col-sm-3 toc-container">
     {% for step in site.data.steps %}
     <div>
-      <h2 class="first-heading"><code>“{{ step.title }}” Methods</code></h2>
+      <h2><code>{{ step.title }}</code></h2>
+      <ul>
+        {% for method in step.methods %}
+        <li><a href="#{{ method.title | slugify }}">{{ method.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 doc-container">
+    {% for step in site.data.steps %}
+    <div>
+      <h2><code>“{{ step.title }}” Methods</code></h2>
       {% for method in step.methods %}
       <div>
         <h3>

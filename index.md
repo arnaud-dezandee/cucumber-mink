@@ -5,11 +5,6 @@ description: Quick and easy testing with cucumber.js
 home: true
 ---
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
-[![JS.ORG][js-org-image]][js-org-url]
-
 # Prerequisites
 
 * [Node.js](http://nodejs.org)
