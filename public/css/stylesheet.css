@@ -11,18 +11,23 @@ body {
   color: #777777;
   background-color: #fff;
   box-shadow: 0 -2px 8px #d3d3d3;
+  border-top: 3px solid #155799;
   border-bottom: 1px solid #d3d3d3;
 }
 .navbar .navbar-brand {
-  font-weight: normal;
-  color: #777777;
+  padding: 10px 15px;
+}
+.navbar .navbar-brand img {
+  height: 30px;
 }
 .navbar .navbar-text {
+  margin-right: 30px;
   font-weight: lighter;
   color: #777777;
 }
-.navbar .navbar-text a + a {
-  margin-left: 15px;
+.navbar .navbar-text a {
+  display: inline-block;
+  margin: 0 5px;
 }
 .navbar .nav li a {
   color: #777777;

@@ -16,18 +16,23 @@ body {
   color: @text;
   background-color: #fff;
   box-shadow: 0 -2px 8px #d3d3d3;
+  border-top: 3px solid @main-color;
   border-bottom: 1px solid #d3d3d3;
 
   .navbar-brand {
-    font-weight: normal;
-    color: @text;
+    padding: 10px 15px;
+    img {
+      height: 30px;
+    }
   }
   .navbar-text {
+    margin-right: 30px;
     font-weight: lighter;
     color: @text;
 
-    a + a {
-      margin-left: 15px;
+    a {
+      display: inline-block;
+      margin: 0 5px;
     }
   }
 
