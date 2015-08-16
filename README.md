@@ -1,84 +1,43 @@
-<a href="https://cucumber.io/"><img src="https://cucumber.io/images/cucumber-logo.svg" width="200px" alt="Cukes" align="right" /></a>
+<p align="center">
+  <a href="http://cucumber-mink.js.org/">
+    <img src="http://cucumber-mink.js.org/public/cucumber-mink.svg" height="80px" alt="Cucumber Mink" />
+  </a>
+</p>
+
+#### **[cucumber-js](https://github.com/cucumber/cucumber-js) steps dictionary.**
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 [![JS.ORG][js-org-image]][js-org-url]
 
-# Introduction
+Run your tests with a wide range of Selenium browser: Phantomjs, Chrome, Firefox, IE
 
-Cucumber-mink is a [cucumber-js](https://github.com/cucumber/cucumber-js) step definition library.
+ - [Steps Dictionary (40+)](http://cucumber-mink.js.org/steps/)
+ - [Core API](http://cucumber-mink.js.org/api/)
 
-Run your test with any Selenium browser: Phantomjs, Chrome, Firefox, IE
+## Documentation
 
- - [40+ Available steps](http://cucumber-mink.js.org/steps/)
- - [API References and examples](API.md)
+All documentation can be found on [cucumber-mink.js.org](http://cucumber-mink.js.org/).
 
-# Prerequisites
-
-* [Node.js](http://nodejs.org)
-* Selenium server with WebDriver (Selenium 2.0), see:
-	* [PhantomJS](http://phantomjs.org/download.html)
-	* [Webdriver-manager](https://github.com/pose/webdriver-manager)
-
-# Quick start
-
-``` bash
-$ npm install -g cucumber-mink
-```
-
-Launch your Selenium server (ex: PhantomJS)
-
-``` bash
-$ phantomjs -w
-```
-
-Use pre-defined steps in `features/__.feature` files
-
-``` gherkin
-# features/home.feature
-Feature: I can use cucumber.mink to check the content of my website
-
-  Background:
-    Given I browse "http://localhost:3000"
-
-  Scenario: Check Homepage content
-    Given I am on the homepage
-    And   I should see "Welcome to my awesome application" in the "h1" element
-```
-
-Run your tests
-
-``` bash
-$ cucumber-mink
-```
-    
-Done !
-
-*Note:* see help `$ cucumber-mink -h` if you're not using PhantomJs.
-
-# Code Quality
+## Code Quality
 
 [![Dependency Status][david-image]][david-url]
 [![Codacy Badge][codacy-image]][codacy-url]
 [![Code Climate][code-climate-image]][code-climate-url]
 [![bitHound Score][bithound-image]][bithound-url]
 
-# Maintainers
+## Is it any good?
 
-The npm module for this library is maintained by:
+[Yes](https://news.ycombinator.com/item?id=3067434)
 
-* [Arnaud Dezandee](http://github.com/Adezandee)
-
-[List of all contributors](https://github.com/Adezandee/cucumber-mink/graphs/contributors)
-
-# License
-
-[MIT](LICENSE) © [Arnaud Dezandee](https://github.com/Adezandee)
-
-# Inspired
+## Inspired
 
 This module is inspired by PHP [Behat/MinkExtension](https://github.com/Behat/MinkExtension).
+
+## License
+
+[MIT](LICENSE) © [Arnaud Dezandee](https://github.com/Adezandee)
 
 [npm-image]: https://img.shields.io/npm/v/cucumber-mink.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/cucumber-mink
