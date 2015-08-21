@@ -59,3 +59,13 @@ Routes.result = function(request, reply) {
 Routes.keys = function(request, reply) {
   reply.view('keys');
 };
+
+Routes.angular = function(request, reply) {
+  reply.view('angular');
+};
+
+Routes.angularData = function(request, reply) {
+  setTimeout(function() {
+    reply('OK !');
+  }, 1000);
+};

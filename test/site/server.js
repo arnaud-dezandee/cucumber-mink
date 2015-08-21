@@ -20,6 +20,8 @@ server.route({ method: 'GET',  path: '/action',             handler: Routes.acti
 server.route({ method: 'GET',  path: '/responsive',         handler: Routes.responsive});
 server.route({ method: 'GET',  path: '/form',               handler: Routes.form      });
 server.route({ method: 'GET',  path: '/keys',               handler: Routes.keys      });
+server.route({ method: 'GET',  path: '/angular',            handler: Routes.angular   });
+server.route({ method: 'GET',  path: '/angular/data',       handler: Routes.angularData});
 server.route({ method: 'POST', path: '/result',             handler: Routes.result    });
 server.route({ method: 'GET',  path: '/post/{id}',          handler: Routes.post      });
 server.route({ method: 'GET',  path: '/generate/{number}',  handler: Routes.generate  });
