@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://cucumber-mink.js.org/">
-    <img src="http://cucumber-mink.js.org/public/cucumber-mink.svg" height="80px" alt="Cucumber Mink" />
+    <img src="http://cucumber-mink.js.org/public/images/cucumber-mink.svg" height="80px" alt="Cucumber Mink" />
   </a>
 </p>
 
