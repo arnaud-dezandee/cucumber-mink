@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-fixed-top navbar-inverse container-fluid">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <img src="/public/cucumber-mink.svg" alt="Cucumber-mink"/>
+        <strong>Cucumber-Mink</strong>
       </a>
     </div>
     <div id="navbar" class="collapse navbar-collapse" aria-expanded="false">
@@ -16,14 +16,12 @@
         <a href="https://www.npmjs.com/package/cucumber-mink">
           <img src="https://img.shields.io/npm/v/cucumber-mink.svg?style=flat" alt="NPM Version">
         </a>
-        <a href="https://github.com/Adezandee/cucumber-mink">
-          <img src="https://github.com/favicon.ico" width="20" height="20" alt="Github Repo"/>
-        </a>
       </p>
       <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/steps">Steps Dictionary</a></li>
-        <li><a href="/api">Core API</a></li>
+        <li {% if page.active == "home" %}class="active"{% endif %}><a href="/">Home</a></li>
+        <li {% if page.active == "steps" %}class="active"{% endif %}><a href="/steps">Steps Dictionary</a></li>
+        <li {% if page.active == "api" %}class="active"{% endif %}><a href="/api">Core API</a></li>
+        <li><a href="https://github.com/Adezandee/cucumber-mink">GitHub</a></li>
       </ul>
     </div>
   </div>

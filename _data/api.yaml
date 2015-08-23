@@ -16,7 +16,7 @@
       description: object built by Mink
     example: |
       Mink.defineStep(/^I do something with "([^"]*)" input$/, function(input, cb){
-        console.log('My input, input);
+        console.log('My input, input');
         cb();
       });
 

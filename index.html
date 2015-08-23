@@ -1,0 +1,74 @@
+---
+layout: default
+title: Cucumber-mink
+description: Quick and easy testing with cucumber.js
+active: home
+---
+
+<div class="container-fluid home-header">
+  <header>
+    <h1><img src="/public/images/cucumber-mink.svg" alt="Cucumber-mink"/></h1>
+    <h2>Quick and easy testing with <a href="https://github.com/cucumber/cucumber-js" target="_blank" rel="external">cucumber.js</a></h2>
+    <div class="badges">{{ site.data.home.badges | markdownify }}</div>
+  </header>
+</div>
+
+<div class="container home-page">
+  <div class="quick-start">
+    <h2>What is Cucumber-mink ?</h2>
+    <p>Cucumber-mink lets you write Gherkin BDD style end-to-end test and run it inside any browser. You don't have to do any complex configuration, just focus on writing test:</p>
+    <pre><code class="gherkin">{{site.data.home.ex1}}</code></pre>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>What steps can I use ?</h3>
+        <p>
+          Cucumber mik comes with 40+ built-in steps, those provides the essential set to begin testing your website.<br/>
+          <a href="/steps">See the available steps</a>
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h3>Can I extend it ?</h3>
+        <p>
+          Of course, you can define your own custom steps just like in standard Cucumber.js.<br/>
+          A set of useful methods are also available with mink: <a href="/api">Core API</a>
+        </p>
+      </div>
+    </div>
+    <h2>Running your test suite</h2>
+    <p>
+      In order to run ours test suite, we need a Selenium server (headless browser).<br/>
+      I'll use <a href="http://phantomjs.org/" target="_blank" rel="external">PhantomJS</a> with default settings: <code>localhost:8910</code>
+    </p>
+    <h3>With the CLI</h3>
+    <pre><code class="bash">{{ site.data.home.cli }}</code></pre>
+    <p>See <code>cucumber-mink -h</code> if you want to use the CLI with a custom Selenium server</p>
+    <h3>With Cucumber.js support code</h3>
+    <pre><code class="js">{{ site.data.home.support_code }}</code></pre>
+    <p>See <a href="https://github.com/Adezandee/cucumber-mink/tree/master/examples" rel="external">examples</a> for support code method with BrowserStack, SauceLabs, Chrome and Firefox</p>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>How does it work?</h2>
+        <p>Cucumber-mink is an open source addon for cucumber.js. It makes it possible to quickly write Gherkin tests with Cucumber.js framework.</p>
+        <p>It use <a href="http://webdriver.io/" target="_blank" rel="external">WebdriverIO</a> internally to send request to the Selenium server.</p>
+      </div>
+      <div class="col-md-6">
+        <h2>Run your tests in the cloud</h2>
+        <p>
+          Services like Sauce Labs or BrowserStack provide selenium testing on remote hosts.
+          You're able to run tests on a wide collection of platforms, devices and browser combinations.
+        </p>
+        <p class="cloud-hosts">
+          <a href="https://saucelabs.com" target="_blank" rel="external">Sauce Labs</a>
+          <a href="http://www.browserstack.com/" target="_blank" rel="external">BrowserStack</a>
+          <a href="http://www.testingbot.com/" target="_blank" rel="external">TestingBot</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>This project is maintained by: <a href="https://github.com/Adezandee" rel="external">Arnaud Dezandee</a></p>
+  </div>
+</footer>

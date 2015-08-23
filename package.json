@@ -1,0 +1,19 @@
+{
+  "name": "cucumber-mink.github.io",
+  "version": "1.0.0",
+  "description": "Cucumber-mink website",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Adezandee/cucumber-mink.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Adezandee/cucumber-mink/issues"
+  },
+  "homepage": "http://cucumber-mink.js.org/",
+  "devDependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

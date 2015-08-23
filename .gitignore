@@ -1,3 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
-_site
+/node_modules
+npm-debug.log
+/_site
 Gemfile.lock

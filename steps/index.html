@@ -2,38 +2,41 @@
 layout: default
 title: Steps Dictionary - Cucumber-mink
 description: Browse the 40+ Available cucumber-mink steps
+active: steps
 ---
 
-<div class="row">
-  <div class="col-sm-3 toc-container">
-    {% for step in site.data.steps %}
-    <div>
-      <h2><code>{{ step.title }}</code></h2>
-      <ul>
-        {% for method in step.methods %}
-        <li><a href="#{{ method.title | slugify }}">{{ method.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endfor %}
-  </div>
-  <div class="col-sm-9 col-sm-offset-3 doc-container">
-    {% for step in site.data.steps %}
-    <div>
-      <h2><code>“{{ step.title }}” Methods</code></h2>
-      {% for method in step.methods %}
+<div class="container-fluid">
+  <div class="row">
+    <aside class="sidebar col-xs-12">
+      {% for step in site.data.steps %}
       <div>
-        <h3>
-          <a id="{{ method.title | slugify }}"></a>
-          <code>{{ method.example }}</code>
-        </h3>
-        {{ method.description | markdownify }}
-        <h4>Regex</h4>
-        {% highlight javascript %}{{ method.regex }}{% endhighlight %}
-        <hr/>
+        <h2>{{ step.title }}</h2>
+        <ul>
+          {% for method in step.methods %}
+          <li><a href="#{{ method.title | slugify }}">{{ method.title }}</a></li>
+          {% endfor %}
+        </ul>
       </div>
       {% endfor %}
-    </div>
-    {% endfor %}
+    </aside>
+    <main class="docs col-xs-12">
+      {% for step in site.data.steps %}
+        <h2>“{{ step.title }}” Methods</h2>
+        {% for method in step.methods %}
+        <section class="card" id="{{ method.title | slugify }}">
+          <h2>
+            <a tabindex="2" class="name" href="#{{ method.title | slugify }}">{{ method.title }}</a>
+            <span class="pull-right">
+              <span class="label label-category">{{ method.regex }}</span>
+            </span>
+          </h2>
+          <div class="description">
+            {{ method.description | markdownify }}
+          </div>
+          <pre><code class="gherkin">{{ method.example }}</code></pre>
+        </section>
+        {% endfor %}
+      {% endfor %}
+    </main>
   </div>
 </div>
