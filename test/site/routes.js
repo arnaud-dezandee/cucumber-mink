@@ -1,61 +1,62 @@
-var _ = require('lodash');
+import lo from 'lodash';
 
-///////////////////
-
-var Routes = module.exports = {};
-
-///////////////////
-
-function postWithId (id) {
+function postWithId(id) {
   return {
-    id:          id,
-    title:       'Post-' + id,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    id,
+    title: 'Post-' + id,
+    description: 'Lorem ipsum',
   };
 }
 
-function postsGen (n) {
-  return _.range(1, n + 1).map(function(index) {
-    return postWithId(index);
+function postsGen(number) {
+  return lo.range(1, number + 1).map(postWithId);
+}
+
+function responsive(req, res) {
+  res.render('responsive');
+}
+
+function index(req, res) {
+  res.render('index', {'posts': postsGen(3)});
+}
+
+function action(req, res) {
+  res.render('action');
+}
+
+function generate(req, res) {
+  const number = parseInt(encodeURIComponent(req.params.number), 10);
+  res.render('index', {'posts': postsGen(number)});
+}
+
+function post(req, res) {
+  const id = encodeURIComponent(req.params.id);
+  res.render('post', {'post': postWithId(id)});
+}
+
+function form(req, res) {
+  res.render('form', {});
+}
+
+function result(req, res) {
+  req.body.cb = !!req.body.cb;
+
+  res.render('result', {
+    'request': req.body,
   });
 }
 
-///////////////////
+function keys(req, res) {
+  res.render('keys');
+}
 
-Routes.responsive = function(request, reply) {
-  reply.view('responsive');
-};
-
-Routes.index = function(request, reply) {
-  reply.view('index', {'posts': postsGen(3)});
-};
-
-Routes.action = function(request, reply) {
-  reply.view('action');
-};
-
-Routes.generate = function(request, reply) {
-  var number = parseInt(encodeURIComponent(request.params.number));
-  reply.view('index', {'posts': postsGen(number)});
-};
-
-Routes.post = function(request, reply) {
-  var id = encodeURIComponent(request.params.id);
-  reply.view('post', {'post': postWithId(id)});
-};
-
-Routes.form = function(request, reply) {
-  reply.view('form', {});
-};
-
-Routes.result = function(request, reply) {
-  request.payload.cb = !!request.payload.cb;
-
-  reply.view('result', {
-    'request': request.payload
-  });
-};
-
-Routes.keys = function(request, reply) {
-  reply.view('keys');
+export default {
+  index,
+  responsive,
+  action,
+  generate,
+  post,
+  form,
+  result,
+  keys,
 };

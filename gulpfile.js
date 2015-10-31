@@ -1,14 +1,6 @@
 var gulp   = require('gulp'),
     gulpIf = require('gulp-if'),
-    header = require('gulp-header'),
-    eslint = require('gulp-eslint');
-
-gulp.task('lint', function() {
-  return gulp.src(['./lib/**/*.js', './test/**/*.js', './examples/**/*.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failOnError());
-});
+    header = require('gulp-header');
 
 gulp.task('licensing', function() {
   var license = [
@@ -31,5 +23,3 @@ gulp.task('licensing', function() {
     .pipe(gulpIf(needsLicense, header(license)))
     .pipe(gulp.dest('./lib/'));
 });
-
-gulp.task('default',  ['lint']);

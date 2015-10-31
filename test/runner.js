@@ -17,10 +17,6 @@ function suite(browser, port, callback) {
 
 async.series([
   function(cb) {
-    process.stdout.write('\nPhantomJS: Complete suite.\n\n');
-    suite('phantomjs', 8910, cb);
-  },
-  function(cb) {
     process.stdout.write('\nFirefox: Complete suite.\n\n');
     suite('firefox', 4444, cb);
   }

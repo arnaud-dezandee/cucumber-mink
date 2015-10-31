@@ -31,8 +31,7 @@
     "cucumber-mink": "./bin/cucumber-mink"
   },
   "scripts": {
-    "start": "node test/site/server.js",
-    "pretest": "gulp lint",
+    "start": "babel-node test/site/server.js",
     "coverage": "istanbul cover test/runner.js --root ./lib",
     "test": "node test/runner.js"
   },
@@ -40,22 +39,23 @@
     "node": ">= 0.10"
   },
   "dependencies": {
-    "async": "^1.4.2",
+    "async": "^1.5.0",
     "build-prototype": "^1.1.0",
-    "chai": "^3.2.0",
-    "cucumber": "^0.5.2",
+    "chai": "^3.4.0",
+    "cucumber": "^0.8.1",
     "debug": "^2.2.0",
     "lodash": "^3.10.1",
-    "webdriverio": "^3.1.0",
-    "yargs": "^3.21.0"
+    "webdriverio": "^3.2.6",
+    "yargs": "^3.29.0"
   },
   "devDependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
     "gulp": "^3.9.0",
-    "gulp-eslint": "^1.0.0",
-    "gulp-header": "^1.5.0",
-    "gulp-if": "^1.2.5",
-    "hapi": "^9.0.3",
-    "istanbul": "^0.3.18",
-    "swig": "^1.4.2"
+    "gulp-header": "^1.7.1",
+    "gulp-if": "^2.0.0",
+    "istanbul": "^0.4.0",
+    "swig": "^1.4.2",
+    "webdriver-manager": "^7.0.1"
   }
 }

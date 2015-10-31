@@ -1,29 +1,29 @@
-/* eslint no-console:0 */
+import express from 'express';
+import body from 'body-parser';
+import swig from 'swig';
+import routes from './routes.js';
 
-var Hapi   = require('hapi'),
-    Path   = require('path'),
-    Swig   = require('swig'),
-    Routes = require('./routes');
+const app = express();
 
-Swig.setDefaults({ cache: false });
+app.use(body.json());
+app.use(body.urlencoded({ extended: true }));
 
-var server = new Hapi.Server();
-server.connection({ port: 3000 });
+app.engine('swig', swig.renderFile);
+app.set('view engine', 'swig');
+app.set('views', __dirname + '/views');
+app.set('view cache', false);
+swig.setDefaults({ cache: false });
 
-server.views({
-  engines:  { swig: Swig },
-  path:     Path.join(__dirname, 'views')
-});
+app.get('/', routes.index);
+app.get('/action', routes.action);
+app.get('/responsive', routes.responsive);
+app.get('/form', routes.form);
+app.get('/keys', routes.keys);
+app.post('/result', routes.result);
+app.get('/post/:id', routes.post);
+app.get('/generate/:number', routes.generate);
 
-server.route({ method: 'GET',  path: '/',                   handler: Routes.index     });
-server.route({ method: 'GET',  path: '/action',             handler: Routes.action    });
-server.route({ method: 'GET',  path: '/responsive',         handler: Routes.responsive});
-server.route({ method: 'GET',  path: '/form',               handler: Routes.form      });
-server.route({ method: 'GET',  path: '/keys',               handler: Routes.keys      });
-server.route({ method: 'POST', path: '/result',             handler: Routes.result    });
-server.route({ method: 'GET',  path: '/post/{id}',          handler: Routes.post      });
-server.route({ method: 'GET',  path: '/generate/{number}',  handler: Routes.generate  });
+app.listen(3000);
 
-server.start(function () {
-  console.log('Server running at:', server.info.uri);
-});
+/* eslint no-console: 0 */
+console.log('Server running at:', 'http://localhost:3000/');
