@@ -1,5 +1,5 @@
-var Mink   = require('../../../../lib/mink.js');
-var Errors = require('../../../../lib/utils/errors.js');
+var Mink   = require('../../../../src/mink.js');
+var Errors = require('../../../../src/utils/errors.js');
 
 var assert = require('chai').assert;
 

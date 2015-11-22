@@ -7,12 +7,13 @@
  *     Arnaud Dezandee <dezandee.arnaud@gmail.com>
  */
 
-var debug = require('debug')('mink:metaStep');
-var async = require('async');
-var _ = require('lodash');
+import async from 'async';
+import _ from 'lodash';
+
+const debug = require('debug')('mink:metaStep');
 
 function enhanceCallback(cb) {
-  cb.fail = function(err) {
+  cb.fail = err => {
     return _.isError(err) ? cb(err) : cb(new Error(err));
   };
   return cb;
@@ -22,11 +23,9 @@ function enhanceCallback(cb) {
  * @param {Array}     steps
  * @param {Function}  callback
  */
-module.exports = function metaStep(steps, callback) {
-  var mink = this;
-
-  async.eachSeries(steps, function(step, cb) {
+export default function metaStep(steps, callback) {
+  async.eachSeries(steps, (step, cb) => {
     debug(step.pattern || 'Custom fn', step.args);
-    return step.fn.apply(mink, step.args.concat(enhanceCallback(cb)));
+    return step.fn.apply(this, step.args.concat(enhanceCallback(cb)));
   }, callback);
-};
+}

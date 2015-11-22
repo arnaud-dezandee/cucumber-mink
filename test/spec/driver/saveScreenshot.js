@@ -1,4 +1,4 @@
-var Mink  = require('../../../lib/mink');
+var Mink  = require('../../../src/mink');
 
 var fs = require('fs'),
     async = require('async'),

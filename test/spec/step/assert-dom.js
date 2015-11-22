@@ -1,4 +1,4 @@
-var Mink   = require('../../../lib/mink.js');
+var Mink   = require('../../../src/mink.js');
 
 var chai = require('chai');
 var assert = chai.assert;

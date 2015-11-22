@@ -7,23 +7,18 @@
  *     Arnaud Dezandee <dezandee.arnaud@gmail.com>
  */
 
-var debug = require('debug')('mink:defineStep');
+const debug = require('debug')('mink:defineStep');
 
 /**
  * @param {RegExp}    pattern    step regex
  * @param {Function}  fn         step function
  */
-module.exports = function defineStep(pattern, fn) {
-  debug(pattern);
+export default function defineStep(pattern, fn) {
+  debug('defineStep', pattern);
 
-  // Register the step in Mink steps array
-  var stepObj = {
-    mink:     true,
-    pattern:  pattern,
-    fn:       fn
-  };
+  const stepObj = { mink: true, pattern, fn };
   this.steps.push(stepObj);
   this.cucumber.defineStep(pattern, fn.bind(this));
 
   return stepObj;
-};
+}

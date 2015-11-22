@@ -7,23 +7,23 @@
  *     Arnaud Dezandee <dezandee.arnaud@gmail.com>
  */
 
-var debug = require('debug')('mink:manyStep');
-var async = require('async');
-var _ = require('lodash');
+import async from 'async';
+import _ from 'lodash';
+
+const debug = require('debug')('mink:manyStep');
 
 /**
  * @param {String || Array} source  Multi-line step text or array of step
  * @param {Function}        callback
  */
-module.exports = function manyStep(source, callback) {
-  var lines = _.isArray(source)
+export default function manyStep(source, callback) {
+  const lines = _.isArray(source)
     ? source
     : source.replace(/\s\s+/g, ' ').split('\n');
 
   debug(lines.join(', ').substr(0, 80) + '...');
 
-  var Mink = this;
-  async.eachSeries(_.compact(lines), function(line, cb) {
-    Mink.runStep(line, cb);
+  async.eachSeries(_.compact(lines), (line, cb) => {
+    this.runStep(line, cb);
   }, callback);
-};
+}

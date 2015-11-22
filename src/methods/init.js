@@ -7,20 +7,19 @@
  *     Arnaud Dezandee <dezandee.arnaud@gmail.com>
  */
 
-var _ = require('lodash');
+import _ from 'lodash';
+import Driver from '../driver';
+import Steps from '../step_definitions';
 
-var Driver = require('../driver');
-var Steps  = require('../step_definitions');
-
-var DEFAULT_PARAMS = {
+const DEFAULT_PARAMS = {
   driver: {
     baseUrl: process.env.BASE_URL || null,
     desiredCapabilities: {
-      browserName: 'phantomjs'
+      browserName: 'phantomjs',
     },
     logLevel: 'silent',
-    port: 8910
-  }
+    port: 8910,
+  },
 };
 
 /**
@@ -28,12 +27,12 @@ var DEFAULT_PARAMS = {
  * @param {Object}  Cucumber    cucumber-js context
  * @param {Object}  parameters
  */
-module.exports = function init(Cucumber, parameters) {
-  parameters = _.defaults(parameters || {}, DEFAULT_PARAMS);
+export default function init(Cucumber, parameters) {
+  const params = _.defaults(parameters || {}, DEFAULT_PARAMS);
 
   // Attach Cucumber to Mink context
-  this.cucumber   = Cucumber;
-  this.parameters = parameters;
+  this.cucumber = Cucumber;
+  this.parameters = params;
 
   // Init Mink driver
   this.driver = Driver.create(parameters.driver);
@@ -41,4 +40,4 @@ module.exports = function init(Cucumber, parameters) {
 
   // Load all Mink steps
   Steps.register(this);
-};
+}

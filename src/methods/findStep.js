@@ -7,16 +7,16 @@
  *     Arnaud Dezandee <dezandee.arnaud@gmail.com>
  */
 
-var debug = require('debug')('mink:findStep');
-var _ = require('lodash');
+import _ from 'lodash';
 
-var LANG_WORDS = ['Given', 'When', 'Then', 'And', 'But', '*'];
+const debug = require('debug')('mink:findStep');
+const LANG_WORDS = ['Given', 'When', 'Then', 'And', 'But', '*'];
 
 // Sanitize input and trim first word if Gherkin lang
 function trim(str) {
-  var input = str.replace(/\s\s+/g, ' ').trim();
+  const input = str.replace(/\s\s+/g, ' ').trim();
 
-  var words = input.split(' ');
+  const words = input.split(' ');
   if (_.contains(LANG_WORDS, _.first(words))) {
     return words.slice(1).join(' ');
   }
@@ -27,9 +27,9 @@ function trim(str) {
  * Find a matching registered step and build a stepObj from Mink context
  * @param {String} input
  */
-module.exports = function findStep(input) {
-  var text = trim(input);
-  var step = _.find(this.steps, function(minkStep) {
+export default function findStep(input) {
+  const text = trim(input);
+  const step = _.find(this.steps, minkStep => {
     return text.match(minkStep.pattern);
   });
 
@@ -40,7 +40,7 @@ module.exports = function findStep(input) {
   }
 
   return _.assign(step, {
-    input:  text,
-    args:   text.match(step.pattern).slice(1)
+    input: text,
+    args: text.match(step.pattern).slice(1),
   });
-};
+}
