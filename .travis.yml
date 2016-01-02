@@ -1,6 +1,7 @@
 sudo: false
 language: node_js
 node_js:
+  - "5"
   - "4"
 
 env:
@@ -8,7 +9,7 @@ env:
     secure: Iudzt3u8W/JujxrD9U+Z23rg3IS6mE604C/u49yvs+/8t+MwMfc1XHorIc5tHy+Uo5ViXc1sa/teRcsVFnZ5X+GzHV0Fd3TlbDRKopT4stHrRaApw1SJxUgJMMpGKU5jQnPo4E4VeDnU7tuylmX8N8rFudHg313yKi4CJsnphwQ=
 
 addons:
-  firefox: "36.0"
+  firefox: "latest"
 
 cache:
   directories:
@@ -26,8 +27,6 @@ install:
   - webdriver-manager update --standalone
 
 before_script:
-  - phantomjs -w > /dev/null &
-  - sleep 2
   - webdriver-manager start > /dev/null &
   - sleep 2
   - npm start &

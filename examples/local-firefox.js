@@ -1,16 +1,16 @@
-var mink = require('./../lib/mink');
+import Mink from '../src/mink.js';
 
 // Local Chrome
-var parameters = {
+const parameters = {
   driver: {
     logLevel: 'silent',
     desiredCapabilities: {
-      browserName: 'firefox'
+      browserName: 'firefox',
     },
-    port: 4444
-  }
+    port: 4444,
+  },
 };
 
-module.exports = function () {
-  mink.init(this, parameters);
-};
+export default function () {
+  Mink.init(this, parameters);
+}

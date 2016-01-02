@@ -11,7 +11,7 @@
 [![Test Coverage][coveralls-image]][coveralls-url]
 [![JS.ORG][js-org-image]][js-org-url]
 
-Run your tests with a wide range of Selenium browser: Phantomjs, Chrome, Firefox, IE
+Run your tests with a wide range of Selenium browser: Chrome, Firefox, IE
 
  - [Steps Dictionary (40+)](http://cucumber-mink.js.org/steps/)
  - [Core API](http://cucumber-mink.js.org/api/)
@@ -26,10 +26,6 @@ All documentation can be found on [cucumber-mink.js.org](http://cucumber-mink.js
 [![Codacy Badge][codacy-image]][codacy-url]
 [![Code Climate][code-climate-image]][code-climate-url]
 [![bitHound Score][bithound-image]][bithound-url]
-
-## Is it any good?
-
-[Yes](https://news.ycombinator.com/item?id=3067434)
 
 ## Inspired
 
