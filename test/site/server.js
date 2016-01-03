@@ -23,7 +23,6 @@ app.post('/result', routes.result);
 app.get('/post/:id', routes.post);
 app.get('/generate/:number', routes.generate);
 
-app.listen(3000);
-
-/* eslint no-console: 0 */
-console.log('Server running at:', 'http://localhost:3000/');
+app.listen(3000, () => {
+  console.log(`Started localhost:3000`);
+});

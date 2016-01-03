@@ -35,6 +35,7 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "precompile": "rm -rf dist/",
     "compile": "babel -d dist/ src/",
     "start": "babel-node test/site/server.js",
     "coverage": "istanbul cover test/runner.js --root ./lib",
@@ -48,6 +49,7 @@
     "debug": "^2.2.0",
     "immutable": "^3.7.6",
     "lodash": "^3.10.1",
+    "util-arity": "^1.0.2",
     "webdriverio": "^3.4.0",
     "yargs": "^3.31.0"
   },
@@ -83,7 +85,9 @@
     }
   },
   "babel": {
-    "presets": ["es2015"],
+    "presets": [
+      "es2015"
+    ],
     "plugins": [
       "add-module-exports",
       "transform-object-rest-spread"

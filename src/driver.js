@@ -2,6 +2,7 @@
  * Dependencies
  */
 
+import _ from 'lodash';
 import url from 'url';
 import Promise from 'bluebird';
 import WebDriverIO from 'webdriverio';
@@ -29,7 +30,10 @@ export default class Driver {
     if (!selector) {
       return this.client.getSource();
     }
-    return this.client.getHTML(selector);
+    return this.client.getHTML(selector).then(item => {
+      if (_.isArray(item)) return item.join('');
+      return item;
+    });
   }
 
   url(input) {
@@ -124,7 +128,7 @@ export default class Driver {
   'isVisible',
 ].forEach(method => {
   Driver.prototype[method] = function (...args) {
-    return this.client[method].apply(null, args);
+    return this.client[method].apply(this, args);
   };
 });
 

@@ -14,12 +14,14 @@
 import _ from 'lodash';
 import path from 'path';
 import dbg from 'debug';
+import arity from 'util-arity';
 import Promise from 'bluebird';
 import Immutable from 'immutable';
 import pkg from '../package.json';
 
 import Step from './step.js';
 import Driver from './driver.js';
+import definitions from './step_definitions/index.js';
 
 /**
  * Private
@@ -39,10 +41,10 @@ export const DEFAULT_PARAMS = {
     },
     baseUrl: process.env.BASE_URL,
     desiredCapabilities: {
-      browserName: 'phantomjs',
+      browserName: 'firefox',
     },
     logLevel: 'silent',
-    port: 8910,
+    port: 4444,
   },
 };
 
@@ -74,8 +76,9 @@ class Mink {
 
     this.registerHooks(cucumber, driver);
 
-    // Load all Mink steps
-    // Steps.register(this);
+    definitions.forEach(([pattern, fn]) => {
+      this.defineStep(pattern, fn);
+    });
   }
 
   /**
@@ -92,7 +95,10 @@ class Mink {
       this.steps = this.steps.set(pattern, new Step(pattern, fn));
 
       if (this.cucumber) {
-        this.cucumber.defineStep(pattern, fn.bind(this));
+        const wrappedFn = arity(fn.length, (...args) => {
+          return Promise.try(() => fn.apply(this, args));
+        });
+        this.cucumber.defineStep(pattern, wrappedFn);
       }
     }
 
@@ -157,14 +163,17 @@ class Mink {
    * @returns {void}
    */
   registerHooks(cucumber, driver) {
-    cucumber.registerHandler('BeforeFeatures', () => {
-      return driver.init().then(() => {
+    cucumber.registerHandler('BeforeFeatures', (event, done) => {
+      return driver.init()
+      .then(() => {
         return driver.setViewportSize(driver.parameters.viewportSize);
-      });
+      })
+      .then(() => done());
     });
 
-    cucumber.registerHandler('AfterFeatures', () => {
-      return driver.end();
+    cucumber.registerHandler('AfterFeatures', (event, done) => {
+      return driver.end()
+      .then(() => done());
     });
 
     if (driver.parameters.screenshotPath) {
