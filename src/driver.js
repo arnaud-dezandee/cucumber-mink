@@ -6,7 +6,14 @@ import _ from 'lodash';
 import url from 'url';
 import Promise from 'bluebird';
 import WebDriverIO from 'webdriverio';
+import dbg from 'debug';
 import detectSeries from './utils/detect_series.js';
+
+/**
+ * Private
+ */
+
+const debug = dbg('mink:driver');
 
 /**
  * Interface
@@ -82,7 +89,10 @@ export default class Driver {
   button(mixed) {
     return detectSeries(
       [
-        () => this.elements(mixed).catch(() => null),
+        () => this.elements(mixed).catch(err => {
+          debug(err);
+          return [];
+        }),
         () => this.elementsWithText('button', mixed),
         () => this.elementsWithValue('input[type=submit]', mixed),
       ],
@@ -97,7 +107,10 @@ export default class Driver {
   link(mixed) {
     return detectSeries(
       [
-        () => this.elements(mixed).catch(() => null),
+        () => this.elements(mixed).catch(err => {
+          debug(err);
+          return [];
+        }),
         () => this.elementsWithText('body a', mixed),
       ],
       fn => fn(),
