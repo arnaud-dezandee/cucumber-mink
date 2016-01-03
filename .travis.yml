@@ -16,24 +16,24 @@ cache:
     - node_modules
 
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  # - "export DISPLAY=:99.0"
+  # - "sh -e /etc/init.d/xvfb start"
 
 install:
-  - npm install -g webdriver-manager
-  - npm install -g codeclimate-test-reporter
-  - npm install -g coveralls
+  # - npm install -g webdriver-manager
+  # - npm install -g codeclimate-test-reporter
+  # - npm install -g coveralls
   - npm install
-  - webdriver-manager update --standalone
+  # - webdriver-manager update --standalone
 
 before_script:
-  - webdriver-manager start > /dev/null &
-  - sleep 2
-  - npm start &
-  - sleep 2
+  # - webdriver-manager start > /dev/null &
+  # - sleep 2
+  # - npm start &
+  # - sleep 2
 
-script: npm run coverage
+script: npm test
 
-after_script:
-  - cat ./coverage/lcov.info | coveralls
-  - codeclimate < ./coverage/lcov.info
+# after_script:
+#   - cat ./coverage/lcov.info | coveralls
+#   - codeclimate < ./coverage/lcov.info
