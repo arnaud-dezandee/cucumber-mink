@@ -38,9 +38,10 @@
     "precompile": "rm -rf dist/",
     "compile": "babel -d dist/ src/",
     "start": "babel-node test/site/server.js",
-    "coverage": "istanbul cover test/runner.js --root ./lib",
+    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --root src/ test/mocha/",
+    "e2e": "cucumberjs test/features",
     "test": "mocha --compilers js:babel-register test/mocha/",
-    "prepublish": "rm -rf dist/ && npm run compile"
+    "prepublish": "npm run compile"
   },
   "dependencies": {
     "bluebird": "^3.1.1",
@@ -54,7 +55,7 @@
     "yargs": "^3.31.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
+    "babel-cli": "^6.4.0",
     "babel-eslint": "^5.0.0-beta6",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
@@ -62,9 +63,9 @@
     "babel-register": "^6.3.13",
     "body-parser": "^1.14.2",
     "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^2.1.1",
+    "eslint-config-airbnb": "^3.0.2",
     "express": "^4.13.3",
-    "istanbul": "^0.4.1",
+    "isparta": "^4.0.0",
     "jest-cli": "^0.8.2",
     "mocha": "^2.3.4",
     "swig": "^1.4.2",
