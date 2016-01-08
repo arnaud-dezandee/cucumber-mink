@@ -4,6 +4,10 @@ node_js:
   - "5"
   - "4"
 
+cache:
+  directories:
+    - node_modules
+
 env:
   global:
     secure: Iudzt3u8W/JujxrD9U+Z23rg3IS6mE604C/u49yvs+/8t+MwMfc1XHorIc5tHy+Uo5ViXc1sa/teRcsVFnZ5X+GzHV0Fd3TlbDRKopT4stHrRaApw1SJxUgJMMpGKU5jQnPo4E4VeDnU7tuylmX8N8rFudHg313yKi4CJsnphwQ=
@@ -16,11 +20,8 @@ before_install:
   # - "sh -e /etc/init.d/xvfb start"
 
 install:
-  - npm i -g npm@2
-  - npm i -g codeclimate-test-reporter
-  - npm i -g coveralls
-  - npm i
-  # - webdriver-manager update --standalone
+  - npm install -g npm@2
+  - npm install
 
 before_script:
   # - webdriver-manager start > /dev/null &
@@ -31,5 +32,8 @@ before_script:
 script: npm run coverage
 
 after_script:
-  - cat ./coverage/lcov.info | coveralls
-  - codeclimate < ./coverage/lcov.info
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+branches:
+  only:
+    - master

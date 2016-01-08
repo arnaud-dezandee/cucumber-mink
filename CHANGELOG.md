@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## Master
+* Rewrite to ES2015 and Promises
 * Added step: `/^I send key "([^"]*)" in "([^"]*)" element$/`
 
 ## v1.0.2 (2015-07-27)
