@@ -1,17 +1,17 @@
-var mink = require('./../lib/mink');
+import Mink from '../src/mink.js';
 
 // Phantomjs - GhostDriver
-var parameters = {
+const parameters = {
   driver: {
     screenshotPath: 'test/',
     desiredCapabilities: {
-      browserName: 'phantomjs'
+      browserName: 'phantomjs',
     },
     logLevel: 'silent',
-    port: 8910
-  }
+    port: 8910,
+  },
 };
 
-module.exports = function () {
-  mink.init(this, parameters);
-};
+export default function () {
+  Mink.init(this, parameters);
+}

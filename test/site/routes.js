@@ -17,7 +17,7 @@ function responsive(req, res) {
 }
 
 function index(req, res) {
-  res.render('index', {'posts': postsGen(3)});
+  res.render('index', { posts: postsGen(3) });
 }
 
 function action(req, res) {
@@ -26,12 +26,12 @@ function action(req, res) {
 
 function generate(req, res) {
   const number = parseInt(encodeURIComponent(req.params.number), 10);
-  res.render('index', {'posts': postsGen(number)});
+  res.render('index', { posts: postsGen(number) });
 }
 
 function post(req, res) {
   const id = encodeURIComponent(req.params.id);
-  res.render('post', {'post': postWithId(id)});
+  res.render('post', { post: postWithId(id) });
 }
 
 function form(req, res) {
@@ -42,7 +42,7 @@ function result(req, res) {
   req.body.cb = !!req.body.cb;
 
   res.render('result', {
-    'request': req.body,
+    request: req.body,
   });
 }
 

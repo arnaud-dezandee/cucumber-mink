@@ -1,8 +1,18 @@
-coverage
-test
+# Logs
+*.log
+
+# Coverage directory
+coverage/
+
+# Sources
+examples/
+lib/
+test/
+
+# Dependency directory
+node_modules/
+
+# Dot files
 .editorconfig
-.eslintignore
-.eslintrc
 .gitignore
 .travis.yml
-gulpfile.js
