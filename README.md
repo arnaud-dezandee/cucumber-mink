@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://cucumber-mink.js.org/">
-    <img src="https://raw.githubusercontent.com/Adezandee/cucumber-mink/gh-pages/public/images/cucumber-mink.svg" height="80px" alt="Cucumber Mink" />
+    <img src="http://cucumber-mink.js.org/public/images/cucumber-mink.svg" height="80px" alt="Cucumber Mink" />
   </a>
 </p>
 <p align="center">A <a href="https://github.com/cucumber/cucumber-js">cucumber-js</a> steps dictionary.</p>
