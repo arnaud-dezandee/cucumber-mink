@@ -13,12 +13,10 @@ import Step from '../../src/step.js';
 * Tests
 */
 
-const mockCucumber = () => {
-  return {
-    defineStep: getMockFunction(),
-    registerHandler: getMockFunction(),
-  };
-};
+const mockCucumber = () => ({
+  defineStep: getMockFunction(),
+  registerHandler: getMockFunction(),
+});
 
 describe('Mink API', () => {
   describe('before init', () => {
@@ -55,7 +53,7 @@ describe('Mink API', () => {
 
     it('defineStep twice', () => {
       const pattern = 'defineStep';
-      const fn = () => {};
+      const fn = function () {};
 
       const step1 = Mink.defineStep(pattern, fn);
       const step2 = Mink.defineStep(pattern, fn);
@@ -69,7 +67,7 @@ describe('Mink API', () => {
 
     it('findStep normal', () => {
       const pattern = 'findStep';
-      const fn = () => {};
+      const fn = function () {};
 
       Mink.defineStep(pattern, fn);
       const step = Mink.findStep('findStep');
@@ -119,12 +117,12 @@ describe('Mink API', () => {
       });
     });
 
-    it('manyStep missing should fail', () => {
-      return Mink.manyStep(['missing']).catch(error => {
+    it('manyStep missing should fail', () =>
+      Mink.manyStep(['missing']).catch(error => {
         expect(error).to.be.instanceof(Error);
         expect(error.message).to.equal(`Could not findStep with line "missing"`);
-      });
-    });
+      })
+    );
 
     it('metaStep normal', () => {
       const fn = getMockFunction();

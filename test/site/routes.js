@@ -1,9 +1,13 @@
+/**
+ * Dependencies
+ */
+
 import lo from 'lodash';
 
 function postWithId(id) {
   return {
     id,
-    title: 'Post-' + id,
+    title: `Post-${id}`,
     description: 'Lorem ipsum',
   };
 }
@@ -39,10 +43,11 @@ function form(req, res) {
 }
 
 function result(req, res) {
-  req.body.cb = !!req.body.cb;
+  const body = req.body;
+  body.cb = !!body.cb;
 
   res.render('result', {
-    request: req.body,
+    request: body,
   });
 }
 

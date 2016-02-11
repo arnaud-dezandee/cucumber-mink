@@ -31,7 +31,7 @@
   },
   "main": "dist/mink.js",
   "bin": {
-    "cucumber-mink": "./bin/cucumber-mink"
+    "cucumber-mink": "dist/cli.js"
   },
   "scripts": {
     "lint": "eslint .",
@@ -39,7 +39,7 @@
     "compile": "babel -d dist/ src/",
     "start": "babel-node test/site/server.js",
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --root src/ test/mocha/",
-    "e2e": "cucumberjs test/features",
+    "e2e": "babel-node ./src/cli.js test/features -- -f progress",
     "test": "mocha --compilers js:babel-register test/mocha/",
     "prepublish": "npm run compile"
   },
@@ -50,9 +50,9 @@
     "debug": "^2.2.0",
     "immutable": "^3.7.6",
     "lodash": "^3.10.1",
+    "meow": "^3.7.0",
     "util-arity": "^1.0.2",
-    "webdriverio": "^3.4.0",
-    "yargs": "^3.31.0"
+    "webdriverio": "^3.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
@@ -64,11 +64,12 @@
     "body-parser": "^1.14.2",
     "coveralls": "^2.11.6",
     "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^3.0.2",
+    "eslint-config-airbnb": "^5.0.0",
     "express": "^4.13.3",
     "isparta": "^4.0.0",
     "jest-cli": "^0.8.2",
     "mocha": "^2.3.4",
+    "morgan": "^1.6.1",
     "swig": "^1.4.2",
     "webdriver-manager": "^8.0.0"
   },
@@ -81,6 +82,7 @@
       "mocha": true
     },
     "rules": {
+      "max-len": 0,
       "no-console": 0,
       "func-names": 0,
       "new-cap": 0

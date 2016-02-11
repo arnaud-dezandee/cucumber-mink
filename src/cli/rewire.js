@@ -1,8 +1,13 @@
-var Module           = require('module');
-var originalLoader   = Module._load;
-var intercept        = {};
+/**
+ * Dependencies
+ */
 
-Module._load = function(request /*, parent*/) {
+import module from 'module';
+
+const originalLoader = module._load;
+const intercept = {};
+
+module._load = function (request) {
   if (intercept.hasOwnProperty(request)) {
     return intercept[request];
   }
@@ -10,6 +15,10 @@ Module._load = function(request /*, parent*/) {
   return originalLoader.apply(this, arguments);
 };
 
-module.exports = function startMocking(path, mockExport) {
+/**
+ * Interface
+ */
+
+export function startMocking(path, mockExport) {
   intercept[path] = mockExport;
-};
+}

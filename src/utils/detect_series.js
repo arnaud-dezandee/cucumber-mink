@@ -23,18 +23,18 @@ class Result extends Error {
  */
 
 function detectSeries(arr, iterator, check) {
-  return Promise.each(arr, item => {
-    return Promise.try(() => iterator(item))
-    .tap(debug)
-    .then(result => {
-      if (check(result)) {
-        throw new Result(item, result);
-      }
-    });
-  })
-  .catch(({ item, result }) => {
-    return { item, result };
-  });
+  return Promise.each(arr, item =>
+    Promise.try(() => iterator(item))
+      .tap(debug)
+      .then(result => {
+        if (check(result)) {
+          throw new Result(item, result);
+        }
+      })
+  )
+  .catch(({ item, result }) => ({
+    item, result,
+  }));
 }
 
 /**

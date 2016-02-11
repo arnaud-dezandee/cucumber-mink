@@ -6,7 +6,6 @@ coverage/
 
 # Sources
 examples/
-lib/
 test/
 
 # Dependency directory
@@ -14,5 +13,6 @@ node_modules/
 
 # Dot files
 .editorconfig
+.eslintignore
 .gitignore
 .travis.yml

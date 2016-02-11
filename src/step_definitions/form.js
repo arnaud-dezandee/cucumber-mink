@@ -13,9 +13,9 @@ const fillField = function (selector, value) {
 };
 
 const fillFieldsHash = function (hashDataTable) {
-  return Promise.each(hashDataTable.raw(), ([field, value]) => {
-    return this.driver.setValue(field, value);
-  });
+  return Promise.each(hashDataTable.raw(), ([field, value]) =>
+    this.driver.setValue(field, value)
+  );
 };
 
 const selectFrom = function (option, selector) {

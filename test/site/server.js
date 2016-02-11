@@ -1,16 +1,23 @@
+/**
+ * Dependencies
+ */
+
+import path from 'path';
 import express from 'express';
 import body from 'body-parser';
+import morgan from 'morgan';
 import swig from 'swig';
 import routes from './routes.js';
 
 const app = express();
 
+app.use(morgan('dev'));
 app.use(body.json());
 app.use(body.urlencoded({ extended: true }));
 
 app.engine('swig', swig.renderFile);
 app.set('view engine', 'swig');
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, 'views'));
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 

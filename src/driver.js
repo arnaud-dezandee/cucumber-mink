@@ -45,17 +45,17 @@ export default class Driver {
 
   url(input) {
     if (!input) {
-      return this.client.getUrl().then(text => {
-        return url.parse(text);
-      });
+      return this.client.getUrl().then(text =>
+        url.parse(text)
+      );
     }
     return this.client.url(input);
   }
 
   sendKey(selector, key) {
-    return this.client.click(selector).then(() => {
-      return this.client.keys(key);
-    });
+    return this.client.click(selector).then(() =>
+      this.client.keys(key)
+    );
   }
 
   elements(selector) {
@@ -70,20 +70,20 @@ export default class Driver {
 
   elementsWithText(selector, text) {
     return this.elements(selector)
-    .then(items => Promise.filter(items, WebElement => {
-      return this.client.elementIdText(WebElement.ELEMENT).then(result => {
-        return result.value === text;
-      });
-    }));
+    .then(items => Promise.filter(items, WebElement =>
+      this.client
+        .elementIdText(WebElement.ELEMENT)
+        .then(result => result.value === text)
+    ));
   }
 
   elementsWithValue(selector, value) {
     return this.elements(selector)
-    .then(items => Promise.filter(items, WebElement => {
-      return this.client.elementIdAttribute(WebElement.ELEMENT, 'value').then(result => {
-        return result.value === value;
-      });
-    }));
+    .then(items => Promise.filter(items, WebElement =>
+      this.client
+        .elementIdAttribute(WebElement.ELEMENT, 'value')
+        .then(result => result.value === value)
+    ));
   }
 
   button(mixed) {

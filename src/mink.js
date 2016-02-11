@@ -95,9 +95,9 @@ class Mink {
       this.steps = this.steps.set(pattern, new Step(pattern, fn));
 
       if (this.cucumber) {
-        const wrappedFn = arity(fn.length, (...args) => {
-          return Promise.try(() => fn.apply(this, args));
-        });
+        const wrappedFn = arity(fn.length, (...args) =>
+          Promise.try(() => fn.apply(this, args))
+        );
         this.cucumber.defineStep(pattern, wrappedFn);
       }
     }
@@ -138,9 +138,9 @@ class Mink {
   manyStep(lines) {
     debug('manyStep', lines.join(', ').substr(0, 80));
 
-    return Promise.each(lines, line => {
-      return this.runStep(line);
-    });
+    return Promise.each(lines, line =>
+      this.runStep(line)
+    );
   }
 
   /**
@@ -150,9 +150,9 @@ class Mink {
   metaStep(steps) {
     debug('metaStep', steps);
 
-    return Promise.each(steps, step => {
-      return step.runWith(this);
-    });
+    return Promise.each(steps, step =>
+      step.runWith(this)
+    );
   }
 
   /**
@@ -163,18 +163,17 @@ class Mink {
    * @returns {void}
    */
   registerHooks(cucumber, driver) {
-    cucumber.registerHandler('BeforeFeatures', (event, done) => {
-      return driver.init()
-      .then(() => {
-        return driver.setViewportSize(driver.parameters.viewportSize);
-      })
-      .then(() => done());
-    });
+    cucumber.registerHandler('BeforeFeatures', (event, done) =>
+      driver.init()
+        .then(() =>
+          driver.setViewportSize(driver.parameters.viewportSize)
+        )
+        .then(() => done())
+    );
 
-    cucumber.registerHandler('AfterFeatures', (event, done) => {
-      return driver.end()
-      .then(() => done());
-    });
+    cucumber.registerHandler('AfterFeatures', (event, done) =>
+      driver.end().then(() => done())
+    );
 
     if (driver.parameters.screenshotPath) {
       cucumber.After(event => {
