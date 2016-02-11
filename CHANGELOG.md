@@ -1,7 +1,9 @@
 # CHANGELOG
 
-## Master
-* Rewrite to ES2015 and Promises
+## v1.1.0 (2016-02-12)
+* Major dependencies version bump
+* Rewrite to ES2015 and Bluebird Promises
+* Added some mocha unit tests alongside e2e
 * Added step: `/^I send key "([^"]*)" in "([^"]*)" element$/`
 
 ## v1.0.2 (2015-07-27)
