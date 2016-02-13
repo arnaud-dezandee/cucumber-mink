@@ -1,5 +1,6 @@
 {
   "name": "cucumber-mink",
+  "version": "0.0.0-semantic-release",
   "description": "Cucumber-js Mink - Step definitions library",
   "keywords": [
     "testing",
@@ -12,7 +13,6 @@
     "phantomjs",
     "selenium"
   ],
-  "version": "1.1.0",
   "license": "MIT",
   "author": {
     "name": "Arnaud Dezandee",
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/Adezandee/cucumber-mink",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Adezandee/cucumber-mink.git"
+    "url": "git+https://github.com/Adezandee/cucumber-mink.git"
   },
   "bugs": {
     "url": "http://github.com/Adezandee/cucumber-mink/issues"
@@ -34,14 +34,16 @@
     "cucumber-mink": "dist/cli.js"
   },
   "scripts": {
-    "lint": "eslint .",
-    "precompile": "rm -rf dist/",
-    "compile": "babel -d dist/ src/",
     "start": "babel-node test/site/server.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --root src/ test/mocha/",
-    "e2e": "babel-node ./src/cli.js test/features -- -f progress",
+    "coverage:upload": "cat ./coverage/lcov.info | coveralls",
+    "prepublish": "npm run compile",
+    "precompile": "rm -rf dist/",
+    "compile": "babel src/ -d dist/",
+    "pretest": "eslint .",
     "test": "mocha --compilers js:babel-register test/mocha/",
-    "prepublish": "npm run compile"
+    "e2e": "babel-node ./src/cli.js test/features -- -f progress"
   },
   "dependencies": {
     "bluebird": "^3.2.2",
@@ -52,7 +54,7 @@
     "lodash": "^3.10.1",
     "meow": "^3.7.0",
     "util-arity": "^1.0.2",
-    "webdriverio": "^3.4.0"
+    "webdriverio": "^4.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
@@ -63,6 +65,7 @@
     "babel-register": "^6.5.2",
     "body-parser": "^1.14.2",
     "coveralls": "^2.11.6",
+    "cz-conventional-changelog": "^1.1.5",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^5.0.0",
     "express": "^4.13.3",
@@ -70,8 +73,8 @@
     "jest-cli": "^0.8.2",
     "mocha": "^2.3.4",
     "morgan": "^1.6.1",
-    "swig": "^1.4.2",
-    "webdriver-manager": "^8.0.0"
+    "semantic-release": "^4.3.5",
+    "swig": "^1.4.2"
   },
   "eslintConfig": {
     "extends": "airbnb/base",
@@ -96,5 +99,10 @@
       "add-module-exports",
       "transform-object-rest-spread"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

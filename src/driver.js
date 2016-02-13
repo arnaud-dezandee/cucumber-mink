@@ -5,7 +5,7 @@
 import _ from 'lodash';
 import url from 'url';
 import Promise from 'bluebird';
-import WebDriverIO from 'webdriverio';
+import { remote } from 'webdriverio';
 import dbg from 'debug';
 import detectSeries from './utils/detect_series.js';
 
@@ -22,7 +22,7 @@ const debug = dbg('mink:driver');
 export default class Driver {
   constructor(parameters) {
     this.parameters = parameters;
-    this.client = WebDriverIO.remote(parameters);
+    this.client = remote(parameters);
     this.baseUrl = parameters.baseUrl;
   }
 
