@@ -2,7 +2,6 @@
  * Dependencies
  */
 
-import _ from 'lodash';
 import url from 'url';
 import Promise from 'bluebird';
 import { remote } from 'webdriverio';
@@ -38,7 +37,7 @@ export default class Driver {
       return this.client.getSource();
     }
     return this.client.getHTML(selector).then(item => {
-      if (_.isArray(item)) return item.join('');
+      if (Array.isArray(item)) return item.join('');
       return item;
     });
   }

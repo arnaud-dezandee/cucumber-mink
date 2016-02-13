@@ -11,12 +11,12 @@
  * Dependencies
  */
 
-import _ from 'lodash';
 import path from 'path';
 import dbg from 'debug';
 import arity from 'util-arity';
 import Promise from 'bluebird';
 import Immutable from 'immutable';
+import defaultsDeep from 'lodash.defaultsdeep';
 import pkg from '../package.json';
 
 import Step from './step.js';
@@ -67,7 +67,7 @@ class Mink {
   init(cucumber, params = {}) {
     debug('init', params);
 
-    const parameters = _.defaults(params, DEFAULT_PARAMS);
+    const parameters = defaultsDeep(params, DEFAULT_PARAMS);
     const driver = new Driver(parameters.driver);
 
     this.parameters = parameters;
