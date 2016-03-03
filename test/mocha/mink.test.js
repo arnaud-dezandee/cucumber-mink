@@ -120,7 +120,7 @@ describe('Mink API', () => {
     it('manyStep missing should fail', () =>
       Mink.manyStep(['missing']).catch(error => {
         expect(error).to.be.instanceof(Error);
-        expect(error.message).to.equal(`Could not findStep with line "missing"`);
+        expect(error.message).to.equal('Could not findStep with line "missing"');
       })
     );
 

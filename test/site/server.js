@@ -31,5 +31,5 @@ app.get('/post/:id', routes.post);
 app.get('/generate/:number', routes.generate);
 
 app.listen(3000, () => {
-  console.log(`Started localhost:3000`);
+  console.log('Started localhost:3000');
 });
