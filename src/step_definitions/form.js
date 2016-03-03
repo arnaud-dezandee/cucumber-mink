@@ -29,6 +29,7 @@ const checkInput = function (state) {
       if (isChecked !== state) {
         return this.driver.check(selector);
       }
+      return null;
     });
   };
 };
