@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import lo from 'lodash';
+import range from 'lodash.range';
 
 function postWithId(id) {
   return {
@@ -13,7 +13,7 @@ function postWithId(id) {
 }
 
 function postsGen(number) {
-  return lo.range(1, number + 1).map(postWithId);
+  return range(1, number + 1).map(postWithId);
 }
 
 function responsive(req, res) {
