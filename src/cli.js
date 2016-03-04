@@ -9,7 +9,7 @@ import meow from 'meow';
 import dbg from 'debug';
 import cucumber from 'cucumber';
 import { startMocking } from './cli/rewire.js';
-import { DEFAULT_PARAMS } from './mink.js';
+import Mink from './mink.js';
 
 /**
  * CLI
@@ -41,7 +41,7 @@ const cli = meow(`
 const injectArgs = (flags) => {
   if (!flags.inject) return [];
 
-  const params = DEFAULT_PARAMS;
+  const params = Mink.DEFAULT_PARAMS;
   params.driver.desiredCapabilities.browserName = flags.browser;
   params.driver.port = flags.port;
 

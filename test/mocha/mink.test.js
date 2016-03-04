@@ -6,7 +6,7 @@ import { getMockFunction } from 'jest-cli/src/lib/moduleMocker.js';
 import { expect } from 'chai';
 import pkg from '../../package.json';
 
-import Mink, { DEFAULT_PARAMS } from '../../src/mink.js';
+import Mink from '../../src/mink.js';
 import Step from '../../src/step.js';
 
 /**
@@ -37,7 +37,7 @@ describe('Mink API', () => {
     it('init default params', () => {
       const cucumber = mockCucumber();
       Mink.init(cucumber);
-      expect(Mink.parameters).to.deep.equal(DEFAULT_PARAMS);
+      expect(Mink.parameters).to.deep.equal(Mink.DEFAULT_PARAMS);
       expect(Mink.cucumber).to.equal(cucumber);
 
       expect(cucumber.registerHandler.mock.calls.length).to.equal(2);

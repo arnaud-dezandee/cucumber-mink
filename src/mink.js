@@ -29,11 +29,7 @@ import definitions from './step_definitions/index.js';
 
 const debug = dbg('mink');
 
-/**
- * Public
- */
-
-export const DEFAULT_PARAMS = {
+const DEFAULT_PARAMS = {
   driver: {
     viewportSize: {
       width: 1366,
@@ -47,6 +43,10 @@ export const DEFAULT_PARAMS = {
     port: 4444,
   },
 };
+
+/**
+ * Public
+ */
 
 class Mink {
   constructor() {
@@ -191,6 +191,7 @@ class Mink {
 Mink.prototype.Given = Mink.prototype.defineStep;
 Mink.prototype.Then = Mink.prototype.defineStep;
 Mink.prototype.When = Mink.prototype.defineStep;
+Mink.prototype.DEFAULT_PARAMS = DEFAULT_PARAMS;
 Mink.prototype.VERSION = pkg.version;
 
 /**
