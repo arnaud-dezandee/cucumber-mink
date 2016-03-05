@@ -67,7 +67,7 @@
     "coveralls": "^2.11.8",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.2.0",
-    "eslint-config-airbnb": "^6.0.2",
+    "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.1.0",
     "express": "^4.13.3",
     "isparta": "^4.0.0",
