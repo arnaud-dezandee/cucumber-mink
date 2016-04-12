@@ -2,7 +2,7 @@
 * Dependencies
 */
 
-import { getMockFunction } from 'jest-cli/src/lib/moduleMocker.js';
+import { getMockFunction } from 'jest-mock';
 import { expect } from 'chai';
 import pkg from '../../package.json';
 

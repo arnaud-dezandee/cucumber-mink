@@ -3,7 +3,7 @@
 */
 
 import Promise from 'bluebird';
-import { getMockFunction } from 'jest-cli/src/lib/moduleMocker.js';
+import { getMockFunction } from 'jest-mock';
 import { expect } from 'chai';
 
 import Driver from '../../src/driver.js';
