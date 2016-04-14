@@ -165,17 +165,15 @@ class Mink {
   registerHooks(cucumber, driver) {
     cucumber.registerHandler('BeforeFeatures', (event, done) =>
       driver.init()
-        .then(() => (
-          driver.setViewportSize(driver.parameters.viewportSize)
-        ))
+        .then(() => driver.setViewportSize(driver.parameters.viewportSize))
         .then(() => done())
-        .catch(done)
+        .catch(error => console.error(error))
     );
 
     cucumber.registerHandler('AfterFeatures', (event, done) =>
       driver.end()
         .then(() => done())
-        .catch(done)
+        .catch(error => console.error(error))
     );
 
     if (driver.parameters.screenshotPath) {
