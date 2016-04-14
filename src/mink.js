@@ -138,9 +138,9 @@ class Mink {
   manyStep(lines) {
     debug('manyStep', lines.join(', ').substr(0, 80));
 
-    return Promise.each(lines, line =>
+    return Promise.each(lines, line => (
       this.runStep(line)
-    );
+    ));
   }
 
   /**
@@ -150,9 +150,9 @@ class Mink {
   metaStep(steps) {
     debug('metaStep', steps);
 
-    return Promise.each(steps, step =>
+    return Promise.each(steps, step => (
       step.runWith(this)
-    );
+    ));
   }
 
   /**
@@ -165,14 +165,17 @@ class Mink {
   registerHooks(cucumber, driver) {
     cucumber.registerHandler('BeforeFeatures', (event, done) =>
       driver.init()
-        .then(() =>
+        .then(() => (
           driver.setViewportSize(driver.parameters.viewportSize)
-        )
+        ))
         .then(() => done())
+        .catch(done)
     );
 
     cucumber.registerHandler('AfterFeatures', (event, done) =>
-      driver.end().then(() => done())
+      driver.end()
+        .then(() => done())
+        .catch(done)
     );
 
     if (driver.parameters.screenshotPath) {
