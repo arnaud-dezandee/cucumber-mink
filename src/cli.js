@@ -32,6 +32,7 @@ const cli = meow(`
     browser: 'firefox',
     port: 4444,
   },
+  boolean: ['inject'],
   alias: {
     v: 'version',
     h: 'help',
