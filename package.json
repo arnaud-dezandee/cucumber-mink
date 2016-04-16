@@ -50,7 +50,7 @@
     "chai": "~3.5.0",
     "cucumber": "0.10.2",
     "debug": "~2.2.0",
-    "immutable": "~3.7.6",
+    "immutable": "~3.8.0",
     "lodash.defaultsdeep": "~4.3.4",
     "meow": "~3.7.0",
     "util-arity": "~1.0.2",
