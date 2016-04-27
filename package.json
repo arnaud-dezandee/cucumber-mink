@@ -71,7 +71,7 @@
     "eslint-plugin-import": "^1.5.0",
     "express": "^4.13.3",
     "isparta": "^4.0.0",
-    "jest-mock": "^11.0.2",
+    "jest-mock": "^12.0.0",
     "lodash.range": "^3.1.4",
     "mocha": "^2.3.4",
     "morgan": "^1.7.0",
