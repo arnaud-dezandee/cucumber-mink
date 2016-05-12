@@ -51,7 +51,7 @@
     "cucumber": "0.10.2",
     "debug": "~2.2.0",
     "immutable": "~3.8.1",
-    "lodash.defaultsdeep": "~4.3.5",
+    "lodash.defaultsdeep": "~4.4.0",
     "meow": "~3.7.0",
     "util-arity": "~1.0.2",
     "webdriverio": "~4.0.5"
