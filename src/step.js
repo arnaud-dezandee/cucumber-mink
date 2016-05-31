@@ -5,6 +5,14 @@
 import Promise from 'bluebird';
 
 /**
+ * Private
+ */
+
+function noop() {
+  // No operation performed.
+}
+
+/**
  * Interface
  */
 
@@ -19,8 +27,10 @@ export default class Step {
     return line.match(this.pattern);
   }
 
-  runWith(context, line) {
+  runWith(context, line, cb = noop) {
     const args = (!!line) ? this.match(line).slice(1) : this.args;
-    return Promise.try(() => this.fn.apply(context, args));
+    return Promise.try(() => (
+      this.fn.apply(context, args)
+    )).asCallback(cb);
   }
 }

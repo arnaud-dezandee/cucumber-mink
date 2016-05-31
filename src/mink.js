@@ -44,6 +44,10 @@ const DEFAULT_PARAMS = {
   },
 };
 
+function noop() {
+  // No operation performed.
+}
+
 /**
  * Public
  */
@@ -124,35 +128,35 @@ class Mink {
    * @param {String} input line
    * @returns {Promise}
    */
-  runStep(line) {
+  runStep(line, cb = noop) {
     debug('runStep', line);
 
     const step = this.findStep(line);
-    return step.runWith(this, line);
+    return step.runWith(this, line, cb);
   }
 
   /**
    * @param {Array} lines
    * @returns {Promise}
    */
-  manyStep(lines) {
+  manyStep(lines, cb = noop) {
     debug('manyStep', lines.join(', ').substr(0, 80));
 
     return Promise.each(lines, line => (
       this.runStep(line)
-    ));
+    )).asCallback(cb);
   }
 
   /**
    * @param {Array<Step>}
    * @returns {Promise}
    */
-  metaStep(steps) {
+  metaStep(steps, cb = noop) {
     debug('metaStep', steps);
 
     return Promise.each(steps, step => (
       step.runWith(this)
-    ));
+    )).asCallback(cb);
   }
 
   /**
