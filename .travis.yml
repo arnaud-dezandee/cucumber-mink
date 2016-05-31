@@ -24,12 +24,12 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 install:
-  - npm i -g webdriver-manager
   - npm i -g npm@2
+  - npm i -g webdriver-manager@10.0.1
   - npm i
 
 before_script:
-  - webdriver-manager update --standalone
+  - webdriver-manager update
   - webdriver-manager start > /dev/null &
   - npm start > /dev/null &
   - sleep 5
