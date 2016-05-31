@@ -1,5 +1,44 @@
 # CHANGELOG
 
+### 1.2.3 (2016-05-31)
+
+
+#### Bug Fixes
+
+* **api:** correctly execute callbacks if present in API methods ([d419e4be](https://github.com/Adezandee/cucumber-mink/commit/d419e4be))
+
+
+### 1.2.2 (2016-04-14)
+
+
+#### Bug Fixes
+
+* **mink:** print error and exit inside before and after handlers ([d85bfedb](https://github.com/Adezandee/cucumber-mink/commit/d85bfedb))
+
+### 1.2.1 (2016-04-14)
+
+
+#### Bug Fixes
+
+* **cli:** cast cli inject parameter as boolean ([0e51fd55](https://github.com/Adezandee/cucumber-mink/commit/0e51fd55))
+* **mink:** catch before and after features errors ([774da3ae](https://github.com/Adezandee/cucumber-mink/commit/774da3ae))
+
+## 1.2.0 (2016-04-12)
+
+
+#### Features
+
+* **package:** update cucumber to version 0.10.2 ([eb1f01a2](https://github.com/Adezandee/cucumber-mink/commit/eb1f01a2))
+
+### 1.1.1 (2016-03-04)
+
+
+#### Bug Fixes
+
+* **mink:** es6 module - commonjs require interop ([164f6d87](https://github.com/Adezandee/cucumber-mink/commit/164f6d87))
+* **test:** add lodash as dev dependencies for tests ([7cd9340e](https://github.com/Adezandee/cucumber-mink/commit/7cd9340e))
+
+
 ## v1.1.0 (2016-02-12)
 * Major dependencies version bump
 * Rewrite to ES2015 and Bluebird Promises
