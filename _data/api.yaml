@@ -60,7 +60,7 @@
       });
 
   - title: Mink.manyStep
-    signature: "Mink.manyStep(source, callback)"
+    signature: "Mink.manyStep(source, [callback])"
     description: |
       Takes source text and tries to execute each line in series as Cucumber steps.
     arguments:
@@ -68,10 +68,10 @@
         type: String | Array<String>
         description: source text
       - name: callback
-        type: Function
+        type: (optional) Function
         description: called when all steps are done
     returns:
-      type: Undefined
+      type: Promise
     example: |
       Mink.manyStep([
         'I browse "http://localhost:3000/"',
@@ -80,7 +80,7 @@
       ], callback);
 
   - title: Mink.metaStep
-    signature: "Mink.metaStep(steps, callback)"
+    signature: "Mink.metaStep(steps, [callback])"
     description: |
       Executes each steps in series.
     arguments:
@@ -88,10 +88,10 @@
         type: Array<StepObject>
         description: steps to execute
       - name: callback
-        type: Function
+        type: (optional) Function
         description: called when all steps are done
     returns:
-      type: Undefined
+      type: Promise
     example: |
       Mink.metaStep([
         {
@@ -119,7 +119,7 @@
       type: Undefined
 
   - title: Mink.runStep
-    signature: "Mink.runStep(input, callback)"
+    signature: "Mink.runStep(input, [callback])"
     description: |
       Search and execute the step matching input string. Return the executed StepObjet.
     arguments:
@@ -127,10 +127,9 @@
         type: String
         description: the input text
       - name: callback
-        type: Function
+        type: (optional) Function
     returns:
-      type: StepObject
-      description: executed step
+      type: Promise
     example: |
       Mink.runStep('I press ".button-missing"', function(err) {
         assert.isNull(err);
