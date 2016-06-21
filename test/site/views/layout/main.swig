@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
-        {#<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">#}
-        {#<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">#}
-        {#<link rel="stylesheet" href="http://purecss.io/combo/1.17.16?/css/layouts/blog.css">#}
+        <script type="text/javascript" src="/angular.min.js"></script>
         <title>{% block title %}Example{% endblock %}</title>
     </head>
     <body>

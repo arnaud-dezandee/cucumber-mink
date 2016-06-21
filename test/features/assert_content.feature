@@ -8,7 +8,7 @@ Feature: I can use cucumber.mink to check the content of my website
     Then I should see "Home Page"
       And I should not see "Post Detail Page"
       And I should see text matching Post-\d+
-      And I should not see text matching .+@.+
+      And I should not see text matching .+_@_.+
       And I should see "Home Page" in the "h1" element
       And I should not see "Post Detail Page" in the "h1" element
       And I should see an "h2.content-subhead" element

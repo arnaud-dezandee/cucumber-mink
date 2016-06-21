@@ -20,7 +20,7 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import pkg from '../package.json';
 
 import Step from './step.js';
-import Driver from './driver.js';
+import { configureDriver } from './driver.js';
 import definitions from './step_definitions/index.js';
 
 /**
@@ -72,7 +72,7 @@ class Mink {
     debug('init', params);
 
     const parameters = defaultsDeep(params, DEFAULT_PARAMS);
-    const driver = new Driver(parameters.driver);
+    const driver = configureDriver(parameters.driver);
 
     this.parameters = parameters;
     this.cucumber = cucumber;
