@@ -30,8 +30,8 @@ install:
 
 before_script:
   - webdriver-manager update
-  - webdriver-manager start > /dev/null &
-  - npm start > /dev/null &
+  - nohup webdriver-manager start 2>&1 &
+  - nohup npm start 2>&1 &
   - sleep 5
 
 script:
