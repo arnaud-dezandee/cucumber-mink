@@ -262,12 +262,8 @@ export default class ProtractorDriver {
   }
 
   isExisting(selector) {
-    return this.elements(selector).then(res => {
-      if (Array.isArray(res) && res.length > 0) {
-        return true;
-      }
-      return false;
-    });
+    const locator = this.by.css(selector);
+    return this.browser.element(locator).isPresent();
   }
 
   isSelected(selector) {
