@@ -44,6 +44,18 @@ const elementNotContainsText = function (expected, selector) {
   });
 };
 
+const elementTextContainsText = function (expected, selector) {
+  return this.driver.text(selector).then(str => {
+    expect(str).to.contain(expected);
+  });
+};
+
+const elementTextNotContainsText = function (expected, selector) {
+  return this.driver.text(selector).then(str => {
+    expect(str).to.not.contain(expected);
+  });
+};
+
 const elementsCount = function (expected, selector) {
   return this.driver.elementsCount(selector).then(count => {
     expect(count).to.equal(parseInt(expected, 10));
@@ -69,7 +81,9 @@ export default [
   [/I should not see text matching (.+)$/, notMatchText],
   [/I should see (\d+) "([^"]*)" elements?$/, elementsCount],
   [/I should see "([^"]*)" in the "([^"]*)" element$/, elementContainsText],
+  [/I should see "([^"]*)" in the "([^"]*)" element text$/, elementTextContainsText],
   [/I should not see "([^"]*)" in the "([^"]*)" element$/, elementNotContainsText],
+  [/I should not see "([^"]*)" in the "([^"]*)" element text$/, elementTextNotContainsText],
   [/I should see an? "([^"]*)" element$/, elementState('isVisible', true)],
   [/I should not see an? "([^"]*)" element$/, elementState('isVisible', false)],
   [/the "([^"]*)" element should be visible$/, elementState('isVisible', true)],

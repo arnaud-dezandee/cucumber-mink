@@ -41,6 +41,13 @@ export default class WdIODriver {
     });
   }
 
+  text(selector) {
+    return this.client.getText(selector).then(item => {
+      if (Array.isArray(item)) return item.join('');
+      return item;
+    });
+  }
+
   url(input) {
     if (!input) {
       return this.client.getUrl().then(text =>

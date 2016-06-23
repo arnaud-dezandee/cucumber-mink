@@ -10,7 +10,9 @@ Feature: I can use cucumber.mink to check the content of my website
       And I should see text matching Post-\d+
       And I should not see text matching .+_@_.+
       And I should see "Home Page" in the "h1" element
+      And I should see "Home Page" in the "h1" element text
       And I should not see "Post Detail Page" in the "h1" element
+      And I should not see "Post Detail Page" in the "h1" element text
       And I should see an "h2.content-subhead" element
       And the "p.description" element should not exist
       And I should see 3 "section.post" elements

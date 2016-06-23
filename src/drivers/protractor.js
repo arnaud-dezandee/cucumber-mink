@@ -124,6 +124,16 @@ export default class ProtractorDriver {
     return this.browser.getPageSource();
   }
 
+  text(selector) {
+    const locator = this.by.css(selector);
+    return this.browser.element.all(locator)
+      .map(el => el.getText())
+      .then(item => {
+        if (Array.isArray(item)) return item.join('');
+        return item;
+      });
+  }
+
   url(input) {
     if (input) {
       return this.browser.get(input);
