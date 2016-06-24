@@ -49,7 +49,7 @@
   "dependencies": {
     "bluebird": "~3.4.1",
     "chai": "~3.5.0",
-    "cucumber": "1.0.0",
+    "cucumber": "1.2.0",
     "debug": "~2.2.0",
     "immutable": "~3.8.1",
     "lodash.defaultsdeep": "~4.4.0",
