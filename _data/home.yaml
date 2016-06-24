@@ -26,8 +26,8 @@ ex1: |
       And I should see "Post-1"
 
 cli: |
-  $ cucumber-mink features/test.feature
-  Cucumber-mink v1.0.2. Launching phantomjs on port 8910...
+  $ webdriver-manager start &
+  $ cucumber-mink features/test.feature -- -f pretty
 
   Feature: Post page
 
@@ -41,80 +41,19 @@ cli: |
 support_code: |
   // features/support/mink.js
 
-  var Mink = require('cucumber-mink');
+  const Mink = require('cucumber-mink');
 
-  // Phantomjs - GhostDriver
-  var parameters = {
+  // Selenium + Firefox
+  const parameters = {
     driver: {
-      desiredCapabilities: {
-        browserName: 'phantomjs'
-      },
       logLevel: 'silent',
-      port: 8910
-    }
+      desiredCapabilities: {
+        browserName: 'firefox',
+      },
+      port: 4444,
+    },
   };
 
   module.exports = function () {
     Mink.init(this, parameters);
   };
-
-md: |
-  # Prerequisites
-
-  * [Node.js](http://nodejs.org)
-  * Selenium server with WebDriver (Selenium 2.0), see:
-    * [PhantomJS](http://phantomjs.org/download.html)
-    * [Webdriver-manager](https://github.com/pose/webdriver-manager)
-
-  # Quick start
-
-  ``` bash
-  $ npm install -g cucumber-mink
-  ```
-
-  Launch your Selenium server (ex: PhantomJS)
-
-  ``` bash
-  $ phantomjs -w
-  ```
-
-  Use pre-defined steps in `features/__.feature` files
-
-  ``` gherkin
-  # features/home.feature
-  Feature: I can use cucumber.mink to check the content of my website
-
-    Background:
-      Given I browse "http://localhost:3000"
-
-    Scenario: Check Homepage content
-      Given I am on the homepage
-      And   I should see "Welcome to my awesome application" in the "h1" element
-  ```
-
-  Run your tests
-
-  ``` bash
-  $ cucumber-mink
-  ```
-
-  Done !
-
-  *Note:* see help `$ cucumber-mink -h` if you're not using PhantomJs.
-
-  [npm-image]: https://img.shields.io/npm/v/cucumber-mink.svg?style=flat
-  [npm-url]: https://www.npmjs.com/package/cucumber-mink
-  [travis-image]: https://img.shields.io/travis/Adezandee/cucumber-mink.svg?style=flat
-  [travis-url]: https://travis-ci.org/Adezandee/cucumber-mink
-  [coveralls-image]: https://img.shields.io/coveralls/Adezandee/cucumber-mink.svg?style=flat
-  [coveralls-url]: https://coveralls.io/r/Adezandee/cucumber-mink?branch=master
-  [david-image]: https://img.shields.io/david/Adezandee/cucumber-mink.svg
-  [david-url]: https://david-dm.org/Adezandee/cucumber-mink
-  [code-climate-image]: https://img.shields.io/codeclimate/github/Adezandee/cucumber-mink.svg
-  [code-climate-url]: https://codeclimate.com/github/Adezandee/cucumber-mink
-  [codacy-image]: https://img.shields.io/codacy/144466c7cc514f7686ef2120d41982b8.svg
-  [codacy-url]: https://www.codacy.com/public/adezandee/cucumber-mink
-  [bithound-image]: https://www.bithound.io/github/Adezandee/cucumber-mink/badges/score.svg
-  [bithound-url]: https://www.bithound.io/github/Adezandee/cucumber-mink
-  [js-org-image]: https://img.shields.io/badge/js.org-dns-ffb400.svg
-  [js-org-url]: http://js.org
