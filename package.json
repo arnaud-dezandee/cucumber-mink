@@ -55,7 +55,7 @@
     "lodash.defaultsdeep": "~4.4.0",
     "meow": "~3.7.0",
     "util-arity": "~1.0.2",
-    "webdriverio": "~4.1.0"
+    "webdriverio": "~4.2.2"
   },
   "devDependencies": {
     "babel-cli": "~6.10.1",
