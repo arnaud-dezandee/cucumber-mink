@@ -66,7 +66,7 @@
     "babel-register": "~6.9.0",
     "body-parser": "~1.15.2",
     "coveralls": "~2.11.9",
-    "cz-conventional-changelog": "~1.1.6",
+    "cz-conventional-changelog": "~1.2.0",
     "eslint": "~2.13.1",
     "eslint-config-airbnb-base": "~3.0.1",
     "eslint-plugin-import": "~1.9.2",
