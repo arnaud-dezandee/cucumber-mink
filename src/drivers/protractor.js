@@ -82,7 +82,7 @@ const UNICODE_CHARACTERS = {
 };
 
 const checkUnicode = (value) => (
-  UNICODE_CHARACTERS.hasOwnProperty(value)
+  {}.hasOwnProperty.call(UNICODE_CHARACTERS, value)
     ? [UNICODE_CHARACTERS[value]]
     : value.split('')
 );

@@ -28,7 +28,7 @@ export default class Step {
   }
 
   runWith(context, line, cb = noop) {
-    const args = (!!line) ? this.match(line).slice(1) : this.args;
+    const args = (line) ? this.match(line).slice(1) : this.args;
     return Promise.try(() => (
       this.fn.apply(context, args)
     )).asCallback(cb);

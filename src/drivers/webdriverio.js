@@ -17,10 +17,11 @@ const debug = dbg('mink:webdriverio');
  * Interface
  */
 
-export default class WdIODriver {
+class WdIODriver {
   constructor(parameters) {
     this.parameters = parameters;
     this.client = require('webdriverio').remote(parameters);
+
     this.baseUrl = parameters.baseUrl;
   }
 
@@ -156,3 +157,5 @@ WdIODriver.prototype.check = WdIODriver.prototype.click;
 WdIODriver.prototype.uncheck = WdIODriver.prototype.click;
 WdIODriver.prototype.hover = WdIODriver.prototype.moveToObject;
 WdIODriver.prototype.setViewportSize = WdIODriver.prototype.windowHandleSize;
+
+export default WdIODriver;
