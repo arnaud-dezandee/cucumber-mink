@@ -9,7 +9,7 @@ const intercept = {};
 
 /* eslint prefer-rest-params: 0 */
 module._load = function (request) {
-  if (intercept.hasOwnProperty(request)) {
+  if ({}.hasOwnProperty.call(intercept, request)) {
     return intercept[request];
   }
 
@@ -20,6 +20,6 @@ module._load = function (request) {
  * Interface
  */
 
-export function startMocking(path, mockExport) {
+export default function startMocking(path, mockExport) {
   intercept[path] = mockExport;
 }

@@ -8,7 +8,7 @@ import path from 'path';
 import meow from 'meow';
 import dbg from 'debug';
 import cucumber from 'cucumber';
-import { startMocking } from './cli/rewire.js';
+import startMocking from './cli/rewire.js';
 import Mink from './mink.js';
 
 /**
@@ -47,6 +47,7 @@ const injectArgs = (flags) => {
   params.driver.port = flags.port;
 
   const inject = require('./cli/support/mink_inject.js');
+
   const injectPath = path.join(__dirname, '/cli/support/mink_inject.js');
   startMocking(injectPath, inject(params));
 

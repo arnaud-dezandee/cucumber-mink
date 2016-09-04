@@ -16,7 +16,7 @@ const debug = dbg('mink:driver');
  * Interface
  */
 
-export const configureDriver = (parameters) => {
+export default function configureDriver(parameters) {
   debug(parameters);
 
   if (!!parameters.protractor && global.protractor) {
@@ -24,4 +24,4 @@ export const configureDriver = (parameters) => {
   }
 
   return new WdIODriver(parameters);
-};
+}

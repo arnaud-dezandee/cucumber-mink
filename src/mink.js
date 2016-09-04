@@ -20,7 +20,7 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import pkg from '../package.json';
 
 import Step from './step.js';
-import { configureDriver } from './driver.js';
+import configureDriver from './driver.js';
 import definitions from './step_definitions/index.js';
 
 /**
@@ -167,17 +167,14 @@ class Mink {
    * @returns {void}
    */
   registerHooks(cucumber, driver) {
-    cucumber.registerHandler('BeforeFeatures', (event, done) =>
-      driver.init()
-        .then(() => driver.setViewportSize(driver.parameters.viewportSize))
-        .then(() => done())
-        .catch(error => console.error(error))
+    cucumber.registerHandler('BeforeFeatures', (/* event */) =>
+      driver.init().then(() =>
+        driver.setViewportSize(driver.parameters.viewportSize)
+      )
     );
 
-    cucumber.registerHandler('AfterFeatures', (event, done) =>
+    cucumber.registerHandler('AfterFeatures', (/* event */) =>
       driver.end()
-        .then(() => done())
-        .catch(error => console.error(error))
     );
 
     if (driver.parameters.screenshotPath) {
