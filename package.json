@@ -44,6 +44,7 @@
     "pretest": "eslint src/ test/",
     "test": "mocha --compilers js:babel-register test/mocha/",
     "e2e": "babel-node ./src/cli.js test/features -- -f progress",
+    "e2e:chrome": "babel-node ./src/cli.js --browser chrome --port 9515 test/features -- -f progress",
     "protractor": "protractor protractor.cucumber.js"
   },
   "dependencies": {
