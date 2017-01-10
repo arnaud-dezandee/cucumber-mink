@@ -75,7 +75,7 @@
     "lodash.range": "~3.2.0",
     "mocha": "~3.0.2",
     "morgan": "~1.7.0",
-    "protractor": "~4.0.4",
+    "protractor": "~5.0.0",
     "protractor-cucumber-framework": "~0.6.0",
     "semantic-release": "~4.3.5",
     "swig": "~1.4.2"
