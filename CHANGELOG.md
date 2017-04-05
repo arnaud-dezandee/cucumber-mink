@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 1.6.0 (2017-04-05)
+
+#### Features
+
+* **mink:** change default browser to chrome ([3d0b8514](https://github.com/Adezandee/cucumber-mink/commit/3d0b8514))
+* **package:** update dependencies ([0fd8b1e2](https://github.com/Adezandee/cucumber-mink/commit/0fd8b1e2))
+
+
+## 1.5.0 (2016-09-04)
+
+#### Features
+- **package:** update cucumber version 1.2.2 ([a27b65cf](https://github.com/Adezandee/cucumber-mink/commit/a27b65cf))
+
+
+### 1.4.1 (2016-06-28)
+
+#### Bug Fixes
+- **step:** isEnabled step may apply to an element ([9b8b8a95](https://github.com/Adezandee/cucumber-mink/commit/9b8b8a95))
+
+
+## 1.4.0 (2016-06-23)
+
+#### Features
+- **step:** add new step to assert element text only ([b59c7dfe](https://github.com/Adezandee/cucumber-mink/commit/b59c7dfe))
+
+
+## 1.3.0 (2016-06-21)
+
+#### Features
+- **driver:** add protractor driver for angular apps ([f1c808b4](https://github.com/Adezandee/cucumber-mink/commit/f1c808b4))
+
 ### 1.2.3 (2016-05-31)
 
 
