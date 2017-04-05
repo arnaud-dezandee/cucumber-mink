@@ -21,14 +21,14 @@ const submit = function (selector) {
 };
 
 const press = function (selector) {
-  return this.driver.button(selector).then(item => {
+  return this.driver.button(selector).then((item) => {
     if (!item) throw new Error(Errors.ACTION.CLICK_BUTTON);
     return this.driver.click(item);
   });
 };
 
 const follow = function (selector) {
-  return this.driver.link(selector).then(item => {
+  return this.driver.link(selector).then((item) => {
     if (!item) throw new Error(Errors.ACTION.CLICK_LINK);
     return this.driver.click(item);
   });

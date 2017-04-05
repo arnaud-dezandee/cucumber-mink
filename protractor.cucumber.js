@@ -2,7 +2,7 @@ exports.config = {
   baseUrl: 'http://localhost:3000',
   seleniumAddress: 'http://localhost:4444/wd/hub',
   capabilities: {
-    browserName: 'firefox',
+    browserName: 'chrome',
   },
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),

@@ -14,7 +14,7 @@ const fillField = function (selector, value) {
 
 const fillFieldsHash = function (hashDataTable) {
   return Promise.each(hashDataTable.raw(), ([field, value]) =>
-    this.driver.setValue(field, value)
+    this.driver.setValue(field, value),
   );
 };
 
@@ -25,7 +25,7 @@ const selectFrom = function (option, selector) {
 const checkInput = function (state) {
   return function (selector) {
     return this.driver.isChecked(selector)
-    .then(isChecked => {
+    .then((isChecked) => {
       if (isChecked !== state) {
         return this.driver.check(selector);
       }

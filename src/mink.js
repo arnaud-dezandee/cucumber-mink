@@ -37,7 +37,7 @@ const DEFAULT_PARAMS = {
     },
     baseUrl: process.env.BASE_URL,
     desiredCapabilities: {
-      browserName: 'firefox',
+      browserName: 'chrome',
     },
     logLevel: 'silent',
     port: 4444,
@@ -100,7 +100,7 @@ class Mink {
 
       if (this.cucumber) {
         const wrappedFn = arity(fn.length, (...args) =>
-          Promise.try(() => fn.apply(this, args))
+          Promise.try(() => fn.apply(this, args)),
         );
         this.cucumber.defineStep(pattern, wrappedFn);
       }
@@ -168,17 +168,17 @@ class Mink {
    */
   registerHooks(cucumber, driver) {
     cucumber.registerHandler('BeforeFeatures', (/* event */) =>
-      driver.init().then(() =>
+      driver.init().then(() => (
         driver.setViewportSize(driver.parameters.viewportSize)
-      )
+      )),
     );
 
     cucumber.registerHandler('AfterFeatures', (/* event */) =>
-      driver.end()
+      driver.end(),
     );
 
     if (driver.parameters.screenshotPath) {
-      cucumber.After(event => {
+      cucumber.After((event) => {
         if (!event.isFailed()) return null;
 
         const fileName = [event.getName() || 'Error', ':', event.getLine(), '.png'].join('');

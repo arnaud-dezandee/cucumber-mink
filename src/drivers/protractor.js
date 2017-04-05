@@ -81,7 +81,7 @@ const UNICODE_CHARACTERS = {
   'Zenkaku_Hankaku': '\uE040',
 };
 
-const checkUnicode = (value) => (
+const checkUnicode = value => (
   {}.hasOwnProperty.call(UNICODE_CHARACTERS, value)
     ? [UNICODE_CHARACTERS[value]]
     : value.split('')
@@ -115,8 +115,8 @@ export default class ProtractorDriver {
     if (selector) {
       const locator = this.by.css(selector);
       return this.browser.element.all(locator)
-        .map(el => el.getOuterHtml())
-        .then(item => {
+        .map(el => this.browser.executeScript('return arguments[0].outerHTML;', el))
+        .then((item) => {
           if (Array.isArray(item)) return item.join('');
           return item;
         });
@@ -128,7 +128,7 @@ export default class ProtractorDriver {
     const locator = this.by.css(selector);
     return this.browser.element.all(locator)
       .map(el => el.getText())
-      .then(item => {
+      .then((item) => {
         if (Array.isArray(item)) return item.join('');
         return item;
       });
@@ -151,7 +151,7 @@ export default class ProtractorDriver {
       keys = key.reduce((acc, it) => acc.concat(checkUnicode(it)), []);
     }
     const locator = this.by.css(selector);
-    return this.browser.findElement(locator).then((el) => (
+    return this.browser.findElement(locator).then(el => (
       el.click().then(() => el.sendKeys(...keys))
     ));
   }
@@ -168,21 +168,21 @@ export default class ProtractorDriver {
   elementsWithText(selector, text) {
     return this.elements(selector)
     .then(items => Promise.filter(items, el =>
-      el.getText().then(result => result === text)
+      el.getText().then(result => result === text),
     ));
   }
 
   elementsWithValue(selector, value) {
     return this.elements(selector)
     .then(items => Promise.filter(items, el =>
-      el.getAttribute('value').then(result => result === value)
+      el.getAttribute('value').then(result => result === value),
     ));
   }
 
   button(mixed) {
     return detectSeries(
       [
-        () => this.elements(mixed).catch(err => {
+        () => this.elements(mixed).catch((err) => {
           debug(err);
           return [];
         }),
@@ -190,7 +190,7 @@ export default class ProtractorDriver {
         () => this.elementsWithValue('input[type=submit]', mixed),
       ],
       fn => fn(),
-      WebElements => !!WebElements.length
+      WebElements => !!WebElements.length,
     ).then(({ result }) => {
       if (!result) throw new Error('Button not found !');
       return result[0];
@@ -200,14 +200,14 @@ export default class ProtractorDriver {
   link(mixed) {
     return detectSeries(
       [
-        () => this.elements(mixed).catch(err => {
+        () => this.elements(mixed).catch((err) => {
           debug(err);
           return [];
         }),
         () => this.elementsWithText('body a', mixed),
       ],
       fn => fn(),
-      WebElements => !!WebElements.length
+      WebElements => !!WebElements.length,
     ).then(({ result }) => {
       if (!result) throw new Error('Link not found !');
       return result[0];
@@ -245,7 +245,7 @@ export default class ProtractorDriver {
   }
 
   saveScreenshot(filename) {
-    return this.browser.takeScreenshot().then(png => {
+    return this.browser.takeScreenshot().then((png) => {
       const screenshot = new Buffer(png, 'base64');
       if (typeof filename === 'string') {
         fs.writeFileSync(filename, screenshot);
