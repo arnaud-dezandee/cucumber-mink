@@ -9,62 +9,62 @@ import { expect } from 'chai';
  */
 
 const seeText = function (expected) {
-  return this.driver.html().then(html => {
+  return this.driver.html().then((html) => {
     expect(html).to.contain(expected);
   });
 };
 
 const notSeeText = function (expected) {
-  return this.driver.html().then(html => {
+  return this.driver.html().then((html) => {
     expect(html).to.not.contain(expected);
   });
 };
 
 const matchText = function (regex) {
-  return this.driver.html().then(html => {
+  return this.driver.html().then((html) => {
     expect(html).to.match(new RegExp(regex));
   });
 };
 
 const notMatchText = function (regex) {
-  return this.driver.html().then(html => {
+  return this.driver.html().then((html) => {
     expect(html).to.not.match(new RegExp(regex));
   });
 };
 
 const elementContainsText = function (expected, selector) {
-  return this.driver.html(selector).then(html => {
+  return this.driver.html(selector).then((html) => {
     expect(html).to.contain(expected);
   });
 };
 
 const elementNotContainsText = function (expected, selector) {
-  return this.driver.html(selector).then(html => {
+  return this.driver.html(selector).then((html) => {
     expect(html).to.not.contain(expected);
   });
 };
 
 const elementTextContainsText = function (expected, selector) {
-  return this.driver.text(selector).then(str => {
+  return this.driver.text(selector).then((str) => {
     expect(str).to.contain(expected);
   });
 };
 
 const elementTextNotContainsText = function (expected, selector) {
-  return this.driver.text(selector).then(str => {
+  return this.driver.text(selector).then((str) => {
     expect(str).to.not.contain(expected);
   });
 };
 
 const elementsCount = function (expected, selector) {
-  return this.driver.elementsCount(selector).then(count => {
+  return this.driver.elementsCount(selector).then((count) => {
     expect(count).to.equal(parseInt(expected, 10));
   });
 };
 
 const elementState = function (method, state) {
   return function (selector) {
-    return this.driver[method](selector).then(isMethod => {
+    return this.driver[method](selector).then((isMethod) => {
       expect(isMethod).to.equal(state);
     });
   };

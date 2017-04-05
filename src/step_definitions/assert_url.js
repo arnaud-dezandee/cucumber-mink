@@ -9,7 +9,7 @@ import { expect } from 'chai';
  */
 
 const isEqual = function (location) {
-  return this.driver.url().then(parsed => {
+  return this.driver.url().then((parsed) => {
     expect(parsed.pathname).to.equal(location);
   });
 };
@@ -19,13 +19,13 @@ const isRoot = function () {
 };
 
 const urlMatch = function (regex) {
-  return this.driver.url().then(parsed => {
+  return this.driver.url().then((parsed) => {
     expect(parsed.pathname).to.match(new RegExp(regex));
   });
 };
 
 const queryMatch = function (regex) {
-  return this.driver.url().then(parsed => {
+  return this.driver.url().then((parsed) => {
     expect(parsed.search).to.match(new RegExp(regex));
   });
 };

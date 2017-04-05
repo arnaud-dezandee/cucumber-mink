@@ -10,20 +10,20 @@ import { expect } from 'chai';
 
 const currentOption = function (selector, expected) {
   return this.driver.getValue(selector).then(value =>
-    this.driver.html(`${selector} option[value="${value}"]`).then(html => {
+    this.driver.html(`${selector} option[value="${value}"]`).then((html) => {
       expect(html).to.contain(expected);
-    })
+    }),
   );
 };
 
 const fieldContains = function (selector, expected) {
-  return this.driver.getValue(selector).then(value => {
+  return this.driver.getValue(selector).then((value) => {
     expect(value).to.contain(expected);
   });
 };
 
 const fieldNotContains = function (selector, expected) {
-  return this.driver.getValue(selector).then(value => {
+  return this.driver.getValue(selector).then((value) => {
     expect(value).to.not.contain(expected);
   });
 };

@@ -36,14 +36,14 @@ class WdIODriver {
     if (!selector) {
       return this.client.getSource();
     }
-    return this.client.getHTML(selector).then(item => {
+    return this.client.getHTML(selector).then((item) => {
       if (Array.isArray(item)) return item.join('');
       return item;
     });
   }
 
   text(selector) {
-    return this.client.getText(selector).then(item => {
+    return this.client.getText(selector).then((item) => {
       if (Array.isArray(item)) return item.join('');
       return item;
     });
@@ -52,7 +52,7 @@ class WdIODriver {
   url(input) {
     if (!input) {
       return this.client.getUrl().then(text =>
-        url.parse(text)
+        url.parse(text),
       );
     }
     return this.client.url(input);
@@ -60,7 +60,7 @@ class WdIODriver {
 
   sendKey(selector, key) {
     return this.client.click(selector).then(() =>
-      this.client.keys(key)
+      this.client.keys(key),
     );
   }
 
@@ -79,7 +79,7 @@ class WdIODriver {
     .then(items => Promise.filter(items, WebElement =>
       this.client
         .elementIdText(WebElement.ELEMENT)
-        .then(result => result.value === text)
+        .then(result => result.value === text),
     ));
   }
 
@@ -88,14 +88,14 @@ class WdIODriver {
     .then(items => Promise.filter(items, WebElement =>
       this.client
         .elementIdAttribute(WebElement.ELEMENT, 'value')
-        .then(result => result.value === value)
+        .then(result => result.value === value),
     ));
   }
 
   button(mixed) {
     return detectSeries(
       [
-        () => this.elements(mixed).catch(err => {
+        () => this.elements(mixed).catch((err) => {
           debug(err);
           return [];
         }),
@@ -103,7 +103,7 @@ class WdIODriver {
         () => this.elementsWithValue('input[type=submit]', mixed),
       ],
       fn => fn(),
-      WebElements => !!WebElements.length
+      WebElements => !!WebElements.length,
     ).then(({ result }) => {
       if (!result) throw new Error('Button not found !');
       return result[0];
@@ -113,14 +113,14 @@ class WdIODriver {
   link(mixed) {
     return detectSeries(
       [
-        () => this.elements(mixed).catch(err => {
+        () => this.elements(mixed).catch((err) => {
           debug(err);
           return [];
         }),
         () => this.elementsWithText('body a', mixed),
       ],
       fn => fn(),
-      WebElements => !!WebElements.length
+      WebElements => !!WebElements.length,
     ).then(({ result }) => {
       if (!result) throw new Error('Link not found !');
       return result[0];
@@ -145,9 +145,9 @@ class WdIODriver {
   'isExisting',
   'isSelected',
   'isVisible',
-]).forEach(method => {
+]).forEach((method) => {
   WdIODriver.prototype[method] = function (...args) {
-    return this.client[method].apply(this, args);
+    return Promise.resolve(this.client[method].apply(this, args));
   };
 });
 

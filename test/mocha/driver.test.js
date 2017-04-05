@@ -3,7 +3,7 @@
 */
 
 import Promise from 'bluebird';
-import { getMockFunction } from 'jest-mock';
+import jest from 'jest-mock';
 import { expect } from 'chai';
 
 import Driver from '../../src/drivers/webdriverio.js';
@@ -11,15 +11,14 @@ import Driver from '../../src/drivers/webdriverio.js';
 /**
 * Tests
 */
-
 const mockClient = () => {
   const client = {
-    init: getMockFunction(),
-    elements: getMockFunction(),
+    init: jest.fn(),
+    elements: jest.fn(),
   };
 
   client.elements.mockReturnValue(
-    Promise.resolve({ value: [] })
+    Promise.resolve({ value: [] }),
   );
 
   return client;
@@ -27,7 +26,8 @@ const mockClient = () => {
 
 describe('Driver API', () => {
   const driver = new Driver({});
-  const client = driver.client = mockClient();
+  driver.client = mockClient();
+  const client = driver.client;
 
   it('client symlinks', () => {
     driver.init();
@@ -38,7 +38,7 @@ describe('Driver API', () => {
   it('button method', () => {
     client.elements.mockClear();
 
-    return driver.button('.button-missing').catch(err => {
+    return driver.button('.button-missing').catch((err) => {
       expect(client.elements.mock.calls.length).to.equal(3);
       expect(client.elements.mock.calls).to.deep.equal([
         ['.button-missing'],
@@ -54,7 +54,7 @@ describe('Driver API', () => {
   it('link method', () => {
     client.elements.mockClear();
 
-    return driver.link('.link-missing').catch(err => {
+    return driver.link('.link-missing').catch((err) => {
       expect(client.elements.mock.calls.length).to.equal(2);
       expect(client.elements.mock.calls).to.deep.equal([
         ['.link-missing'],

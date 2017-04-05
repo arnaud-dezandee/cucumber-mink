@@ -12,7 +12,7 @@ import Errors from '../utils/errors.js';
 // From https://github.com/sindresorhus/is-absolute-url
 const isAbsoluteUrl = location => /^(?:\w+:)\/\//.test(location);
 
-const parseUrlWithEnv = location => {
+const parseUrlWithEnv = (location) => {
   const matches = /^\${([^"]*)}/.exec(location);
   return (matches)
     ? process.env[matches[1]] + location.replace(matches[0], '')

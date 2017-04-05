@@ -2,7 +2,7 @@
 * Dependencies
 */
 
-import { getMockFunction } from 'jest-mock';
+import jest from 'jest-mock';
 import { expect } from 'chai';
 import pkg from '../../package.json';
 
@@ -14,8 +14,8 @@ import Step from '../../src/step.js';
 */
 
 const mockCucumber = () => ({
-  defineStep: getMockFunction(),
-  registerHandler: getMockFunction(),
+  defineStep: jest.fn(),
+  registerHandler: jest.fn(),
 });
 
 describe('Mink API', () => {
@@ -84,7 +84,7 @@ describe('Mink API', () => {
     });
 
     it('runStep normal', () => {
-      const fn = getMockFunction();
+      const fn = jest.fn();
       Mink.defineStep('runStep', fn);
 
       return Mink.runStep('runStep').then(() => {
@@ -94,7 +94,7 @@ describe('Mink API', () => {
     });
 
     it('runStep with args', () => {
-      const fn = getMockFunction();
+      const fn = jest.fn();
       Mink.defineStep(/^run (\d+)\s(\d+)$/, fn);
 
       return Mink.runStep('run 13 37').then(() => {
@@ -104,8 +104,8 @@ describe('Mink API', () => {
     });
 
     it('manyStep normal', () => {
-      const fn1 = getMockFunction();
-      const fn2 = getMockFunction();
+      const fn1 = jest.fn();
+      const fn2 = jest.fn();
       Mink.defineStep('manyStep1', fn1);
       Mink.defineStep('manyStep2', fn2);
 
@@ -118,14 +118,14 @@ describe('Mink API', () => {
     });
 
     it('manyStep missing should fail', () =>
-      Mink.manyStep(['missing']).catch(error => {
+      Mink.manyStep(['missing']).catch((error) => {
         expect(error).to.be.instanceof(Error);
         expect(error.message).to.equal('Could not findStep with line "missing"');
-      })
+      }),
     );
 
     it('metaStep normal', () => {
-      const fn = getMockFunction();
+      const fn = jest.fn();
       const args = ['h', 'e', 'l', 'l', 'o'];
       const myStep = new Step('myStep', fn, args);
 
