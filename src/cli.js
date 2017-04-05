@@ -29,7 +29,7 @@ const cli = meow(`
 `, {
   default: {
     inject: true,
-    browser: 'firefox',
+    browser: 'chrome',
     port: 4444,
   },
   boolean: ['inject'],

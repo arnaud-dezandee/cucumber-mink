@@ -37,7 +37,7 @@ const DEFAULT_PARAMS = {
     },
     baseUrl: process.env.BASE_URL,
     desiredCapabilities: {
-      browserName: 'firefox',
+      browserName: 'chrome',
     },
     logLevel: 'silent',
     port: 4444,
