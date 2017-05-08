@@ -16,6 +16,7 @@ import Step from '../../src/step.js';
 const mockCucumber = () => ({
   defineStep: jest.fn(),
   registerHandler: jest.fn(),
+  setDefaultTimeout: jest.fn(),
 });
 
 describe('Mink API', () => {
@@ -43,6 +44,7 @@ describe('Mink API', () => {
       expect(cucumber.registerHandler.mock.calls.length).to.equal(2);
       expect(cucumber.registerHandler.mock.calls[0][0]).to.equal('BeforeFeatures');
       expect(cucumber.registerHandler.mock.calls[1][0]).to.equal('AfterFeatures');
+      expect(cucumber.setDefaultTimeout.mock.calls[0][0]).to.equal(5000);
     });
   });
 
