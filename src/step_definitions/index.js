@@ -9,6 +9,7 @@ import assertURL from './assert_url.js';
 import form from './form.js';
 import navigation from './navigation.js';
 import utility from './utility.js';
+import cookies from './cookies.js';
 
 /**
  * Interface
@@ -22,4 +23,5 @@ export default [
   ...form,
   ...navigation,
   ...utility,
+  ...cookies,
 ];

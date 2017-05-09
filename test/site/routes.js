@@ -55,6 +55,11 @@ function keys(req, res) {
   res.render('keys');
 }
 
+function cookie(req, res) {
+  res.cookie(req.params.name, req.params.value);
+  res.render('index', {});
+}
+
 export default {
   index,
   responsive,
@@ -64,4 +69,5 @@ export default {
   form,
   result,
   keys,
+  cookie,
 };
