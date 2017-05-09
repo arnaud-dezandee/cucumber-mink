@@ -56,7 +56,8 @@
             browserName: 'chrome'
           },
           port: 4444
-        }
+        },
+        timeout: 5000
       });
 
   - title: Mink.manyStep

@@ -52,6 +52,7 @@ support_code: |
       },
       port: 4444,
     },
+    timeout: 5000,
   };
 
   module.exports = function () {
