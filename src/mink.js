@@ -43,6 +43,7 @@ const DEFAULT_PARAMS = {
     port: 4444,
   },
   timeout: 5000,
+  screenshotMethod: 'saveScreenshot',
 };
 
 function noop() {
@@ -186,7 +187,7 @@ class Mink {
 
         const fileName = [event.getName() || 'Error', ':', event.getLine(), '.png'].join('');
         const filePath = path.join(driver.parameters.screenshotPath, fileName);
-        return driver.saveScreenshot(filePath);
+        return driver[this.parameters.screenshotMethod](filePath);
       });
     }
   }
