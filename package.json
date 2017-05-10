@@ -55,6 +55,7 @@
     "lodash.defaultsdeep": "4.6.0",
     "meow": "3.7.0",
     "util-arity": "1.1.0",
+    "wdio-screenshot": "^0.5.2",
     "webdriverio": "4.6.2"
   },
   "devDependencies": {
