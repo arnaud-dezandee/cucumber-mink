@@ -21,16 +21,18 @@ const cli = meow(`
   Usage: cucumber-mink [options] -- [CUCUMBER ARGS]
 
   Options:
-    --inject       Mink auto-inject in context           [Boolean] [default: true]
-    --browser      Desired browser name              [String] [default: "firefox"]
-    --port         Selenium server port                            [default: 4444]
-    -h, --help     Display help message                                  [Boolean]
-    -v, --version  Display package version                               [Boolean]
+    --inject            Mink auto-inject in context                     [Boolean] [default: true]
+    --browser           Desired browser name                        [String] [default: "firefox"]
+    --port              Selenium server port                                      [default: 4444]
+    --screenshot-path   Path to which to save screenshots on failure    [String] [default: empty]
+    -h, --help          Display help message                                            [Boolean]
+    -v, --version       Display package version                                         [Boolean]
 `, {
   default: {
     inject: true,
     browser: 'chrome',
     port: 4444,
+    'screenshot-path': undefined, // showing default for clarity
   },
   boolean: ['inject'],
   alias: {
@@ -45,6 +47,7 @@ const injectArgs = (flags) => {
   const params = Mink.DEFAULT_PARAMS;
   params.driver.desiredCapabilities.browserName = flags.browser;
   params.driver.port = flags.port;
+  params.driver.screenshotPath = flags['screenshot-path'];
 
   const inject = require('./cli/support/mink_inject.js');
 
