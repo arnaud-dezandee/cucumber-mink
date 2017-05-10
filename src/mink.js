@@ -42,6 +42,7 @@ const DEFAULT_PARAMS = {
     logLevel: 'silent',
     port: 4444,
   },
+  timeout: 5000,
 };
 
 function noop() {
@@ -176,6 +177,8 @@ class Mink {
     cucumber.registerHandler('AfterFeatures', (/* event */) =>
       driver.end(),
     );
+
+    cucumber.setDefaultTimeout(this.parameters.timeout);
 
     if (driver.parameters.screenshotPath) {
       cucumber.After((event) => {
