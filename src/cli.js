@@ -21,13 +21,13 @@ const cli = meow(`
   Usage: cucumber-mink [options] -- [CUCUMBER ARGS]
 
   Options:
-    --inject       Mink auto-inject in context           [Boolean] [default: true]
-    --browser      Desired browser name              [String] [default: "firefox"]
-    --port         Selenium server port                            [default: 4444]
-    --log-level    The log level to pass to the driver             [default: 4444]
-    --timeout      Cucumber function timeout in ms    [String] [default: "silent"]
-    -h, --help     Display help message                                  [Boolean]
-    -v, --version  Display package version                               [Boolean]
+    --inject       Mink auto-inject in context               [Boolean] [default: true]
+    --browser      Desired browser name                  [String] [default: "firefox"]
+    --port         Selenium server port                                [default: 4444]
+    --log-level    The log level to pass to the driver    [String] [default: "silent"]
+    --timeout      Cucumber function timeout in ms                     [default: 4444]
+    -h, --help     Display help message                                      [Boolean]
+    -v, --version  Display package version                                   [Boolean]
 `, {
   default: {
     inject: true,
