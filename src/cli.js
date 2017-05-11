@@ -21,17 +21,19 @@ const cli = meow(`
   Usage: cucumber-mink [options] -- [CUCUMBER ARGS]
 
   Options:
-    --inject       Mink auto-inject in context           [Boolean] [default: true]
-    --browser      Desired browser name              [String] [default: "firefox"]
-    --port         Selenium server port                            [default: 4444]
-    --timeout      Cucumber function timeout in ms                 [default: 5000]
-    -h, --help     Display help message                                  [Boolean]
-    -v, --version  Display package version                               [Boolean]
+    --inject       Mink auto-inject in context               [Boolean] [default: true]
+    --browser      Desired browser name                  [String] [default: "firefox"]
+    --port         Selenium server port                                [default: 4444]
+    --log-level    The log level to pass to the driver    [String] [default: "silent"]
+    --timeout      Cucumber function timeout in ms                     [default: 4444]
+    -h, --help     Display help message                                      [Boolean]
+    -v, --version  Display package version                                   [Boolean]
 `, {
   default: {
     inject: true,
     browser: 'chrome',
     port: 4444,
+    'log-level': 'silent',
     timeout: 5000,
   },
   boolean: ['inject'],
@@ -47,6 +49,7 @@ const injectArgs = (flags) => {
   const params = Mink.DEFAULT_PARAMS;
   params.driver.desiredCapabilities.browserName = flags.browser;
   params.driver.port = flags.port;
+  params.driver.logLevel = flags['log-level'];
   params.timeout = flags.timeout;
 
   const inject = require('./cli/support/mink_inject.js');
