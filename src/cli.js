@@ -24,6 +24,7 @@ const cli = meow(`
     --inject       Mink auto-inject in context           [Boolean] [default: true]
     --browser      Desired browser name              [String] [default: "firefox"]
     --port         Selenium server port                            [default: 4444]
+    --host         Selenium server host                            [default: "localhost"]
     --timeout      Cucumber function timeout in ms                 [default: 5000]
     -h, --help     Display help message                                  [Boolean]
     -v, --version  Display package version                               [Boolean]
@@ -32,6 +33,7 @@ const cli = meow(`
     inject: true,
     browser: 'chrome',
     port: 4444,
+    host: "localhost",
     timeout: 5000,
   },
   boolean: ['inject'],
@@ -47,6 +49,7 @@ const injectArgs = (flags) => {
   const params = Mink.DEFAULT_PARAMS;
   params.driver.desiredCapabilities.browserName = flags.browser;
   params.driver.port = flags.port;
+  params.driver.host = flags.host;
   params.timeout = flags.timeout;
 
   const inject = require('./cli/support/mink_inject.js');
