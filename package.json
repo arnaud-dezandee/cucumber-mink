@@ -34,14 +34,16 @@
     "cucumber-mink": "src/cli.js"
   },
   "scripts": {
-    "start": "node test/site/server.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "coverage": "node ./node_modules/.bin/isparta cover _mocha -- --root src/ test/mocha/",
     "coverage:upload": "cat ./coverage/lcov.info | coveralls",
     "pretest": "eslint src/ test/",
     "test": "mocha test/mocha/",
     "e2e": "node ./src/cli.js test/features -- -f progress",
-    "protractor": "protractor protractor.cucumber.js"
+    "protractor": "protractor protractor.cucumber.js",
+    "express": "node test/site/server.js",
+    "prewebdriver": "webdriver-manager update --versions.standalone=3.4.0",
+    "webdriver": "webdriver-manager start --versions.standalone=3.4.0"
   },
   "dependencies": {
     "bluebird": "3.5.0",
@@ -70,7 +72,8 @@
     "protractor": "~5.1.2",
     "protractor-cucumber-framework": "~4.0.4",
     "semantic-release": "~7.0.2",
-    "swig": "~1.4.2"
+    "swig": "~1.4.2",
+    "webdriver-manager": "12.0.6"
   },
   "eslintConfig": {
     "extends": "airbnb-base",

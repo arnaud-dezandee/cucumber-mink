@@ -27,14 +27,13 @@ before_install:
   - sleep 3
 
 install:
-  - npm install -g webdriver-manager
+  - npm install -g npm
   - npm install
 
 before_script:
-  - webdriver-manager update --versions.standalone=3.4.0
-  - nohup webdriver-manager start --versions.standalone=3.4.0 2>&1 &
-  - nohup npm start 2>&1 &
-  - sleep 5
+  - nohup npm run webdriver > webdriver.log &
+  - nohup npm run express > express.log &
+  - sleep 10
 
 script:
   - npm test
