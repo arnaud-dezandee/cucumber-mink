@@ -41,20 +41,21 @@ cli: |
 support_code: |
   // features/support/mink.js
 
-  const Mink = require('cucumber-mink');
+  const { defineSupportCode } = require('cucumber');
 
-  // Selenium + Firefox
-  const parameters = {
-    driver: {
-      logLevel: 'silent',
-      desiredCapabilities: {
-        browserName: 'firefox',
+  defineSupportCode((cucumber) => {
+    const Mink = require('../../mink.js');
+    // Selenium + Firefox
+    const parameters = {
+      driver: {
+        logLevel: 'silent',
+        desiredCapabilities: {
+          browserName: 'firefox',
+        },
+        port: 4444,
       },
-      port: 4444,
-    },
-    timeout: 5000,
-  };
-
-  module.exports = function () {
-    Mink.init(this, parameters);
-  };
+      timeout: 5000,
+    };
+    Mink.configure(parameters);
+    Mink.init(cucumber);
+  });
