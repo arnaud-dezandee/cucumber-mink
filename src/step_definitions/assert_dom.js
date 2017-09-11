@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import { expect } from 'chai';
+const { expect } = require('chai');
 
 /**
  * Private
@@ -74,7 +74,7 @@ const elementState = function (method, state) {
  * Interface
  */
 
-export default [
+module.exports = [
   [/I should see "([^"]*)"$/, seeText],
   [/I should not see "([^"]*)"$/, notSeeText],
   [/I should see text matching (.+)$/, matchText],

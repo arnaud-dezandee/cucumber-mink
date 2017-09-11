@@ -2,7 +2,7 @@
  * Interface
  */
 
-export default {
+module.exports = {
   ACTION: {
     CLICK_LINK: 'Unable to find a link with selector or text matching',
     CLICK_BUTTON: 'Unable to find button / input[type=submit] with selector or text matching',

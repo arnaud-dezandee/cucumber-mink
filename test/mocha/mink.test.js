@@ -2,12 +2,12 @@
 * Dependencies
 */
 
-import jest from 'jest-mock';
-import { expect } from 'chai';
-import pkg from '../../package.json';
+const jest = require('jest-mock');
+const { expect } = require('chai');
+const pkg = require('../../package.json');
 
-import Mink from '../../src/mink.js';
-import Step from '../../src/step.js';
+const Mink = require('../../src/mink.js');
+const Step = require('../../src/step.js');
 
 /**
 * Tests
@@ -17,6 +17,9 @@ const mockCucumber = () => ({
   defineStep: jest.fn(),
   registerHandler: jest.fn(),
   setDefaultTimeout: jest.fn(),
+  defineSupportCode: jest.fn(),
+  AfterAll: jest.fn(),
+  BeforeAll: jest.fn(),
 });
 
 describe('Mink API', () => {
@@ -24,7 +27,7 @@ describe('Mink API', () => {
     it('constructor, statics, aliases', () => {
       expect(Mink.steps.isEmpty()).to.equal(true);
 
-      expect(Mink.parameters).to.equal(null);
+      expect(Mink.parameters).to.equal(Mink.DEFAULT_PARAMS);
       expect(Mink.cucumber).to.equal(null);
       expect(Mink.driver).to.equal(null);
 
@@ -41,9 +44,8 @@ describe('Mink API', () => {
       expect(Mink.parameters).to.deep.equal(Mink.DEFAULT_PARAMS);
       expect(Mink.cucumber).to.equal(cucumber);
 
-      expect(cucumber.registerHandler.mock.calls.length).to.equal(2);
-      expect(cucumber.registerHandler.mock.calls[0][0]).to.equal('BeforeFeatures');
-      expect(cucumber.registerHandler.mock.calls[1][0]).to.equal('AfterFeatures');
+      expect(cucumber.AfterAll.mock.calls.length).to.equal(1);
+      expect(cucumber.BeforeAll.mock.calls.length).to.equal(1);
       expect(cucumber.setDefaultTimeout.mock.calls[0][0]).to.equal(5000);
     });
   });
@@ -62,7 +64,7 @@ describe('Mink API', () => {
 
       expect(step1).to.equal(step2);
 
-      const defineStep = Mink.cucumber.defineStep;
+      const { defineStep } = Mink.cucumber;
       expect(defineStep.mock.calls.length).to.equal(1);
       expect(defineStep.mock.calls[0][0]).to.equal(pattern);
     });
@@ -119,12 +121,12 @@ describe('Mink API', () => {
       });
     });
 
-    it('manyStep missing should fail', () =>
+    it('manyStep missing should fail', () => (
       Mink.manyStep(['missing']).catch((error) => {
         expect(error).to.be.instanceof(Error);
         expect(error.message).to.equal('Could not findStep with line "missing"');
-      }),
-    );
+      })
+    ));
 
     it('metaStep normal', () => {
       const fn = jest.fn();

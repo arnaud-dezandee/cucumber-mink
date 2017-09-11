@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
 /**
  * Private
@@ -27,7 +27,7 @@ const screenshot = function () {
  * Interface
  */
 
-export default [
+module.exports = [
   [/I wait (\d+) seconds?/, wait],
   [/the viewport is (\d+)px width and (\d+)px height/, viewport],
   [/I take a screenshot/, screenshot],

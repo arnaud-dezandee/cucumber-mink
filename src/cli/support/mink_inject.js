@@ -1,10 +1,6 @@
-const debug = require('debug')('mink:inject');
+const { defineSupportCode } = require('cucumber');
 
-module.exports = function (parameters) {
-  return function () {
-    const Mink = require('../../mink.js');
-
-    debug(parameters);
-    Mink.init(this, parameters);
-  };
-};
+defineSupportCode((cucumber) => {
+  const Mink = require('../../mink.js');
+  Mink.init(cucumber);
+});

@@ -2,9 +2,9 @@
  * Dependencies
  */
 
-import dbg from 'debug';
-import ProtractorDriver from './drivers/protractor.js';
-import WdIODriver from './drivers/webdriverio.js';
+const dbg = require('debug');
+const ProtractorDriver = require('./drivers/protractor.js');
+const WdIODriver = require('./drivers/webdriverio.js');
 
 /**
  * Private
@@ -16,7 +16,7 @@ const debug = dbg('mink:driver');
  * Interface
  */
 
-export default function configureDriver(parameters) {
+module.exports = function configureDriver(parameters) {
   debug(parameters);
 
   if (!!parameters.protractor && global.protractor) {
@@ -24,4 +24,4 @@ export default function configureDriver(parameters) {
   }
 
   return new WdIODriver(parameters);
-}
+};

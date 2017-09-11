@@ -2,19 +2,19 @@
  * Dependencies
  */
 
-import action from './action.js';
-import assertDOM from './assert_dom.js';
-import assertForm from './assert_form.js';
-import assertURL from './assert_url.js';
-import form from './form.js';
-import navigation from './navigation.js';
-import utility from './utility.js';
+const action = require('./action.js');
+const assertDOM = require('./assert_dom.js');
+const assertForm = require('./assert_form.js');
+const assertURL = require('./assert_url.js');
+const form = require('./form.js');
+const navigation = require('./navigation.js');
+const utility = require('./utility.js');
 
 /**
  * Interface
  */
 
-export default [
+module.exports = [
   ...action,
   ...assertDOM,
   ...assertForm,

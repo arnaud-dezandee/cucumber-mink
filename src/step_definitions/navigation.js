@@ -2,8 +2,8 @@
  * Dependencies
  */
 
-import url from 'url';
-import Errors from '../utils/errors.js';
+const url = require('url');
+const Errors = require('../utils/errors.js');
 
 /**
  * Private
@@ -59,7 +59,7 @@ const goBack = function () {
  * Interface
  */
 
-export default [
+module.exports = [
   [/I browse "([^"]*)"/, setBaseURL],
   [/I am on (?:|the )homepage/, goRoot],
   [/I go to (?:|the )homepage/, goRoot],

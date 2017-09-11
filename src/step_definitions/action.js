@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import Errors from '../utils/errors.js';
+const Errors = require('../utils/errors.js');
 
 /**
  * Private
@@ -42,7 +42,7 @@ const sendKey = function (key, selector) {
  * Interface
  */
 
-export default [
+module.exports = [
   [/I click on "([^"]*)"/, click],
   [/I press "([^"]*)"/, press],
   [/I follow "([^"]*)"/, follow],

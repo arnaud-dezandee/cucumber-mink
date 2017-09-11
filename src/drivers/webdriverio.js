@@ -2,10 +2,29 @@
  * Dependencies
  */
 
-import url from 'url';
-import Promise from 'bluebird';
-import dbg from 'debug';
-import detectSeries from '../utils/detect_series.js';
+const url = require('url');
+const Promise = require('bluebird');
+const dbg = require('debug');
+const detectSeries = require('../utils/detect_series.js');
+
+/**
+ * WebDriverIO 4.8.0 outputs all kinds of "deprecation" warnings
+ * for common commands like `keys` and `moveToObject`.
+ * According to https://github.com/Codeception/CodeceptJS/issues/531,
+ * these deprecation warnings are for Firefox, and have no alternative replacements.
+ * Since we can't downgrade WDIO as suggested (it's Spectron's dep, not ours),
+ * we must suppress the warning with a classic monkey-patch.
+ *
+ * @see webdriverio/lib/helpers/depcrecationWarning.js
+ */
+// Filter out the following messages:
+const wdioDeprecationWarning = /^WARNING: the "\w+" command will be depcrecated soon./; // [sic]
+// Monkey patch:
+const { warn } = console;
+console.warn = function suppressWebdriverWarnings(...args) {
+  if (args[0].match(wdioDeprecationWarning)) return;
+  warn.apply(console, args);
+};
 
 /**
  * Private
@@ -51,80 +70,72 @@ class WdIODriver {
 
   url(input) {
     if (!input) {
-      return this.client.getUrl().then(text =>
-        url.parse(text),
-      );
+      return this.client.getUrl()
+        .then(text => url.parse(text));
     }
     return this.client.url(input);
   }
 
   sendKey(selector, key) {
-    return this.client.click(selector).then(() =>
-      this.client.keys(key),
-    );
+    return this.client.click(selector)
+      .then(() => this.client.keys(key));
   }
 
   elements(selector) {
     return this.client.elements(selector)
-    .then(response => response.value);
+      .then(response => response.value);
   }
 
   elementsCount(selector) {
     return this.elements(selector)
-    .then(items => items.length);
+      .then(items => items.length);
   }
 
   elementsWithText(selector, text) {
-    return this.elements(selector)
-    .then(items => Promise.filter(items, WebElement =>
-      this.client
-        .elementIdText(WebElement.ELEMENT)
-        .then(result => result.value === text),
-    ));
+    return Promise.try(() => this.elements(selector))
+      .then(items => Promise.filter(items, WebElement => (
+        this.client
+          .elementIdText(WebElement.ELEMENT)
+          .then(result => result.value.toUpperCase() === text.toUpperCase())
+      )));
   }
 
   elementsWithValue(selector, value) {
-    return this.elements(selector)
-    .then(items => Promise.filter(items, WebElement =>
-      this.client
-        .elementIdAttribute(WebElement.ELEMENT, 'value')
-        .then(result => result.value === value),
-    ));
+    return Promise.try(() => this.elements(selector))
+      .then(items => Promise.filter(items, WebElement => (
+        this.client
+          .elementIdAttribute(WebElement.ELEMENT, 'value')
+          .then(result => result.value.toUpperCase() === value.toUpperCase())
+      )));
   }
 
   button(mixed) {
-    return detectSeries(
-      [
-        () => this.elements(mixed).catch((err) => {
-          debug(err);
-          return [];
-        }),
-        () => this.elementsWithText('button', mixed),
-        () => this.elementsWithValue('input[type=submit]', mixed),
-      ],
-      fn => fn(),
-      WebElements => !!WebElements.length,
-    ).then(({ result }) => {
-      if (!result) throw new Error('Button not found !');
-      return result[0];
-    });
+    const arr = [
+      () => Promise
+        .try(() => this.elements(mixed))
+        .catch((err) => { debug(err); return []; }),
+      () => this.elementsWithText('button', mixed),
+      () => this.elementsWithValue('input[type=submit]', mixed),
+    ];
+    return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
+      .then(({ result }) => {
+        if (!result) throw new Error('Button not found !');
+        return result[0];
+      });
   }
 
   link(mixed) {
-    return detectSeries(
-      [
-        () => this.elements(mixed).catch((err) => {
-          debug(err);
-          return [];
-        }),
-        () => this.elementsWithText('body a', mixed),
-      ],
-      fn => fn(),
-      WebElements => !!WebElements.length,
-    ).then(({ result }) => {
-      if (!result) throw new Error('Link not found !');
-      return result[0];
-    });
+    const arr = [
+      () => Promise
+        .try(() => this.elements(mixed))
+        .catch((err) => { debug(err); return []; }),
+      () => this.elementsWithText('a', mixed),
+    ];
+    return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
+      .then(({ result }) => {
+        if (!result) throw new Error('Link not found !');
+        return result[0];
+      });
   }
 }
 
@@ -158,4 +169,4 @@ WdIODriver.prototype.uncheck = WdIODriver.prototype.click;
 WdIODriver.prototype.hover = WdIODriver.prototype.moveToObject;
 WdIODriver.prototype.setViewportSize = WdIODriver.prototype.windowHandleSize;
 
-export default WdIODriver;
+module.exports = WdIODriver;
