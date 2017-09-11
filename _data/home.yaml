@@ -44,7 +44,7 @@ support_code: |
   const { defineSupportCode } = require('cucumber');
 
   defineSupportCode((cucumber) => {
-    const Mink = require('../../mink.js');
+    const Mink = require('cucumber-mink');
     // Selenium + Firefox
     const parameters = {
       driver: {
