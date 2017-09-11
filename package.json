@@ -27,57 +27,49 @@
     "url": "http://github.com/Adezandee/cucumber-mink/issues"
   },
   "engines": {
-    "node": ">= 4"
+    "node": ">= 6"
   },
-  "main": "dist/mink.js",
+  "main": "src/mink.js",
   "bin": {
-    "cucumber-mink": "dist/cli.js"
+    "cucumber-mink": "src/cli.js"
   },
   "scripts": {
-    "start": "babel-node test/site/server.js",
+    "start": "node test/site/server.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --root src/ test/mocha/",
+    "coverage": "node ./node_modules/.bin/isparta cover _mocha -- --root src/ test/mocha/",
     "coverage:upload": "cat ./coverage/lcov.info | coveralls",
-    "prepublish": "npm run compile",
-    "precompile": "rm -rf dist/",
-    "compile": "babel src/ -d dist/",
     "pretest": "eslint src/ test/",
-    "test": "mocha --compilers js:babel-register test/mocha/",
-    "e2e": "babel-node ./src/cli.js test/features -- -f progress",
+    "test": "mocha test/mocha/",
+    "e2e": "node ./src/cli.js test/features -- -f progress",
     "protractor": "protractor protractor.cucumber.js"
   },
   "dependencies": {
     "bluebird": "3.5.0",
-    "chai": "3.5.0",
-    "cucumber": "1.3.2",
-    "debug": "2.6.3",
+    "chai": "4.1.2",
+    "cucumber": "3.0.1",
+    "debug": "3.0.1",
     "immutable": "3.8.1",
     "lodash.defaultsdeep": "4.6.0",
     "meow": "3.7.0",
     "util-arity": "1.1.0",
-    "webdriverio": "4.6.2"
+    "webdriverio": "4.8.0"
   },
   "devDependencies": {
-    "babel-cli": "~6.24.0",
-    "babel-plugin-add-module-exports": "~0.2.1",
-    "babel-plugin-transform-object-rest-spread": "~6.23.0",
-    "babel-preset-es2015": "~6.24.0",
-    "babel-register": "~6.24.0",
-    "body-parser": "~1.17.1",
-    "coveralls": "~2.13.0",
+    "body-parser": "~1.18.0",
+    "coveralls": "~2.13.1",
     "cz-conventional-changelog": "~2.0.0",
-    "eslint": "~3.19.0",
-    "eslint-config-airbnb-base": "~11.1.3",
-    "eslint-plugin-import": "~2.2.0",
-    "express": "~4.15.2",
+    "eslint": "~4.6.1",
+    "eslint-config-airbnb-base": "~12.0.0",
+    "eslint-plugin-import": "~2.7.0",
+    "express": "~4.15.4",
     "isparta": "~4.0.0",
-    "jest-mock": "~19.0.0",
+    "jest-mock": "~21.0.2",
     "lodash.range": "~3.2.0",
-    "mocha": "~3.2.0",
-    "morgan": "~1.8.1",
-    "protractor": "~5.1.1",
-    "protractor-cucumber-framework": "~1.0.2",
-    "semantic-release": "~6.3.2",
+    "mocha": "~3.5.2",
+    "morgan": "~1.8.2",
+    "protractor": "~5.1.2",
+    "protractor-cucumber-framework": "~4.0.4",
+    "semantic-release": "~7.0.2",
     "swig": "~1.4.2"
   },
   "eslintConfig": {
@@ -96,17 +88,9 @@
       "func-names": 0,
       "import/no-extraneous-dependencies": 0,
       "import/extensions": 0,
-      "class-methods-use-this": 0
+      "class-methods-use-this": 0,
+      "function-paren-newline": 0
     }
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ],
-    "plugins": [
-      "add-module-exports",
-      "transform-object-rest-spread"
-    ]
   },
   "config": {
     "commitizen": {

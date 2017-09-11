@@ -1,8 +1,9 @@
-require('babel-register');
-const Mink = require('../../../src/mink.js');
+const { defineSupportCode } = require('cucumber');
 
-module.exports = function () {
-  Mink.init(this, {
+defineSupportCode((cucumber) => {
+  const Mink = require('../../../src/mink.js');
+  Mink.configure({
     driver: { protractor: true },
   });
-};
+  Mink.init(cucumber);
+});

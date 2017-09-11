@@ -4,12 +4,11 @@
  * Dependencies
  */
 
-import path from 'path';
-import meow from 'meow';
-import dbg from 'debug';
-import cucumber from 'cucumber';
-import startMocking from './cli/rewire.js';
-import Mink from './mink.js';
+const path = require('path');
+const meow = require('meow');
+const dbg = require('debug');
+const cucumber = require('cucumber');
+const Mink = require('./mink.js');
 
 /**
  * CLI
@@ -28,32 +27,33 @@ const cli = meow(`
     -h, --help     Display help message                                  [Boolean]
     -v, --version  Display package version                               [Boolean]
 `, {
-  default: {
-    inject: true,
-    browser: 'chrome',
-    port: 4444,
-    timeout: 5000,
-  },
-  boolean: ['inject'],
-  alias: {
-    v: 'version',
-    h: 'help',
-  },
-});
+    default: {
+      inject: true,
+      browser: 'chrome',
+      port: 4444,
+      timeout: 5000,
+    },
+    boolean: ['inject'],
+    alias: {
+      v: 'version',
+      h: 'help',
+    },
+  });
 
 const injectArgs = (flags) => {
   if (!flags.inject) return [];
 
-  const params = Mink.DEFAULT_PARAMS;
-  params.driver.desiredCapabilities.browserName = flags.browser;
-  params.driver.port = flags.port;
-  params.timeout = flags.timeout;
-
-  const inject = require('./cli/support/mink_inject.js');
+  Mink.configure({
+    driver: {
+      desiredCapabilities: {
+        browserName: flags.browser,
+      },
+      port: flags.port,
+    },
+    timeout: flags.timeout,
+  });
 
   const injectPath = path.join(__dirname, '/cli/support/mink_inject.js');
-  startMocking(injectPath, inject(params));
-
   return ['--require', injectPath];
 };
 
@@ -65,6 +65,12 @@ const execArgs = [
 
 debug(execArgs);
 
-cucumber.Cli(execArgs).run((success) => {
+const cucumberCli = new cucumber.Cli({
+  argv: execArgs,
+  cwd: process.cwd(),
+  stdout: process.stdout,
+});
+
+cucumberCli.run((success) => {
   process.exit(success ? 0 : 1);
 });

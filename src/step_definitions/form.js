@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
 /**
  * Private
@@ -13,9 +13,9 @@ const fillField = function (selector, value) {
 };
 
 const fillFieldsHash = function (hashDataTable) {
-  return Promise.each(hashDataTable.raw(), ([field, value]) =>
-    this.driver.setValue(field, value),
-  );
+  return Promise.each(hashDataTable.raw(), ([field, value]) => (
+    this.driver.setValue(field, value)
+  ));
 };
 
 const selectFrom = function (option, selector) {
@@ -25,12 +25,12 @@ const selectFrom = function (option, selector) {
 const checkInput = function (state) {
   return function (selector) {
     return this.driver.isChecked(selector)
-    .then((isChecked) => {
-      if (isChecked !== state) {
-        return this.driver.check(selector);
-      }
-      return null;
-    });
+      .then((isChecked) => {
+        if (isChecked !== state) {
+          return this.driver.check(selector);
+        }
+        return null;
+      });
   };
 };
 
@@ -38,7 +38,7 @@ const checkInput = function (state) {
  * Interface
  */
 
-export default [
+module.exports = [
   [/I fill in "([^"]*)" with "([^"]*)"/, fillField],
   [/I fill in "([^"]*)" with:/, fillField],
   [/I fill in the following:/, fillFieldsHash],

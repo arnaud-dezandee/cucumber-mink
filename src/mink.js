@@ -11,17 +11,17 @@
  * Dependencies
  */
 
-import path from 'path';
-import dbg from 'debug';
-import arity from 'util-arity';
-import Promise from 'bluebird';
-import Immutable from 'immutable';
-import defaultsDeep from 'lodash.defaultsdeep';
-import pkg from '../package.json';
+const path = require('path');
+const dbg = require('debug');
+const arity = require('util-arity');
+const Promise = require('bluebird');
+const Immutable = require('immutable');
+const defaultsDeep = require('lodash.defaultsdeep');
+const pkg = require('../package.json');
 
-import Step from './step.js';
-import configureDriver from './driver.js';
-import definitions from './step_definitions/index.js';
+const Step = require('./step.js');
+const configureDriver = require('./driver.js');
+const definitions = require('./step_definitions/index.js');
 
 /**
  * Private
@@ -41,6 +41,7 @@ const DEFAULT_PARAMS = {
     },
     logLevel: 'silent',
     port: 4444,
+    deprecationWarnings: false,
   },
   timeout: 5000,
 };
@@ -57,7 +58,7 @@ class Mink {
   constructor() {
     this.steps = Immutable.Map();
 
-    this.parameters = null;
+    this.parameters = DEFAULT_PARAMS;
     this.cucumber = null;
     this.driver = null;
   }
@@ -69,13 +70,10 @@ class Mink {
    * @param {Object}  parameters
    * @returns {void}
    */
-  init(cucumber, params = {}) {
-    debug('init', params);
+  init(cucumber) {
+    debug('init');
 
-    const parameters = defaultsDeep(params, DEFAULT_PARAMS);
-    const driver = configureDriver(parameters.driver);
-
-    this.parameters = parameters;
+    const driver = configureDriver(this.parameters.driver);
     this.cucumber = cucumber;
     this.driver = driver;
 
@@ -84,6 +82,17 @@ class Mink {
     definitions.forEach(([pattern, fn]) => {
       this.defineStep(pattern, fn);
     });
+  }
+
+  /**
+   * Mink configuration method
+   *
+   * @param {Object}  parameters
+   * @returns {void}
+   */
+  configure(params = {}) {
+    debug('configure', params);
+    this.parameters = defaultsDeep(params, DEFAULT_PARAMS);
   }
 
   /**
@@ -100,9 +109,9 @@ class Mink {
       this.steps = this.steps.set(pattern, new Step(pattern, fn));
 
       if (this.cucumber) {
-        const wrappedFn = arity(fn.length, (...args) =>
-          Promise.try(() => fn.apply(this, args)),
-        );
+        const wrappedFn = arity(fn.length, (...args) => (
+          Promise.try(() => fn.apply(this, args))
+        ));
         this.cucumber.defineStep(pattern, wrappedFn);
       }
     }
@@ -168,15 +177,14 @@ class Mink {
    * @returns {void}
    */
   registerHooks(cucumber, driver) {
-    cucumber.registerHandler('BeforeFeatures', (/* event */) =>
+    cucumber.BeforeAll(() => (
       driver.init().then(() => (
         driver.setViewportSize(driver.parameters.viewportSize)
-      )),
-    );
-
-    cucumber.registerHandler('AfterFeatures', (/* event */) =>
-      driver.end(),
-    );
+      ))
+    ));
+    cucumber.AfterAll(() => (
+      driver.end()
+    ));
 
     cucumber.setDefaultTimeout(this.parameters.timeout);
 
@@ -203,4 +211,4 @@ Mink.prototype.VERSION = pkg.version;
  * Interface
  */
 
-export default new Mink();
+module.exports = new Mink();

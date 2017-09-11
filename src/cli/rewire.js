@@ -2,13 +2,13 @@
  * Dependencies
  */
 
-import module from 'module';
+const _module = require('module');
 
-const originalLoader = module._load;
+const originalLoader = _module._load;
 const intercept = {};
 
 /* eslint prefer-rest-params: 0 */
-module._load = function (request) {
+_module._load = function (request) {
   if ({}.hasOwnProperty.call(intercept, request)) {
     return intercept[request];
   }
@@ -20,6 +20,6 @@ module._load = function (request) {
  * Interface
  */
 
-export default function startMocking(path, mockExport) {
+module.exports = function startMocking(path, mockExport) {
   intercept[path] = mockExport;
-}
+};

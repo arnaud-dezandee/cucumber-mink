@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import range from 'lodash.range';
+const range = require('lodash.range');
 
 function postWithId(id) {
   return {
@@ -43,7 +43,7 @@ function form(req, res) {
 }
 
 function result(req, res) {
-  const body = req.body;
+  const { body } = req;
   body.cb = !!body.cb;
 
   res.render('result', {
@@ -55,7 +55,7 @@ function keys(req, res) {
   res.render('keys');
 }
 
-export default {
+module.exports = {
   index,
   responsive,
   action,

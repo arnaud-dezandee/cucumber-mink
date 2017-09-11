@@ -2,11 +2,11 @@
  * Dependencies
  */
 
-import fs from 'fs';
-import url from 'url';
-import Promise from 'bluebird';
-import dbg from 'debug';
-import detectSeries from '../utils/detect_series.js';
+const fs = require('fs');
+const url = require('url');
+const Promise = require('bluebird');
+const dbg = require('debug');
+const detectSeries = require('../utils/detect_series.js');
 
 /**
  * Private
@@ -91,7 +91,7 @@ const checkUnicode = value => (
  * Interface
  */
 
-export default class ProtractorDriver {
+class ProtractorDriver {
   constructor(parameters) {
     this.parameters = parameters;
     this.browser = global.browser;
@@ -167,51 +167,47 @@ export default class ProtractorDriver {
 
   elementsWithText(selector, text) {
     return this.elements(selector)
-    .then(items => Promise.filter(items, el =>
-      el.getText().then(result => result === text),
-    ));
+      .then(items => Promise.filter(items, el => (
+        el.getText().then(result => result === text)
+      )));
   }
 
   elementsWithValue(selector, value) {
     return this.elements(selector)
-    .then(items => Promise.filter(items, el =>
-      el.getAttribute('value').then(result => result === value),
-    ));
+      .then(items => Promise.filter(items, el => (
+        el.getAttribute('value').then(result => result === value)
+      )));
   }
 
   button(mixed) {
-    return detectSeries(
-      [
-        () => this.elements(mixed).catch((err) => {
-          debug(err);
-          return [];
-        }),
-        () => this.elementsWithText('button', mixed),
-        () => this.elementsWithValue('input[type=submit]', mixed),
-      ],
-      fn => fn(),
-      WebElements => !!WebElements.length,
-    ).then(({ result }) => {
-      if (!result) throw new Error('Button not found !');
-      return result[0];
-    });
+    const arr = [
+      () => this.elements(mixed).catch((err) => {
+        debug(err);
+        return [];
+      }),
+      () => this.elementsWithText('button', mixed),
+      () => this.elementsWithValue('input[type=submit]', mixed),
+    ];
+    return detectSeries(arr, fn => fn(), WebElements => (!!WebElements.length))
+      .then(({ result }) => {
+        if (!result) throw new Error('Button not found !');
+        return result[0];
+      });
   }
 
   link(mixed) {
-    return detectSeries(
-      [
-        () => this.elements(mixed).catch((err) => {
-          debug(err);
-          return [];
-        }),
-        () => this.elementsWithText('body a', mixed),
-      ],
-      fn => fn(),
-      WebElements => !!WebElements.length,
-    ).then(({ result }) => {
-      if (!result) throw new Error('Link not found !');
-      return result[0];
-    });
+    const arr = [
+      () => this.elements(mixed).catch((err) => {
+        debug(err);
+        return [];
+      }),
+      () => this.elementsWithText('body a', mixed),
+    ];
+    return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
+      .then(({ result }) => {
+        if (!result) throw new Error('Link not found !');
+        return result[0];
+      });
   }
 
   refresh() {
@@ -246,7 +242,7 @@ export default class ProtractorDriver {
 
   saveScreenshot(filename) {
     return this.browser.takeScreenshot().then((png) => {
-      const screenshot = new Buffer(png, 'base64');
+      const screenshot = Buffer.from(png, 'base64');
       if (typeof filename === 'string') {
         fs.writeFileSync(filename, screenshot);
       }
@@ -301,3 +297,5 @@ export default class ProtractorDriver {
 ProtractorDriver.prototype.isChecked = ProtractorDriver.prototype.isSelected;
 ProtractorDriver.prototype.check = ProtractorDriver.prototype.click;
 ProtractorDriver.prototype.uncheck = ProtractorDriver.prototype.click;
+
+module.exports = ProtractorDriver;

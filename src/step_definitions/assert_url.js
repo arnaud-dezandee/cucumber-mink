@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import { expect } from 'chai';
+const { expect } = require('chai');
 
 /**
  * Private
@@ -34,7 +34,7 @@ const queryMatch = function (regex) {
  * Interface
  */
 
-export default [
+module.exports = [
   [/I should be on "([^"]*)"/, isEqual],
   [/I should be on (?:|the )homepage/, isRoot],
   [/the url should match (.+)/, urlMatch],

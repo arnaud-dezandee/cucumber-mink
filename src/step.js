@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
 /**
  * Private
@@ -16,7 +16,7 @@ function noop() {
  * Interface
  */
 
-export default class Step {
+module.exports = class Step {
   constructor(pattern, fn, args = []) {
     this.pattern = pattern;
     this.fn = fn;
@@ -33,4 +33,4 @@ export default class Step {
       this.fn.apply(context, args)
     )).asCallback(cb);
   }
-}
+};

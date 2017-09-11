@@ -31,8 +31,8 @@ install:
   - npm install
 
 before_script:
-  - webdriver-manager update
-  - nohup webdriver-manager start 2>&1 &
+  - webdriver-manager update --versions.standalone=3.4.0
+  - nohup webdriver-manager start --versions.standalone=3.4.0 2>&1 &
   - nohup npm start 2>&1 &
   - sleep 5
 

@@ -2,12 +2,12 @@
  * Dependencies
  */
 
-import path from 'path';
-import express from 'express';
-import body from 'body-parser';
-import morgan from 'morgan';
-import swig from 'swig';
-import routes from './routes.js';
+const path = require('path');
+const express = require('express');
+const body = require('body-parser');
+const morgan = require('morgan');
+const swig = require('swig');
+const routes = require('./routes.js');
 
 const app = express();
 

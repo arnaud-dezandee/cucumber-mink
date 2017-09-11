@@ -2,11 +2,11 @@
 * Dependencies
 */
 
-import Promise from 'bluebird';
-import jest from 'jest-mock';
-import { expect } from 'chai';
+const Promise = require('bluebird');
+const jest = require('jest-mock');
+const { expect } = require('chai');
 
-import Driver from '../../src/drivers/webdriverio.js';
+const Driver = require('../../src/drivers/webdriverio.js');
 
 /**
 * Tests
@@ -17,9 +17,9 @@ const mockClient = () => {
     elements: jest.fn(),
   };
 
-  client.elements.mockReturnValue(
-    Promise.resolve({ value: [] }),
-  );
+  client.elements.mockReturnValue(Promise.resolve({
+    value: [],
+  }));
 
   return client;
 };
@@ -27,7 +27,7 @@ const mockClient = () => {
 describe('Driver API', () => {
   const driver = new Driver({});
   driver.client = mockClient();
-  const client = driver.client;
+  const { client } = driver;
 
   it('client symlinks', () => {
     driver.init();
@@ -58,7 +58,7 @@ describe('Driver API', () => {
       expect(client.elements.mock.calls.length).to.equal(2);
       expect(client.elements.mock.calls).to.deep.equal([
         ['.link-missing'],
-        ['body a'],
+        ['a'],
       ]);
 
       expect(err).to.be.instanceof(Error);
