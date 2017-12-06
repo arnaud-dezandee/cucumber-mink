@@ -27,7 +27,7 @@
     "url": "http://github.com/Adezandee/cucumber-mink/issues"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 8"
   },
   "main": "src/mink.js",
   "bin": {
@@ -46,32 +46,32 @@
     "webdriver": "webdriver-manager start --versions.standalone=3.4.0"
   },
   "dependencies": {
-    "bluebird": "3.5.0",
+    "bluebird": "3.5.1",
     "chai": "4.1.2",
-    "cucumber": "3.0.1",
-    "debug": "3.0.1",
-    "immutable": "3.8.1",
+    "cucumber": "3.1.0",
+    "debug": "3.1.0",
+    "immutable": "3.8.2",
     "lodash.defaultsdeep": "4.6.0",
-    "meow": "3.7.0",
+    "meow": "4.0.0",
     "util-arity": "1.1.0",
-    "webdriverio": "4.8.0"
+    "webdriverio": "4.9.11"
   },
   "devDependencies": {
-    "body-parser": "~1.18.0",
-    "coveralls": "~2.13.1",
-    "cz-conventional-changelog": "~2.0.0",
-    "eslint": "~4.6.1",
-    "eslint-config-airbnb-base": "~12.0.0",
-    "eslint-plugin-import": "~2.7.0",
-    "express": "~4.15.4",
+    "body-parser": "~1.18.2",
+    "coveralls": "~3.0.0",
+    "cz-conventional-changelog": "~2.1.0",
+    "eslint": "~4.12.1",
+    "eslint-config-airbnb-base": "~12.1.0",
+    "eslint-plugin-import": "~2.8.0",
+    "express": "~4.16.2",
     "isparta": "~4.0.0",
-    "jest-mock": "~21.0.2",
+    "jest-mock": "~21.2.0",
     "lodash.range": "~3.2.0",
-    "mocha": "~3.5.2",
-    "morgan": "~1.8.2",
-    "protractor": "~5.1.2",
-    "protractor-cucumber-framework": "~4.0.4",
-    "semantic-release": "~7.0.2",
+    "mocha": "~4.0.1",
+    "morgan": "~1.9.0",
+    "protractor": "~5.2.0",
+    "protractor-cucumber-framework": "~4.1.1",
+    "semantic-release": "~8.2.0",
     "swig": "~1.4.2",
     "webdriver-manager": "12.0.6"
   },
