@@ -1,11 +1,4 @@
-# Logs
-*.log
-
-# Coverage directory
-coverage/
-
-# Compiled sources
-dist/
-
-# Dependency directory
 node_modules/
+coverage/
+dist/
+*.log
