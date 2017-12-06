@@ -1,18 +1,9 @@
-# Logs
-*.log
-
-# Coverage directory
+node_modules/
 coverage/
-
-# Sources
 examples/
 test/
-
-# Dependency directory
-node_modules/
-
-# Dot files
 .editorconfig
 .eslintignore
 .gitignore
 .travis.yml
+*.log
