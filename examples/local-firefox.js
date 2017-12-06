@@ -1,6 +1,7 @@
-import Mink from '../src/mink.js';
+const { defineSupportCode } = require('cucumber');
+const Mink = require('cucumber-mink');
 
-// Local Chrome
+// Local Firefox
 const parameters = {
   driver: {
     logLevel: 'silent',
@@ -11,6 +12,7 @@ const parameters = {
   },
 };
 
-export default function () {
-  Mink.init(this, parameters);
-}
+defineSupportCode((cucumber) => {
+  Mink.configure(parameters);
+  Mink.init(cucumber);
+});

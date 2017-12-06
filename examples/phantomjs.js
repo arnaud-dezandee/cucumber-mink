@@ -1,4 +1,5 @@
-import Mink from '../src/mink.js';
+const { defineSupportCode } = require('cucumber');
+const Mink = require('cucumber-mink');
 
 // Phantomjs - GhostDriver
 const parameters = {
@@ -12,6 +13,7 @@ const parameters = {
   },
 };
 
-export default function () {
-  Mink.init(this, parameters);
-}
+defineSupportCode((cucumber) => {
+  Mink.configure(parameters);
+  Mink.init(cucumber);
+});

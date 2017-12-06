@@ -28,7 +28,7 @@ phantomjs -w --ignore-ssl-errors=yes
 You can pass in custom HTTP Header through phantomjs if needed. Here is an example for a Basic Authentication header:
 
 ``` javascript
-var parameters = {
+const parameters = {
   driver: {
     desiredCapabilities: {
       'browserName': 'phantomjs',
