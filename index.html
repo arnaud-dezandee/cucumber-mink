@@ -29,70 +29,62 @@ active: home
     </div>
     <h2>How to start</h2>
     <p>Below steps will help you start a new test project from scratch.</p>
-    <h6 id="1-folder-structure">1. Folder structure</h6>
+    <h4 id="1-folder-structure">1. Folder structure</h4>
     <p>Let's start a new integration testing project for an app called <em>mysite</em>. The folder structure will need to match the structure expected by cucumber.js:</p>
     <pre><code>test/
-    ---- features/
-    --------- step_definitions/
-    --------- support/
-    -------------- mink.js
-    --------- mysite.feature
-    ---- package.json</code></pre>
+---- features/
+--------- step_definitions/
+-------------- mink-gherkin.js
+--------- support/
+-------------- mink.js
+--------- mysite.feature
+---- package.json</code></pre>
     <p>Features directory contains cucumber feature files written in gherkin syntax. step_definitions contains the JavaScript implementation of gherkin test cases. Check out the GitHub repository for example implementations covering most used testing scenarios.</p>
-    <h6 id="2-packagejson">2. Package.json</h6>
+    <h4 id="2-packagejson">2. Package.json</h4>
     <p>This can be an example package.json file for our project:</p>
     <pre><code class="json language-json">{
-        "name": "mysite-test",
-        "version": "1.0.0",
-        "description": "Integration testing for mysite v1",
-        "dependencies": {
-            "cucumber": "latest",
-            "cucumber-mink": "latest"
-        }
-    }</code></pre>
-    <h6 id="3-install-dependencies">3. Install dependencies</h6>
+    "name": "mysite-test",
+    "version": "1.0.0",
+    "description": "Integration testing for mysite v1",
+    "dependencies": {
+        "cucumber": "latest",
+        "cucumber-mink": "latest"
+    }
+}</code></pre>
+    <h4 id="3-install-dependencies">3. Install dependencies</h4>
     <p>Now we can get the project dependencies installed:</p>
     <pre><code class="sh language-sh">$ npm install</code></pre>
-    <h6 id="4-scenario-definitions">4. Scenario definitions</h6>
+    <h4 id="4-scenario-definitions">4. Scenario definitions</h4>
     <p>Let's start with the scenario file called <em>mysite.feature</em>. For more examples of
     feature and scenario definitions, check out <a href="https://github.com/Adezandee/cucumber-mink/tree/master/test">test folder</a>.</p>
-    <h6 id="5-get-cucumber-mink-gherkin-steps">5. Get cucumber-mink gherkin steps</h6>
-    <p>We now need the corresponding step definitions that implement the steps in our scenario. cucumber-mink has a collection of steps already implemented - ready to be included in your project - see <a href="#gherkin-expressions">gherkin expressions</a>.</p>
-    <p>The simplest way to adopt these expressions is to create a file named apickli-gherkin.js in features/step_definitions and import the apickli/gherkin.js module.</p>
-    <p>Add the following to test/features/step_definitions/apickli-gherkin.js</p>
-    <pre>
-      <code class="js language-js">
-      const cucumber = require('cucumber');
-      const mink = require('cucumber-mink');
+    <h4 id="5-get-cucumber-mink-gherkin-steps">5. Get cucumber-mink gherkin steps</h4>
+    <p>We now need the corresponding step definitions that implement the steps in our scenario. cucumber-mink has a collection of steps already implemented - ready to be included in your project - see <a href="/steps">gherkin expressions</a>.</p>
+    <p>Add the following to test/features/step_definitions/mink-gherkin.js</p>
+    <pre><code class="js language-js">const cucumber = require('cucumber');
+const mink = require('cucumber-mink');
 
-      mink.gherkin(cucumber);
-      </code>
-    </pre>
-    <h6 id="6-support-code">6. Support code</h6>
-    <p>Now we need a support code to implement cucumber hooks and initialize apickli. Add the following in features/support/init.js:</p>
-    <pre>
-      <code class="js language-js">
-      const cucumber = require('cucumber');
-      const mink = require('cucumber-mink');
+mink.gherkin(cucumber);</code></pre>
+    <h4 id="6-support-code">6. Support code</h4>
+    <p>Now we need a support code to implement cucumber hooks and initialize mink. Add the following in features/support/mink.js:</p>
+    <pre><code class="js language-js">const cucumber = require('cucumber');
+const mink = require('cucumber-mink');
 
-      const driver = new mink.Mink({
-        baseUrl: 'http://localhost:8080',
-        viewport: {
-          width: 1366,
-          height: 768,
-        },
-      });
+const driver = new mink.Mink({
+  baseUrl: 'http://localhost:8080',
+  viewport: {
+    width: 1366,
+    height: 768,
+  },
+});
 
-      driver.hook(cucumber);
-      </code>
-    </pre>
-    <h6 id="7-run-tests-with-cucumberjs">7. Run tests with cucumber.js</h6>
+driver.hook(cucumber);</code></pre>
+    <h4 id="7-run-tests-with-cucumberjs">7. Run tests with cucumber.js</h4>
     <p>The following will run our scenario (in the project directory):</p>
     <pre><code class="sh language-sh">$ npx cucumber-js features/mysite.feature
-    ....
+....
 
-    1 scenario (1 passed)
-    3 steps (3 passed)</code></pre>
+1 scenario (1 passed)
+3 steps (3 passed)</code></pre>
   </div>
 </div>
 
