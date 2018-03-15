@@ -11,7 +11,7 @@ Feature: I can use cucumber.mink to send key press to an element
   Examples:
     | key      | result |
     | Enter    | 13     |
-    | Up arrow | 38     |
+    | ArrowUp  | 38     |
     | Tab      | 9      |
     | F1       | 112    |
     | a        | 65     |

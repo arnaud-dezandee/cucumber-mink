@@ -9,6 +9,6 @@ module.exports = {
   },
   NAVIGATION: {
     BASE_URL: 'Base url should be a valid absolute url.',
-    ROOT: 'Please provide "driver.baseUrl" or set BASE_URL in your env to use root function.',
+    ROOT: 'Please provide "config.baseUrl" or set BASE_URL in your env to use root function.',
   },
 };

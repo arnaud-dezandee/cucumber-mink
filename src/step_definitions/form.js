@@ -1,42 +1,41 @@
-/**
- * Dependencies
- */
-
+/* eslint no-param-reassign: 0 */
 const Promise = require('bluebird');
 
-/**
- * Private
- */
-
 const fillField = function (selector, value) {
-  return this.driver.setValue(selector, value);
+  /* istanbul ignore next */
+  return this.mink.page.$eval(selector, (el, val) => {
+    el.value = val;
+  }, value);
 };
 
 const fillFieldsHash = function (hashDataTable) {
+  /* istanbul ignore next */
   return Promise.each(hashDataTable.raw(), ([field, value]) => (
-    this.driver.setValue(field, value)
+    this.mink.page.$eval(field, (el, val) => {
+      el.value = val;
+    }, value)
   ));
 };
 
 const selectFrom = function (option, selector) {
-  return this.driver.selectByVisibleText(selector, option);
+  return this.mink.elementsWithText(`${selector} option`, option).then((handles) => {
+    return Promise.each(handles, (handle) => {
+      /* istanbul ignore next */
+      return this.mink.page.evaluate(x => x.value, handle)
+        .then(value => this.mink.page.select(selector, value))
+        .then(() => handle.dispose());
+    });
+  });
 };
 
 const checkInput = function (state) {
   return function (selector) {
-    return this.driver.isChecked(selector)
-      .then((isChecked) => {
-        if (isChecked !== state) {
-          return this.driver.check(selector);
-        }
-        return null;
-      });
+    /* istanbul ignore next */
+    return this.mink.page.$eval(selector, (el, val) => {
+      el.checked = val;
+    }, state);
   };
 };
-
-/**
- * Interface
- */
 
 module.exports = [
   [/I fill in "([^"]*)" with "([^"]*)"/, fillField],

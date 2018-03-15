@@ -1,46 +1,54 @@
-/**
- * Dependencies
- */
-
 const Errors = require('../utils/errors.js');
 
-/**
- * Private
- */
-
 const click = function (selector) {
-  return this.driver.click(selector);
+  return this.mink.page.click(selector);
 };
 
 const hover = function (selector) {
-  return this.driver.hover(selector);
+  return this.mink.page.hover(selector);
 };
 
 const submit = function (selector) {
-  return this.driver.submitForm(selector);
+  const self = this;
+  /* istanbul ignore next */
+  return Promise.all([
+    self.mink.page.waitForNavigation(),
+    self.mink.page.$eval(selector, (elem) => {
+      const form = elem.form || elem;
+      form.submit();
+    }),
+  ]);
 };
 
 const press = function (selector) {
-  return this.driver.button(selector).then((item) => {
+  const self = this;
+  return this.mink.button(selector).then((item) => {
     if (!item) throw new Error(Errors.ACTION.CLICK_BUTTON);
-    return this.driver.click(item);
+    return Promise.all([
+      self.mink.page.waitForNavigation(),
+      item.click(),
+    ]).then(() => item.dispose());
   });
 };
 
 const follow = function (selector) {
-  return this.driver.link(selector).then((item) => {
+  const self = this;
+  return this.mink.link(selector).then((item) => {
     if (!item) throw new Error(Errors.ACTION.CLICK_LINK);
-    return this.driver.click(item);
+    return Promise.all([
+      self.mink.page.waitForNavigation(),
+      item.click(),
+    ]).then(() => item.dispose());
   });
 };
 
 const sendKey = function (key, selector) {
-  return this.driver.sendKey(selector, key);
+  return this.mink.page.$(selector).then((handle) => {
+    return handle.press(key).then(() => {
+      handle.dispose();
+    });
+  });
 };
-
-/**
- * Interface
- */
 
 module.exports = [
   [/I click on "([^"]*)"/, click],

@@ -40,7 +40,7 @@ Feature: I can use cucumber.mink to fill in forms
 
   Examples:
     | first_name | last_name | description | country | countryVal | cbState | cbBool |
-    | fn1        | ln1       | d1          | France  | 0          | check   | true   |
+    | fn1        | ln1       | d1          | UK      | 3          | check   | true   |
     | fn2        | ln2       | d2          | Italy   | 1          | uncheck | false  |
     | fn3        | ln3       | d3          | USA     | 2          | uncheck | false  |
 

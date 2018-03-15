@@ -1,36 +1,27 @@
-/**
- * Dependencies
- */
-
 const { expect } = require('chai');
 
-/**
- * Private
- */
-
 const currentOption = function (selector, expected) {
-  return this.driver.getValue(selector).then(value => (
-    this.driver.html(`${selector} option[value="${value}"]`).then((html) => {
+  /* istanbul ignore next */
+  return this.mink.page.$eval(selector, x => x.value).then((value) => {
+    return this.mink.html(`${selector} option[value="${value}"]`).then((html) => {
       expect(html).to.contain(expected);
-    })
-  ));
+    });
+  });
 };
 
 const fieldContains = function (selector, expected) {
-  return this.driver.getValue(selector).then((value) => {
+  /* istanbul ignore next */
+  return this.mink.page.$eval(selector, x => x.value).then((value) => {
     expect(value).to.contain(expected);
   });
 };
 
 const fieldNotContains = function (selector, expected) {
-  return this.driver.getValue(selector).then((value) => {
+  /* istanbul ignore next */
+  return this.mink.page.$eval(selector, x => x.value).then((value) => {
     expect(value).to.not.contain(expected);
   });
 };
-
-/**
- * Interface
- */
 
 module.exports = [
   [/the "([^"]*)" current option contain "([^"]*)"/, currentOption],

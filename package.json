@@ -9,9 +9,7 @@
     "cucumber-js",
     "gherkin",
     "tests",
-    "webdriver",
-    "phantomjs",
-    "selenium"
+    "puppeteer"
   ],
   "license": "MIT",
   "author": {
@@ -30,74 +28,31 @@
     "node": ">= 8"
   },
   "main": "src/mink.js",
-  "bin": {
-    "cucumber-mink": "src/cli.js"
-  },
   "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "coverage": "node ./node_modules/.bin/isparta cover _mocha -- --root src/ test/mocha/",
-    "coverage:upload": "cat ./coverage/lcov.info | coveralls",
-    "pretest": "eslint src/ test/",
-    "test": "mocha test/mocha/",
-    "e2e": "node ./src/cli.js test/features -- -f progress",
-    "protractor": "protractor protractor.cucumber.js",
-    "express": "node test/site/server.js",
-    "prewebdriver": "webdriver-manager update --versions.standalone=3.4.0",
-    "webdriver": "webdriver-manager start --versions.standalone=3.4.0"
+    "coverage": "cat ./coverage/lcov.info | coveralls",
+    "test": "nyc --reporter=lcov --reporter=text cucumber-js test/",
+    "express": "node test/site/server.js"
   },
   "dependencies": {
     "bluebird": "3.5.1",
     "chai": "4.1.2",
-    "cucumber": "3.1.0",
     "debug": "3.1.0",
-    "immutable": "3.8.2",
     "lodash.defaultsdeep": "4.6.0",
-    "meow": "4.0.0",
-    "util-arity": "1.1.0",
-    "webdriverio": "4.9.11"
+    "puppeteer": "1.1.1"
+  },
+  "peerDependencies": {
+    "cucumber": "^4.0.0"
   },
   "devDependencies": {
-    "body-parser": "~1.18.2",
+    "body-parser": "1.18.2",
     "coveralls": "~3.0.0",
-    "cz-conventional-changelog": "~2.1.0",
-    "eslint": "~4.12.1",
-    "eslint-config-airbnb-base": "~12.1.0",
-    "eslint-plugin-import": "~2.8.0",
-    "express": "~4.16.2",
-    "isparta": "~4.0.0",
-    "jest-mock": "~21.2.0",
+    "cucumber": "^4.0.0",
+    "express": "4.16.3",
     "lodash.range": "~3.2.0",
-    "mocha": "~4.0.1",
-    "morgan": "~1.9.0",
-    "protractor": "~5.2.0",
-    "protractor-cucumber-framework": "~4.1.1",
-    "semantic-release": "~8.2.0",
-    "swig": "~1.4.2",
-    "webdriver-manager": "12.0.6"
-  },
-  "eslintConfig": {
-    "extends": "airbnb-base",
-    "env": {
-      "es6": true,
-      "node": true,
-      "mocha": true
-    },
-    "rules": {
-      "max-len": 0,
-      "no-underscore-dangle": 0,
-      "no-console": 0,
-      "new-cap": 0,
-      "global-require": 0,
-      "func-names": 0,
-      "import/no-extraneous-dependencies": 0,
-      "import/extensions": 0,
-      "class-methods-use-this": 0,
-      "function-paren-newline": 0
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "morgan": "1.9.0",
+    "nunjucks": "3.1.2",
+    "nyc": "11.6.0",
+    "semantic-release": "15.0.3"
   }
 }
