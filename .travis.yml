@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 dist: trusty
 language: node_js
 node_js: "8"
@@ -9,10 +9,6 @@ notifications:
 cache:
   directories:
     - node_modules
-
-branches:
-  only:
-    - master
 
 install:
   - npm install -g npm
@@ -27,4 +23,4 @@ script:
 
 after_success:
   - npm run coverage
-  - npm run semantic-release
+  - npx semantic-release

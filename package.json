@@ -29,7 +29,6 @@
   },
   "main": "src/mink.js",
   "scripts": {
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "test": "nyc --reporter=lcov --reporter=text cucumber-js test/",
     "express": "node test/site/server.js"
