@@ -1,9 +1,7 @@
-const { defineSupportCode } = require('cucumber');
+const cucumber = require('cucumber');
+const mink = require('../../../src/mink.js');
 
-defineSupportCode((cucumber) => {
-  const Mink = require('../../../src/mink.js');
-  Mink.configure({
-    driver: { protractor: true },
-  });
-  Mink.init(cucumber);
-});
+mink.gherkin(cucumber);
+
+const driver = new mink.Mink();
+driver.hook(cucumber);

@@ -1,17 +1,9 @@
-/**
- * Dependencies
- */
-
 const { expect } = require('chai');
-
-/**
- * Private
- */
+const url = require('url');
 
 const isEqual = function (location) {
-  return this.driver.url().then((parsed) => {
-    expect(parsed.pathname).to.equal(location);
-  });
+  const parsed = url.parse(this.mink.page.url());
+  expect(parsed.pathname).to.equal(location);
 };
 
 const isRoot = function () {
@@ -19,20 +11,14 @@ const isRoot = function () {
 };
 
 const urlMatch = function (regex) {
-  return this.driver.url().then((parsed) => {
-    expect(parsed.pathname).to.match(new RegExp(regex));
-  });
+  const parsed = url.parse(this.mink.page.url());
+  expect(parsed.pathname).to.match(new RegExp(regex));
 };
 
 const queryMatch = function (regex) {
-  return this.driver.url().then((parsed) => {
-    expect(parsed.search).to.match(new RegExp(regex));
-  });
+  const parsed = url.parse(this.mink.page.url());
+  expect(parsed.search).to.match(new RegExp(regex));
 };
-
-/**
- * Interface
- */
 
 module.exports = [
   [/I should be on "([^"]*)"/, isEqual],

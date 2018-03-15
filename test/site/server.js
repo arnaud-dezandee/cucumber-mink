@@ -1,27 +1,27 @@
-/**
- * Dependencies
- */
-
 const path = require('path');
 const express = require('express');
-const body = require('body-parser');
+const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const swig = require('swig');
+const nunjucks = require('nunjucks');
 const routes = require('./routes.js');
 
 const app = express();
+const config = {
+  port: 3000,
+};
 
-app.use(morgan('dev'));
+// Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(morgan('dev'));
 
-app.use(body.json());
-app.use(body.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.engine('swig', swig.renderFile);
-app.set('view engine', 'swig');
-app.set('views', path.join(__dirname, 'views'));
-app.set('view cache', false);
-swig.setDefaults({ cache: false });
+// View engine
+app.set('view engine', 'html');
+nunjucks.configure(path.join(__dirname, 'views'), {
+  express: app,
+});
 
 app.get('/', routes.index);
 app.get('/action', routes.action);
@@ -32,6 +32,6 @@ app.post('/result', routes.result);
 app.get('/post/:id', routes.post);
 app.get('/generate/:number', routes.generate);
 
-app.listen(3000, () => {
-  console.log('Started localhost:3000');
+app.listen(config.port, () => {
+  console.log(`App server running at http://localhost:${config.port}`);
 });

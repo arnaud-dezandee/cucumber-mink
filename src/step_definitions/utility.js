@@ -1,15 +1,7 @@
-/**
- * Dependencies
- */
-
 const Promise = require('bluebird');
 
-/**
- * Private
- */
-
 const viewport = function (width, height) {
-  return this.driver.setViewportSize({
+  return this.mink.page.setViewport({
     width: parseInt(width, 10),
     height: parseInt(height, 10),
   });
@@ -20,12 +12,10 @@ const wait = function (seconds) {
 };
 
 const screenshot = function () {
-  return this.driver.saveScreenshot('./screenshot.png');
+  return this.mink.page.screenshot({
+    path: './screenshot.png',
+  });
 };
-
-/**
- * Interface
- */
 
 module.exports = [
   [/I wait (\d+) seconds?/, wait],

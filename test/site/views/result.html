@@ -1,4 +1,4 @@
-{% extends "layout/main.swig" %}
+{% extends "layout/main.html" %}
 
 {% block title %}Result Page{% endblock %}
 
@@ -14,7 +14,7 @@
         <p class="cb">{{ request.cb }}</p>
 
         <h2>JSON</h2>
-        <pre class="code" data-language="json">{{ request | json }}</pre>
+        <pre class="code" data-language="json">{{ request | dump }}</pre>
     </div>
 
 </div>

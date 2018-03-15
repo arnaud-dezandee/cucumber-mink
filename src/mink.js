@@ -1,214 +1,121 @@
-/**
- * The MIT License (MIT)
- *
- * Copyright (c) 2016 Arnaud Dezandee
- *
- * Authors:
- *     Arnaud Dezandee <dezandee.arnaud@gmail.com>
- */
-
-/**
- * Dependencies
- */
-
-const path = require('path');
 const dbg = require('debug');
-const arity = require('util-arity');
 const Promise = require('bluebird');
-const Immutable = require('immutable');
+const puppeteer = require('puppeteer');
 const defaultsDeep = require('lodash.defaultsdeep');
-const pkg = require('../package.json');
 
-const Step = require('./step.js');
-const configureDriver = require('./driver.js');
+const detectSeries = require('./utils/detect_series.js');
 const definitions = require('./step_definitions/index.js');
-
-/**
- * Private
- */
 
 const debug = dbg('mink');
 
-const DEFAULT_PARAMS = {
-  driver: {
-    viewportSize: {
-      width: 1366,
-      height: 768,
-    },
-    baseUrl: process.env.BASE_URL,
-    desiredCapabilities: {
-      browserName: 'chrome',
-    },
-    logLevel: 'silent',
-    port: 4444,
-    deprecationWarnings: false,
+const DEFAULT_CONFIG = {
+  baseUrl: process.env.BASE_URL,
+  viewport: {
+    width: 1366,
+    height: 768,
   },
-  timeout: 5000,
 };
 
-function noop() {
-  // No operation performed.
+function gherkin(cucumber) {
+  definitions.forEach(([pattern, fn]) => {
+    cucumber.defineStep(pattern, fn);
+  });
 }
 
-/**
- * Public
- */
+function Mink(config = {}) {
+  this.config = defaultsDeep(config, DEFAULT_CONFIG);
+}
 
-class Mink {
-  constructor() {
-    this.steps = Immutable.Map();
-
-    this.parameters = DEFAULT_PARAMS;
-    this.cucumber = null;
-    this.driver = null;
+Mink.prototype.hook = function (cucumber) {
+  const self = this;
+  cucumber.BeforeAll(() => self.setup());
+  cucumber.AfterAll(() => self.cleanup());
+  cucumber.setWorldConstructor(function () {
+    this.mink = self;
+  });
+};
+Mink.prototype.setup = async function () {
+  this.browser = await puppeteer.launch();
+  this.page = await this.browser.newPage();
+  return this.page.setViewport(this.config.viewport);
+};
+Mink.prototype.cleanup = async function () {
+  if (this.browser) {
+    await this.browser.close();
   }
+};
 
-  /**
-   * Mink initialization method and entry point
-   *
-   * @param {Object}  cucumber    cucumber-js context
-   * @param {Object}  parameters
-   * @returns {void}
-   */
-  init(cucumber) {
-    debug('init');
+// Driver methods
+Mink.prototype.html = function (selector) {
+  if (!selector) {
+    return this.page.content();
+  }
+  /* istanbul ignore next */
+  return this.page.$$eval(selector, (elements) => {
+    return elements.map(x => x.outerHTML).join('');
+  });
+};
 
-    const driver = configureDriver(this.parameters.driver);
-    this.cucumber = cucumber;
-    this.driver = driver;
+Mink.prototype.text = function (selector) {
+  /* istanbul ignore next */
+  return this.page.$$eval(selector, (elements) => {
+    return elements.map(x => x.outerText).join('');
+  });
+};
 
-    this.registerHooks(cucumber, driver);
+Mink.prototype.count = function (selector) {
+  /* istanbul ignore next */
+  return this.page.$$eval(selector, (elements) => {
+    return elements.length;
+  });
+};
 
-    definitions.forEach(([pattern, fn]) => {
-      this.defineStep(pattern, fn);
+Mink.prototype.elementsWithText = function (selector, text) {
+  const self = this;
+  return self.page.$$(selector).then(items => Promise.filter(items, (handle) => {
+    /* istanbul ignore next */
+    return self.page.evaluate(obj => obj.innerText, handle)
+      .then(res => res.toUpperCase() === text.toUpperCase());
+  }));
+};
+
+Mink.prototype.elementsWithValue = function (selector, text) {
+  const self = this;
+  return self.page.$$(selector).then(items => Promise.filter(items, (handle) => {
+    /* istanbul ignore next */
+    return self.page.evaluate(obj => obj.value, handle)
+      .then(res => res.toUpperCase() === text.toUpperCase());
+  }));
+};
+
+Mink.prototype.button = function (mixed) {
+  const arr = [
+    () => Promise
+      .try(() => this.page.$$(mixed))
+      .catch((err) => { debug(err); return []; }),
+    () => this.elementsWithText('button', mixed),
+    () => this.elementsWithValue('input[type=submit]', mixed),
+  ];
+  return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
+    .then(({ result }) => {
+      if (!result) throw new Error('Button not found !');
+      return result[0];
     });
-  }
+};
 
-  /**
-   * Mink configuration method
-   *
-   * @param {Object}  parameters
-   * @returns {void}
-   */
-  configure(params = {}) {
-    debug('configure', params);
-    this.parameters = defaultsDeep(params, DEFAULT_PARAMS);
-  }
+Mink.prototype.link = function (mixed) {
+  const arr = [
+    () => Promise
+      .try(() => this.page.$$(mixed))
+      .catch((err) => { debug(err); return []; }),
+    () => this.elementsWithText('a', mixed),
+  ];
+  return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
+    .then(({ result }) => {
+      if (!result) throw new Error('Link not found !');
+      return result[0];
+    });
+};
 
-  /**
-   * Define a new step inside Mink-Cucumber context for use in .features files.
-   *
-   * @param {RegExp}    pattern    step regex
-   * @param {Function}  fn         step function
-   * @returns {Step}
-   */
-  defineStep(pattern, fn) {
-    debug('defineStep', pattern);
-
-    if (!this.steps.has(pattern)) {
-      this.steps = this.steps.set(pattern, new Step(pattern, fn));
-
-      if (this.cucumber) {
-        const wrappedFn = arity(fn.length, (...args) => (
-          Promise.try(() => fn.apply(this, args))
-        ));
-        this.cucumber.defineStep(pattern, wrappedFn);
-      }
-    }
-
-    return this.steps.get(pattern);
-  }
-
-  /**
-   * Search for a matching registered step.
-   *
-   * @param {String} line
-   * @returns {Step}
-   */
-  findStep(line) {
-    debug('findStep', line);
-
-    const step = this.steps.find(s => !!s.match(line));
-    if (!step) throw new Error(`Could not findStep with line "${line}"`);
-
-    return step;
-  }
-
-  /**
-   * @param {String} input line
-   * @returns {Promise}
-   */
-  runStep(line, cb = noop) {
-    debug('runStep', line);
-
-    const step = this.findStep(line);
-    return step.runWith(this, line, cb);
-  }
-
-  /**
-   * @param {Array} lines
-   * @returns {Promise}
-   */
-  manyStep(lines, cb = noop) {
-    debug('manyStep', lines.join(', ').substr(0, 80));
-
-    return Promise.each(lines, line => (
-      this.runStep(line)
-    )).asCallback(cb);
-  }
-
-  /**
-   * @param {Array<Step>}
-   * @returns {Promise}
-   */
-  metaStep(steps, cb = noop) {
-    debug('metaStep', steps);
-
-    return Promise.each(steps, step => (
-      step.runWith(this)
-    )).asCallback(cb);
-  }
-
-  /**
-   * Register mink driver hooks on cucumber context
-   *
-   * @param {Object} Cucumber         cucumber-js context
-   * @param {Object} DriverInstance   mink driver instance
-   * @returns {void}
-   */
-  registerHooks(cucumber, driver) {
-    cucumber.BeforeAll(() => (
-      driver.init().then(() => (
-        driver.setViewportSize(driver.parameters.viewportSize)
-      ))
-    ));
-    cucumber.AfterAll(() => (
-      driver.end()
-    ));
-
-    cucumber.setDefaultTimeout(this.parameters.timeout);
-
-    if (driver.parameters.screenshotPath) {
-      cucumber.After((event) => {
-        if (!event.isFailed()) return null;
-
-        const fileName = [event.getName() || 'Error', ':', event.getLine(), '.png'].join('');
-        const filePath = path.join(driver.parameters.screenshotPath, fileName);
-        return driver.saveScreenshot(filePath);
-      });
-    }
-  }
-}
-
-// Aliases
-Mink.prototype.Given = Mink.prototype.defineStep;
-Mink.prototype.Then = Mink.prototype.defineStep;
-Mink.prototype.When = Mink.prototype.defineStep;
-Mink.prototype.DEFAULT_PARAMS = DEFAULT_PARAMS;
-Mink.prototype.VERSION = pkg.version;
-
-/**
- * Interface
- */
-
-module.exports = new Mink();
+module.exports.Mink = Mink;
+module.exports.gherkin = gherkin;
