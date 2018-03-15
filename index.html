@@ -26,44 +26,73 @@ active: home
           <a href="/steps">See the available steps</a>
         </p>
       </div>
-      <div class="col-md-6">
-        <h3>Can I extend it ?</h3>
-        <p>
-          Yes, you can define your own custom steps just like in standard Cucumber.js.<br/>
-          A set of useful methods are also available with mink: <a href="/api">Core API</a>
-        </p>
-      </div>
     </div>
-    <h2>Running your test suite</h2>
-    <p>
-      In order to run ours test suite, we need a Selenium server (headless browser).<br/>
-      I'll use <a href="https://www.mozilla.org/fr/firefox/new/" target="_blank" rel="external">Firefox</a> with default selenium settings: <code>localhost:4444</code> through Protractor's <a href="https://github.com/angular/webdriver-manager">webdriver-manager</a>
-    </p>
-    <h3>With the CLI</h3>
-    <pre><code class="bash">{{ site.data.home.cli }}</code></pre>
-    <p>See <code>cucumber-mink -h</code> if you want to use the CLI with a custom Selenium server</p>
-    <h3>With Cucumber.js support code</h3>
-    <pre><code class="js">{{ site.data.home.support_code }}</code></pre>
-    <p>See <a href="https://github.com/Adezandee/cucumber-mink/tree/master/examples" rel="external">examples</a> for support code method with BrowserStack, SauceLabs, Chrome and Firefox</p>
-    <div class="row">
-      <div class="col-md-6">
-        <h2>How does it work?</h2>
-        <p>Cucumber-mink is an open source addon for cucumber.js. It makes it possible to quickly write Gherkin tests with Cucumber.js framework.</p>
-        <p>It use <a href="http://webdriver.io/" target="_blank" rel="external">WebdriverIO</a> internally to send request to the Selenium server.</p>
-      </div>
-      <div class="col-md-6">
-        <h2>Run your tests in the cloud</h2>
-        <p>
-          Services like Sauce Labs or BrowserStack provide selenium testing on remote hosts.
-          You're able to run tests on a wide collection of platforms, devices and browser combinations.
-        </p>
-        <p class="cloud-hosts">
-          <a href="https://saucelabs.com" target="_blank" rel="external">Sauce Labs</a>
-          <a href="http://www.browserstack.com/" target="_blank" rel="external">BrowserStack</a>
-          <a href="http://www.testingbot.com/" target="_blank" rel="external">TestingBot</a>
-        </p>
-      </div>
-    </div>
+    <h2>How to start</h2>
+    <p>Below steps will help you start a new test project from scratch.</p>
+    <h6 id="1-folder-structure">1. Folder structure</h6>
+    <p>Let's start a new integration testing project for an app called <em>mysite</em>. The folder structure will need to match the structure expected by cucumber.js:</p>
+    <pre><code>test/
+    ---- features/
+    --------- step_definitions/
+    --------- support/
+    -------------- mink.js
+    --------- mysite.feature
+    ---- package.json</code></pre>
+    <p>Features directory contains cucumber feature files written in gherkin syntax. step_definitions contains the JavaScript implementation of gherkin test cases. Check out the GitHub repository for example implementations covering most used testing scenarios.</p>
+    <h6 id="2-packagejson">2. Package.json</h6>
+    <p>This can be an example package.json file for our project:</p>
+    <pre><code class="json language-json">{
+        "name": "mysite-test",
+        "version": "1.0.0",
+        "description": "Integration testing for mysite v1",
+        "dependencies": {
+            "cucumber": "latest",
+            "cucumber-mink": "latest"
+        }
+    }</code></pre>
+    <h6 id="3-install-dependencies">3. Install dependencies</h6>
+    <p>Now we can get the project dependencies installed:</p>
+    <pre><code class="sh language-sh">$ npm install</code></pre>
+    <h6 id="4-scenario-definitions">4. Scenario definitions</h6>
+    <p>Let's start with the scenario file called <em>mysite.feature</em>. For more examples of
+    feature and scenario definitions, check out <a href="https://github.com/Adezandee/cucumber-mink/tree/master/test">test folder</a>.</p>
+    <h6 id="5-get-cucumber-mink-gherkin-steps">5. Get cucumber-mink gherkin steps</h6>
+    <p>We now need the corresponding step definitions that implement the steps in our scenario. cucumber-mink has a collection of steps already implemented - ready to be included in your project - see <a href="#gherkin-expressions">gherkin expressions</a>.</p>
+    <p>The simplest way to adopt these expressions is to create a file named apickli-gherkin.js in features/step_definitions and import the apickli/gherkin.js module.</p>
+    <p>Add the following to test/features/step_definitions/apickli-gherkin.js</p>
+    <pre>
+      <code class="js language-js">
+      const cucumber = require('cucumber');
+      const mink = require('cucumber-mink');
+
+      mink.gherkin(cucumber);
+      </code>
+    </pre>
+    <h6 id="6-support-code">6. Support code</h6>
+    <p>Now we need a support code to implement cucumber hooks and initialize apickli. Add the following in features/support/init.js:</p>
+    <pre>
+      <code class="js language-js">
+      const cucumber = require('cucumber');
+      const mink = require('cucumber-mink');
+
+      const driver = new mink.Mink({
+        baseUrl: 'http://localhost:8080',
+        viewport: {
+          width: 1366,
+          height: 768,
+        },
+      });
+
+      driver.hook(cucumber);
+      </code>
+    </pre>
+    <h6 id="7-run-tests-with-cucumberjs">7. Run tests with cucumber.js</h6>
+    <p>The following will run our scenario (in the project directory):</p>
+    <pre><code class="sh language-sh">$ npx cucumber-js features/mysite.feature
+    ....
+
+    1 scenario (1 passed)
+    3 steps (3 passed)</code></pre>
   </div>
 </div>
 

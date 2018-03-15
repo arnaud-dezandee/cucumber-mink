@@ -24,38 +24,3 @@ ex1: |
       And I follow "Post-1"
       Then I should be on "/post/1"
       And I should see "Post-1"
-
-cli: |
-  $ webdriver-manager start &
-  $ cucumber-mink features/test.feature -- -f pretty
-
-  Feature: Post page
-
-    Scenario: Go on post 1                                      # features/test.feature:4
-      Given I browse "http://my-app:3000/"                      # features/test.feature:7
-      Given I am on homepage                                    # features/test.feature:8
-      And I follow "Post-1"                                     # features/test.feature:9
-      Then I should be on "/post/1"                             # features/test.feature:10
-      And I should see "Post-1"                                 # features/test.feature:11
-
-support_code: |
-  // features/support/mink.js
-
-  const { defineSupportCode } = require('cucumber');
-
-  defineSupportCode((cucumber) => {
-    const Mink = require('cucumber-mink');
-    // Selenium + Firefox
-    const parameters = {
-      driver: {
-        logLevel: 'silent',
-        desiredCapabilities: {
-          browserName: 'firefox',
-        },
-        port: 4444,
-      },
-      timeout: 5000,
-    };
-    Mink.configure(parameters);
-    Mink.init(cucumber);
-  });
