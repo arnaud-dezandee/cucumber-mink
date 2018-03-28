@@ -38,10 +38,10 @@
     "chai": "4.1.2",
     "debug": "3.1.0",
     "lodash.defaultsdeep": "4.6.0",
-    "puppeteer": "1.1.1"
+    "puppeteer": "1.2.0"
   },
   "peerDependencies": {
-    "cucumber": "^4.0.0"
+    "cucumber": "^4.1.0"
   },
   "devDependencies": {
     "body-parser": "1.18.2",
@@ -52,6 +52,6 @@
     "morgan": "1.9.0",
     "nunjucks": "3.1.2",
     "nyc": "11.6.0",
-    "semantic-release": "15.0.3"
+    "semantic-release": "15.1.4"
   }
 }
