@@ -46,7 +46,7 @@
   "devDependencies": {
     "body-parser": "1.18.2",
     "coveralls": "~3.0.0",
-    "cucumber": "^4.0.0",
+    "cucumber": "^4.1.0",
     "express": "4.16.3",
     "lodash.range": "~3.2.0",
     "morgan": "1.9.0",
