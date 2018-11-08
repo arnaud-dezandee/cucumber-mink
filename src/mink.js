@@ -14,6 +14,8 @@ const DEFAULT_CONFIG = {
     width: 1366,
     height: 768,
   },
+  headless: process.env.RUN_HEADLESS !== '0',
+  devtools: process.env.RUN_DEVTOOLS === '1',
 };
 
 function gherkin(cucumber) {
@@ -35,7 +37,10 @@ Mink.prototype.hook = function (cucumber) {
   });
 };
 Mink.prototype.setup = async function () {
-  this.browser = await puppeteer.launch();
+  this.browser = await puppeteer.launch({
+    headless: this.config.headless && !this.config.devtools,
+    devtools: this.config.devtools,
+  });
   this.page = await this.browser.newPage();
   return this.page.setViewport(this.config.viewport);
 };
