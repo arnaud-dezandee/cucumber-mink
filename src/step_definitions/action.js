@@ -51,10 +51,10 @@ const sendKey = function (key, selector) {
 };
 
 module.exports = [
-  [/I click on "([^"]*)"/, click],
-  [/I press "([^"]*)"/, press],
-  [/I follow "([^"]*)"/, follow],
-  [/I hover "([^"]*)" element/, hover],
-  [/I submit "([^"]*)" form/, submit],
-  [/I send key "([^"]*)" in "([^"]*)" element/, sendKey],
+  [/^(?:|I )click on "([^"]*)"/, click],
+  [/^(?:|I )press "([^"]*)"/, press],
+  [/^(?:|I )follow "([^"]*)"/, follow],
+  [/^(?:|I )hover "([^"]*)" element/, hover],
+  [/^(?:|I )submit "([^"]*)" form/, submit],
+  [/^(?:|I )send key "([^"]*)" in "([^"]*)" element/, sendKey],
 ];
