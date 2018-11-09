@@ -21,8 +21,8 @@ const queryMatch = function (regex) {
 };
 
 module.exports = [
-  [/I should be on "([^"]*)"/, isEqual],
-  [/I should be on (?:|the )homepage/, isRoot],
+  [/^(?:|I )should be on "([^"]*)"/, isEqual],
+  [/^(?:|I )should be on (?:|the )homepage/, isRoot],
   [/the url should match (.+)/, urlMatch],
   [/the url parameter should match (.+)/, queryMatch],
 ];

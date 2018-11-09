@@ -38,10 +38,10 @@ const checkInput = function (state) {
 };
 
 module.exports = [
-  [/I fill in "([^"]*)" with "([^"]*)"/, fillField],
-  [/I fill in "([^"]*)" with:/, fillField],
-  [/I fill in the following:/, fillFieldsHash],
-  [/I select "([^"]*)" from "([^"]*)"/, selectFrom],
-  [/I check "([^"]*)"/, checkInput(true)],
-  [/I uncheck "([^"]*)"/, checkInput(false)],
+  [/^(?:|I )fill in "([^"]*)" with "([^"]*)"/, fillField],
+  [/^(?:|I )fill in "([^"]*)" with:/, fillField],
+  [/^(?:|I )fill in the following:/, fillFieldsHash],
+  [/^(?:|I )select "([^"]*)" from "([^"]*)"/, selectFrom],
+  [/^(?:|I )check "([^"]*)"/, checkInput(true)],
+  [/^(?:|I )uncheck "([^"]*)"/, checkInput(false)],
 ];
