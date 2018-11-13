@@ -75,16 +75,22 @@ Mink.prototype.count = function (selector) {
   });
 };
 
-Mink.prototype.elementsWithText = function (selector, text) {
+Mink.prototype.elementsWithText = function (selector, text, exact = true) {
   const self = this;
   return self.page.$$(selector).then(items => Promise.filter(items, (handle) => {
     /* istanbul ignore next */
     return self.page.evaluate(obj => obj.innerText, handle)
-      .then(res => res.toUpperCase().trim() === text.toUpperCase());
+      .then(res => {
+        if (exact) {
+            return res.toUpperCase() === text.toUpperCase()
+        } else {
+            return res.toUpperCase().indexOf(text.toUpperCase()) >= 0
+        }
+      });
   }));
 };
 
-Mink.prototype.elementsWithValue = function (selector, text) {
+Mink.prototype.elementsWithValue = function (selector, text, exact = true) {
   const self = this;
   return self.page.$$(selector).then(items => Promise.filter(items, (handle) => {
     /* istanbul ignore next */
@@ -113,7 +119,8 @@ Mink.prototype.link = function (mixed) {
     () => Promise
       .try(() => this.page.$$(mixed))
       .catch((err) => { debug(err); return []; }),
-    () => this.elementsWithText('a', mixed),
+    () => this.elementsWithText('a', mixed, true),
+    () => this.elementsWithText('a', mixed, false),
   ];
   return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
     .then(({ result }) => {
