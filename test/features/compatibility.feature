@@ -19,6 +19,11 @@ Feature: Driver compatibilities
     Then I should be on "/form"
       And I should see "Form Page"
 
+    Given I am on homepage
+      And I follow "Follow me to form"
+    Then I should be on "/form"
+      And I should see "Form Page"
+
   Scenario: Press
     Given I am on "/form"
       And I press "Button-Register"
