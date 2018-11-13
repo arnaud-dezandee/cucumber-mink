@@ -80,7 +80,7 @@ Mink.prototype.elementsWithText = function (selector, text) {
   return self.page.$$(selector).then(items => Promise.filter(items, (handle) => {
     /* istanbul ignore next */
     return self.page.evaluate(obj => obj.innerText, handle)
-      .then(res => res.toUpperCase() === text.toUpperCase());
+      .then(res => res.toUpperCase().trim() === text.toUpperCase());
   }));
 };
 
