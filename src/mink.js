@@ -16,6 +16,7 @@ const DEFAULT_CONFIG = {
   },
   headless: process.env.RUN_HEADLESS !== '0',
   devtools: process.env.RUN_DEVTOOLS === '1',
+  noSandbox: process.env.NO_SANDBOX === '1',
 };
 
 function gherkin(cucumber) {
@@ -38,6 +39,7 @@ Mink.prototype.hook = function (cucumber) {
 };
 Mink.prototype.setup = async function () {
   this.browser = await puppeteer.launch({
+    args: (this.config.noSandbox) ? ['--no-sandbox'] : [],
     headless: this.config.headless && !this.config.devtools,
     devtools: this.config.devtools,
   });
