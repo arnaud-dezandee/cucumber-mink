@@ -25,30 +25,35 @@ const notMatchText = function (regex) {
 };
 
 const elementContainsText = function (expected, selector) {
+  selector = this.mink.getSelector(selector);
   return this.mink.html(selector).then((html) => {
     expect(html).to.contain(expected);
   });
 };
 
 const elementNotContainsText = function (expected, selector) {
+  selector = this.mink.getSelector(selector);
   return this.mink.html(selector).then((html) => {
     expect(html).to.not.contain(expected);
   });
 };
 
 const elementTextContainsText = function (expected, selector) {
+  selector = this.mink.getSelector(selector);
   return this.mink.text(selector).then((str) => {
     expect(str).to.contain(expected);
   });
 };
 
 const elementTextNotContainsText = function (expected, selector) {
+  selector = this.mink.getSelector(selector);
   return this.mink.text(selector).then((str) => {
     expect(str).to.not.contain(expected);
   });
 };
 
 const elementsCount = function (expected, selector) {
+  selector = this.mink.getSelector(selector);
   return this.mink.count(selector).then((count) => {
     expect(count).to.equal(parseInt(expected, 10));
   });
@@ -56,6 +61,7 @@ const elementsCount = function (expected, selector) {
 
 const waitForSelector = (visible = false, hidden = false) => {
   return function (selector) {
+    selector = this.mink.getSelector(selector);
     return this.mink.page.waitForSelector(selector, {
       timeout: 100,
       visible,
@@ -74,6 +80,7 @@ const isNotVisible = waitForSelector(false, true);
 
 const isChecked = (expected) => {
   return function (selector) {
+    selector = this.mink.getSelector(selector);
     /* istanbul ignore next */
     return this.mink.page.$eval(selector, elem => elem.checked)
       .then(res => expect(res).to.equal(expected));
@@ -82,6 +89,7 @@ const isChecked = (expected) => {
 
 const isDisabled = (expected) => {
   return function (selector) {
+    selector = this.mink.getSelector(selector);
     /* istanbul ignore next */
     return this.mink.page.$eval(selector, elem => elem.disabled)
       .then(res => expect(res).to.equal(expected));

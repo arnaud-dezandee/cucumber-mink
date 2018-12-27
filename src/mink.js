@@ -16,6 +16,7 @@ const DEFAULT_CONFIG = {
   },
   headless: process.env.RUN_HEADLESS !== '0',
   devtools: process.env.RUN_DEVTOOLS === '1',
+  selectors: {},
 };
 
 function gherkin(cucumber) {
@@ -127,6 +128,10 @@ Mink.prototype.link = function (mixed) {
       if (!result) throw new Error('Link not found !');
       return result[0];
     });
+};
+
+Mink.prototype.getSelector = function (key) {
+  return (key in this.config.selectors) ? this.config.selectors[key] : key;
 };
 
 module.exports.Mink = Mink;
