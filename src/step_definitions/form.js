@@ -2,6 +2,7 @@
 const Promise = require('bluebird');
 
 const fillField = function (selector, value) {
+  selector = this.mink.getSelector(selector);
   /* istanbul ignore next */
   return this.mink.page.$eval(selector, (el, val) => {
     el.value = val;
@@ -18,6 +19,7 @@ const fillFieldsHash = function (hashDataTable) {
 };
 
 const selectFrom = function (option, selector) {
+  selector = this.mink.getSelector(selector);
   return this.mink.elementsWithText(`${selector} option`, option).then((handles) => {
     return Promise.each(handles, (handle) => {
       /* istanbul ignore next */
@@ -30,6 +32,7 @@ const selectFrom = function (option, selector) {
 
 const checkInput = function (state) {
   return function (selector) {
+    selector = this.mink.getSelector(selector);
     /* istanbul ignore next */
     return this.mink.page.$eval(selector, (el, val) => {
       el.checked = val;

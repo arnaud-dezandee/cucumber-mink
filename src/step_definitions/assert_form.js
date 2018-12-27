@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 
 const currentOption = function (selector, expected) {
+  selector = this.mink.getSelector(selector);
   /* istanbul ignore next */
   return this.mink.page.$eval(selector, x => x.value).then((value) => {
     return this.mink.html(`${selector} option[value="${value}"]`).then((html) => {
@@ -10,6 +11,7 @@ const currentOption = function (selector, expected) {
 };
 
 const fieldContains = function (selector, expected) {
+  selector = this.mink.getSelector(selector);
   /* istanbul ignore next */
   return this.mink.page.$eval(selector, x => x.value).then((value) => {
     expect(value).to.contain(expected);
@@ -17,6 +19,7 @@ const fieldContains = function (selector, expected) {
 };
 
 const fieldNotContains = function (selector, expected) {
+  selector = this.mink.getSelector(selector);
   /* istanbul ignore next */
   return this.mink.page.$eval(selector, x => x.value).then((value) => {
     expect(value).to.not.contain(expected);
