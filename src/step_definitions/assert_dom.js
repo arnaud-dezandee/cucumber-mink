@@ -68,7 +68,7 @@ const waitForSelector = (visible = false, hidden = false) => {
       hidden,
     }).then((handle) => {
       expect(handle).to.not.equal(undefined);
-      handle.dispose();
+      if (handle) handle.dispose();
     });
   };
 };
