@@ -1,6 +1,6 @@
 /* TEAM */
 Author: Arnaud Dezandee
-Contact: https://github.com/Adezandee
+Contact: https://github.com/arnaud-dezandee
 From: Paris, France
 
 /* SITE */

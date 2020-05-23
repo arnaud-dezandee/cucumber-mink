@@ -5,12 +5,12 @@
   "main": "index.html",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Adezandee/cucumber-mink.git"
+    "url": "git@github.com:arnaud-dezandee/cucumber-mink.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Adezandee/cucumber-mink/issues"
+    "url": "https://github.com/arnaud-dezandee/cucumber-mink/issues"
   },
   "homepage": "http://cucumber-mink.js.org/",
   "devDependencies": {
