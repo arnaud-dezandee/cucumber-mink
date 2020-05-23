@@ -16,13 +16,13 @@
     "name": "Arnaud Dezandee",
     "email": "dezandee.arnaud@gmail.com"
   },
-  "homepage": "https://github.com/Adezandee/cucumber-mink",
+  "homepage": "https://github.com/arnaud-dezandee/cucumber-mink",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adezandee/cucumber-mink.git"
+    "url": "git+https://github.com/arnaud-dezandee/cucumber-mink.git"
   },
   "bugs": {
-    "url": "http://github.com/Adezandee/cucumber-mink/issues"
+    "url": "http://github.com/arnaud-dezandee/cucumber-mink/issues"
   },
   "engines": {
     "node": ">= 8"
@@ -45,7 +45,6 @@
   },
   "devDependencies": {
     "body-parser": "1.19.0",
-    "coveralls": "3.1.0",
     "cucumber": "6.0.5",
     "eslint": "7.1.0",
     "eslint-config-airbnb-base": "14.1.0",
