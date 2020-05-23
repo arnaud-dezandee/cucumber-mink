@@ -23,7 +23,7 @@ class Result extends Error {
  */
 
 function detectSeries(arr, iterator, check) {
-  return Promise.each(arr, item => (
+  return Promise.each(arr, (item) => (
     Promise.try(() => iterator(item))
       .tap(debug)
       .then((result) => {

@@ -58,14 +58,14 @@ Mink.prototype.html = function (selector) {
   }
   /* istanbul ignore next */
   return this.page.$$eval(selector, (elements) => {
-    return elements.map(x => x.outerHTML).join('');
+    return elements.map((x) => x.outerHTML).join('');
   });
 };
 
 Mink.prototype.text = function (selector) {
   /* istanbul ignore next */
   return this.page.$$eval(selector, (elements) => {
-    return elements.map(x => x.outerText).join('');
+    return elements.map((x) => x.outerText).join('');
   });
 };
 
@@ -78,25 +78,24 @@ Mink.prototype.count = function (selector) {
 
 Mink.prototype.elementsWithText = function (selector, text, exact = true) {
   const self = this;
-  return self.page.$$(selector).then(items => Promise.filter(items, (handle) => {
+  return self.page.$$(selector).then((items) => Promise.filter(items, (handle) => {
     /* istanbul ignore next */
-    return self.page.evaluate(obj => obj.innerText, handle)
-      .then(res => {
+    return self.page.evaluate((obj) => obj.innerText, handle)
+      .then((res) => {
         if (exact) {
-            return res.toUpperCase() === text.toUpperCase()
-        } else {
-            return res.toUpperCase().indexOf(text.toUpperCase()) >= 0
+          return res.toUpperCase() === text.toUpperCase();
         }
+        return res.toUpperCase().indexOf(text.toUpperCase()) >= 0;
       });
   }));
 };
 
-Mink.prototype.elementsWithValue = function (selector, text, exact = true) {
+Mink.prototype.elementsWithValue = function (selector, text) {
   const self = this;
-  return self.page.$$(selector).then(items => Promise.filter(items, (handle) => {
+  return self.page.$$(selector).then((items) => Promise.filter(items, (handle) => {
     /* istanbul ignore next */
-    return self.page.evaluate(obj => obj.value, handle)
-      .then(res => res.toUpperCase() === text.toUpperCase());
+    return self.page.evaluate((obj) => obj.value, handle)
+      .then((res) => res.toUpperCase() === text.toUpperCase());
   }));
 };
 
@@ -108,7 +107,7 @@ Mink.prototype.button = function (mixed) {
     () => this.elementsWithText('button', mixed),
     () => this.elementsWithValue('input[type=submit]', mixed),
   ];
-  return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
+  return detectSeries(arr, (fn) => fn(), (WebElements) => !!WebElements.length)
     .then(({ result }) => {
       if (!result) throw new Error('Button not found !');
       return result[0];
@@ -123,7 +122,7 @@ Mink.prototype.link = function (mixed) {
     () => this.elementsWithText('a', mixed, true),
     () => this.elementsWithText('a', mixed, false),
   ];
-  return detectSeries(arr, fn => fn(), WebElements => !!WebElements.length)
+  return detectSeries(arr, (fn) => fn(), (WebElements) => !!WebElements.length)
     .then(({ result }) => {
       if (!result) throw new Error('Link not found !');
       return result[0];

@@ -1,8 +1,8 @@
-const Errors = require('../utils/errors.js');
 const url = require('url');
+const Errors = require('../utils/errors.js');
 
 // From https://github.com/sindresorhus/is-absolute-url
-const isAbsoluteUrl = location => /^(?:\w+:)\/\//.test(location);
+const isAbsoluteUrl = (location) => /^(?:\w+:)\/\//.test(location);
 
 const parseUrlWithEnv = (location) => {
   const matches = /^\${([^"]*)}/.exec(location);

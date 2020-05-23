@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const cucumber = require('cucumber');
 const mink = require('cucumber-mink');
 

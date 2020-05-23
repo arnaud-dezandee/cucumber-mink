@@ -3,7 +3,7 @@ const url = require('url');
 
 const isEqual = function (location) {
   const parsed = url.parse(this.mink.page.url());
-  expect([parsed.pathname,parsed.search].join('')).to.equal(location);
+  expect([parsed.pathname, parsed.search].join('')).to.equal(location);
 };
 
 const isRoot = function () {

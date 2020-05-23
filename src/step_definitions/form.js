@@ -23,8 +23,8 @@ const selectFrom = function (option, selector) {
   return this.mink.elementsWithText(`${selector} option`, option).then((handles) => {
     return Promise.each(handles, (handle) => {
       /* istanbul ignore next */
-      return this.mink.page.evaluate(x => x.value, handle)
-        .then(value => this.mink.page.select(selector, value))
+      return this.mink.page.evaluate((x) => x.value, handle)
+        .then((value) => this.mink.page.select(selector, value))
         .then(() => handle.dispose());
     });
   });

@@ -82,8 +82,8 @@ const isChecked = (expected) => {
   return function (selector) {
     selector = this.mink.getSelector(selector);
     /* istanbul ignore next */
-    return this.mink.page.$eval(selector, elem => elem.checked)
-      .then(res => expect(res).to.equal(expected));
+    return this.mink.page.$eval(selector, (elem) => elem.checked)
+      .then((res) => expect(res).to.equal(expected));
   };
 };
 
@@ -91,8 +91,8 @@ const isDisabled = (expected) => {
   return function (selector) {
     selector = this.mink.getSelector(selector);
     /* istanbul ignore next */
-    return this.mink.page.$eval(selector, elem => elem.disabled)
-      .then(res => expect(res).to.equal(expected));
+    return this.mink.page.$eval(selector, (elem) => elem.disabled)
+      .then((res) => expect(res).to.equal(expected));
   };
 };
 
