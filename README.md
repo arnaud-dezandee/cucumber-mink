@@ -11,10 +11,8 @@
 
 ## Features
 
-Run your tests with a wide range of Selenium browser: Chrome, Firefox, IE
-
+Run your tests with [puppeteer](https://github.com/puppeteer/puppeteer) - Chrome
  - [Steps Dictionary (40+)](http://cucumber-mink.js.org/steps/)
- - [Core API](http://cucumber-mink.js.org/api/)
 
 ## Documentation
 
