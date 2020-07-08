@@ -91,7 +91,7 @@
       example: Then the "h2.content-subhead" element should exist
 
     - title: element not exists
-      regex: /^the "([^"]*)" element should exist$/
+      regex: /^the "([^"]*)" element should not exist$/
       description: Assert that no element exists matching given selector.
       example: Then the "h2.content-subhead" element should not exist
 
