@@ -54,6 +54,6 @@
     "morgan": "1.10.0",
     "nunjucks": "3.2.1",
     "nyc": "15.0.1",
-    "semantic-release": "17.0.7"
+    "semantic-release": "17.2.3"
   }
 }
