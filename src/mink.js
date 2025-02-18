@@ -38,10 +38,14 @@ Mink.prototype.hook = function (cucumber) {
   });
 };
 Mink.prototype.setup = async function () {
-  this.browser = await puppeteer.launch({
+  puppeteer_config = {
     headless: this.config.headless && !this.config.devtools,
     devtools: this.config.devtools,
-  });
+  }
+  if ('puppeteer' in this.config) {
+    Object.assign(puppeteer_config, this.config.puppeteer);
+  }
+  this.browser = await puppeteer.launch(puppeteer_config);
   this.page = await this.browser.newPage();
   return this.page.setViewport(this.config.viewport);
 };
