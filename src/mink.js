@@ -38,7 +38,7 @@ Mink.prototype.hook = function (cucumber) {
   });
 };
 Mink.prototype.setup = async function () {
-  puppeteer_config = {
+  const puppeteer_config = {
     headless: this.config.headless && !this.config.devtools,
     devtools: this.config.devtools,
   }
