@@ -57,80 +57,96 @@ Mink.prototype.html = function (selector) {
     return this.page.content();
   }
   /* istanbul ignore next */
-  return this.page.$$eval(selector, (elements) => {
-    return elements.map((x) => x.outerHTML).join('');
+  return this.page.$$eval(selector, elements => {
+    return elements.map(x => x.outerHTML).join('');
   });
 };
 
 Mink.prototype.text = function (selector) {
   /* istanbul ignore next */
-  return this.page.$$eval(selector, (elements) => {
-    return elements.map((x) => x.outerText).join('');
+  return this.page.$$eval(selector, elements => {
+    return elements.map(x => x.outerText).join('');
   });
 };
 
 Mink.prototype.count = function (selector) {
   /* istanbul ignore next */
-  return this.page.$$eval(selector, (elements) => {
+  return this.page.$$eval(selector, elements => {
     return elements.length;
   });
 };
 
 Mink.prototype.elementsWithText = function (selector, text, exact = true) {
   const self = this;
-  return self.page.$$(selector).then((items) => Promise.filter(items, (handle) => {
-    /* istanbul ignore next */
-    return self.page.evaluate((obj) => obj.innerText, handle)
-      .then((res) => {
-        if (exact) {
-          return res.toUpperCase() === text.toUpperCase();
-        }
-        return res.toUpperCase().indexOf(text.toUpperCase()) >= 0;
-      });
-  }));
+  return self.page.$$(selector).then(items =>
+    Promise.filter(items, handle => {
+      /* istanbul ignore next */
+      return self.page
+        .evaluate(obj => obj.innerText, handle)
+        .then(res => {
+          if (exact) {
+            return res.toUpperCase() === text.toUpperCase();
+          }
+          return res.toUpperCase().indexOf(text.toUpperCase()) >= 0;
+        });
+    }),
+  );
 };
 
 Mink.prototype.elementsWithValue = function (selector, text) {
   const self = this;
-  return self.page.$$(selector).then((items) => Promise.filter(items, (handle) => {
-    /* istanbul ignore next */
-    return self.page.evaluate((obj) => obj.value, handle)
-      .then((res) => res.toUpperCase() === text.toUpperCase());
-  }));
+  return self.page.$$(selector).then(items =>
+    Promise.filter(items, handle => {
+      /* istanbul ignore next */
+      return self.page
+        .evaluate(obj => obj.value, handle)
+        .then(res => res.toUpperCase() === text.toUpperCase());
+    }),
+  );
 };
 
 Mink.prototype.button = function (mixed) {
   const arr = [
-    () => Promise
-      .try(() => this.page.$$(mixed))
-      .catch((err) => { debug(err); return []; }),
+    () =>
+      Promise.try(() => this.page.$$(mixed)).catch(err => {
+        debug(err);
+        return [];
+      }),
     () => this.elementsWithText('button', mixed),
     () => this.elementsWithValue('input[type=submit]', mixed),
   ];
-  return detectSeries(arr, (fn) => fn(), (WebElements) => !!WebElements.length)
-    .then(({ result }) => {
-      if (!result) throw new Error('Button not found !');
-      return result[0];
-    });
+  return detectSeries(
+    arr,
+    fn => fn(),
+    WebElements => !!WebElements.length,
+  ).then(({ result }) => {
+    if (!result) throw new Error('Button not found !');
+    return result[0];
+  });
 };
 
 Mink.prototype.link = function (mixed) {
   const arr = [
-    () => Promise
-      .try(() => this.page.$$(mixed))
-      .catch((err) => { debug(err); return []; }),
+    () =>
+      Promise.try(() => this.page.$$(mixed)).catch(err => {
+        debug(err);
+        return [];
+      }),
     () => this.elementsWithText('a', mixed, true),
     () => this.elementsWithText('a', mixed, false),
   ];
-  return detectSeries(arr, (fn) => fn(), (WebElements) => !!WebElements.length)
-    .then(({ result }) => {
-      if (!result) throw new Error('Link not found !');
-      return result[0];
-    });
+  return detectSeries(
+    arr,
+    fn => fn(),
+    WebElements => !!WebElements.length,
+  ).then(({ result }) => {
+    if (!result) throw new Error('Link not found !');
+    return result[0];
+  });
 };
 
 Mink.prototype.getSelector = function (key) {
-  return (key in this.config.selectors) ? this.config.selectors[key] : key;
+  return key in this.config.selectors ? this.config.selectors[key] : key;
 };
 
 module.exports.Mink = Mink;
