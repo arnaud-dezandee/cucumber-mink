@@ -1,4 +1,4 @@
-const cucumber = require('cucumber');
+const cucumber = require('@cucumber/cucumber');
 const mink = require('../../../src/mink.js');
 
 mink.gherkin(cucumber);
