@@ -25,7 +25,7 @@
     "url": "http://github.com/arnaud-dezandee/cucumber-mink/issues"
   },
   "engines": {
-    "node": ">= 8"
+    "node": ">= 18"
   },
   "main": "src/mink.js",
   "scripts": {
@@ -35,25 +35,23 @@
   },
   "dependencies": {
     "bluebird": "3.7.2",
-    "chai": "4.2.0",
-    "debug": "4.1.1",
+    "chai": "4.5.0",
+    "debug": "4.4.0",
     "lodash.defaultsdeep": "4.6.1",
-    "puppeteer": "3.1.0"
+    "puppeteer": "^24.2.1"
   },
   "peerDependencies": {
-    "cucumber": "^6.0.0"
+    "@cucumber/cucumber": "^11.2.0"
   },
   "devDependencies": {
-    "body-parser": "1.19.0",
-    "cucumber": "6.0.5",
-    "eslint": "7.1.0",
-    "eslint-config-airbnb-base": "14.1.0",
-    "eslint-plugin-import": "2.20.2",
-    "express": "4.17.1",
+    "@cucumber/cucumber": "^11.2.0",
+    "body-parser": "1.20.3",
+    "express": "4.21.2",
     "lodash.range": "3.2.0",
     "morgan": "1.10.0",
-    "nunjucks": "3.2.1",
-    "nyc": "15.0.1",
-    "semantic-release": "17.0.7"
+    "nunjucks": "3.2.4",
+    "nyc": "17.1.0",
+    "prettier": "3.5.1",
+    "semantic-release": "24.2.3"
   }
 }
