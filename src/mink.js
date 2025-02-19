@@ -25,61 +25,64 @@ function gherkin(cucumber) {
   });
 }
 
-function Mink(config = {}) {
-  this.config = defaultsDeep(config, DEFAULT_CONFIG);
-}
-
-Mink.prototype.hook = function (cucumber) {
-  const self = this;
-  cucumber.BeforeAll(() => self.setup());
-  cucumber.AfterAll(() => self.cleanup());
-  cucumber.setWorldConstructor(function () {
-    this.mink = self;
-  });
-};
-Mink.prototype.setup = async function () {
-  this.browser = await puppeteer.launch({
-    headless: this.config.headless && !this.config.devtools,
-    devtools: this.config.devtools,
-  });
-  this.page = await this.browser.newPage();
-  return this.page.setViewport(this.config.viewport);
-};
-Mink.prototype.cleanup = async function () {
-  if (this.browser) {
-    await this.browser.close();
+class Mink {
+  constructor(config = {}) {
+    this.config = defaultsDeep(config, DEFAULT_CONFIG);
   }
-};
 
-// Driver methods
-Mink.prototype.html = function (selector) {
-  if (!selector) {
-    return this.page.content();
+  hook(cucumber) {
+    const self = this;
+    cucumber.BeforeAll(() => self.setup());
+    cucumber.AfterAll(() => self.cleanup());
+    cucumber.setWorldConstructor(function () {
+      this.mink = self;
+    });
   }
-  /* istanbul ignore next */
-  return this.page.$$eval(selector, elements => {
-    return elements.map(x => x.outerHTML).join('');
-  });
-};
 
-Mink.prototype.text = function (selector) {
-  /* istanbul ignore next */
-  return this.page.$$eval(selector, elements => {
-    return elements.map(x => x.outerText).join('');
-  });
-};
+  async setup() {
+    this.browser = await puppeteer.launch({
+      headless: this.config.headless && !this.config.devtools,
+      devtools: this.config.devtools,
+    });
+    this.page = await this.browser.newPage();
+    return this.page.setViewport(this.config.viewport);
+  }
 
-Mink.prototype.count = function (selector) {
-  /* istanbul ignore next */
-  return this.page.$$eval(selector, elements => {
-    return elements.length;
-  });
-};
+  async cleanup() {
+    if (this.browser) {
+      await this.browser.close();
+    }
+  }
 
-Mink.prototype.elementsWithText = function (selector, text, exact = true) {
-  const self = this;
-  return self.page.$$(selector).then(items =>
-    Promise.filter(items, handle => {
+  // Driver methods
+  html(selector) {
+    if (!selector) {
+      return this.page.content();
+    }
+    /* istanbul ignore next */
+    return this.page.$$eval(selector, elements => {
+      return elements.map(x => x.outerHTML).join('');
+    });
+  }
+
+  text(selector) {
+    /* istanbul ignore next */
+    return this.page.$$eval(selector, elements => {
+      return elements.map(x => x.outerText).join('');
+    });
+  }
+
+  count(selector) {
+    /* istanbul ignore next */
+    return this.page.$$eval(selector, elements => {
+      return elements.length;
+    });
+  }
+
+  async elementsWithText(selector, text, exact = true) {
+    const self = this;
+    const items = await self.page.$$(selector);
+    return await Promise.filter(items, handle => {
       /* istanbul ignore next */
       return self.page
         .evaluate(obj => obj.innerText, handle)
@@ -89,65 +92,61 @@ Mink.prototype.elementsWithText = function (selector, text, exact = true) {
           }
           return res.toUpperCase().indexOf(text.toUpperCase()) >= 0;
         });
-    }),
-  );
-};
+    });
+  }
 
-Mink.prototype.elementsWithValue = function (selector, text) {
-  const self = this;
-  return self.page.$$(selector).then(items =>
-    Promise.filter(items, handle => {
+  async elementsWithValue(selector, text) {
+    const self = this;
+    const items = await self.page.$$(selector);
+    return await Promise.filter(items, async handle => {
       /* istanbul ignore next */
-      return self.page
-        .evaluate(obj => obj.value, handle)
-        .then(res => res.toUpperCase() === text.toUpperCase());
-    }),
-  );
-};
+      const res = await self.page.evaluate(obj => obj.value, handle);
+      return res.toUpperCase() === text.toUpperCase();
+    });
+  }
 
-Mink.prototype.button = function (mixed) {
-  const arr = [
-    () =>
-      Promise.try(() => this.page.$$(mixed)).catch(err => {
-        debug(err);
-        return [];
-      }),
-    () => this.elementsWithText('button', mixed),
-    () => this.elementsWithValue('input[type=submit]', mixed),
-  ];
-  return detectSeries(
-    arr,
-    fn => fn(),
-    WebElements => !!WebElements.length,
-  ).then(({ result }) => {
+  async button(mixed) {
+    const arr = [
+      () =>
+        Promise.try(() => this.page.$$(mixed)).catch(err => {
+          debug(err);
+          return [];
+        }),
+      () => this.elementsWithText('button', mixed),
+      () => this.elementsWithValue('input[type=submit]', mixed),
+    ];
+    const { result } = await detectSeries(
+      arr,
+      fn_1 => fn_1(),
+      WebElements => !!WebElements.length,
+    );
     if (!result) throw new Error('Button not found !');
     return result[0];
-  });
-};
+  }
 
-Mink.prototype.link = function (mixed) {
-  const arr = [
-    () =>
-      Promise.try(() => this.page.$$(mixed)).catch(err => {
-        debug(err);
-        return [];
-      }),
-    () => this.elementsWithText('a', mixed, true),
-    () => this.elementsWithText('a', mixed, false),
-  ];
-  return detectSeries(
-    arr,
-    fn => fn(),
-    WebElements => !!WebElements.length,
-  ).then(({ result }) => {
+  async link(mixed) {
+    const arr = [
+      () =>
+        Promise.try(() => this.page.$$(mixed)).catch(err => {
+          debug(err);
+          return [];
+        }),
+      () => this.elementsWithText('a', mixed, true),
+      () => this.elementsWithText('a', mixed, false),
+    ];
+    const { result } = await detectSeries(
+      arr,
+      fn_1 => fn_1(),
+      WebElements => !!WebElements.length,
+    );
     if (!result) throw new Error('Link not found !');
     return result[0];
-  });
-};
+  }
 
-Mink.prototype.getSelector = function (key) {
-  return key in this.config.selectors ? this.config.selectors[key] : key;
-};
+  getSelector(key) {
+    return key in this.config.selectors ? this.config.selectors[key] : key;
+  }
+}
 
 module.exports.Mink = Mink;
 module.exports.gherkin = gherkin;
