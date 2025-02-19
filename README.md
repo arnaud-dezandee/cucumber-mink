@@ -12,7 +12,8 @@
 ## Features
 
 Run your tests with [puppeteer](https://github.com/puppeteer/puppeteer) - Chrome
- - [Steps Dictionary (40+)](http://cucumber-mink.js.org/steps/)
+
+- [Steps Dictionary (40+)](http://cucumber-mink.js.org/steps/)
 
 ## Documentation
 
