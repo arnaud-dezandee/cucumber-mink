@@ -14,8 +14,10 @@ const DEFAULT_CONFIG = {
     width: 1366,
     height: 768,
   },
-  headless: process.env.RUN_HEADLESS !== '0',
-  devtools: process.env.RUN_DEVTOOLS === '1',
+  puppeteer: {
+    headless: process.env.RUN_HEADLESS !== '0',
+    devtools: process.env.RUN_DEVTOOLS === '1',
+  },
   selectors: {},
 };
 
@@ -40,10 +42,7 @@ class Mink {
   }
 
   async setup() {
-    this.browser = await puppeteer.launch({
-      headless: this.config.headless && !this.config.devtools,
-      devtools: this.config.devtools,
-    });
+    this.browser = await puppeteer.launch(this.config.puppeteer);
     this.page = await this.browser.newPage();
     return this.page.setViewport(this.config.viewport);
   }
