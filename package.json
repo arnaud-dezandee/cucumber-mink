@@ -29,9 +29,24 @@
   },
   "main": "src/mink.js",
   "scripts": {
-    "coverage": "cat ./coverage/lcov.info | coveralls",
-    "test": "nyc --reporter=lcov --reporter=text cucumber-js test/",
-    "express": "node test/site/server.js"
+    "test": "wireit",
+    "express": "wireit"
+  },
+  "wireit": {
+    "test": {
+      "command": "nyc --reporter=lcov --reporter=text cucumber-js test/",
+      "dependencies": [
+        "express"
+      ]
+    },
+    "express": {
+      "command": "node test/site/server.js",
+      "service": {
+        "readyWhen": {
+          "lineMatches": "App server running at http://localhost:3000"
+        }
+      }
+    }
   },
   "dependencies": {
     "bluebird": "3.7.2",
@@ -52,6 +67,6 @@
     "nunjucks": "3.2.4",
     "nyc": "17.1.0",
     "prettier": "3.5.1",
-    "semantic-release": "24.2.3"
+    "wireit": "^0.14.11"
   }
 }
