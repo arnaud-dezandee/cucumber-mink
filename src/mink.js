@@ -139,7 +139,16 @@ class Mink {
       WebElements => !!WebElements.length,
     );
     if (!result) throw new Error('Link not found !');
-    return result[0];
+    const visibleLinks = await Promise.filter(result, async handle => {
+      try {
+        const box = await handle.boundingBox();
+        return box !== null;
+      } catch (e) {
+        return false;
+      }
+    });
+    if (!visibleLinks.length) throw new Error('Link not found !');
+    return visibleLinks[0];
   }
 
   getSelector(key) {
